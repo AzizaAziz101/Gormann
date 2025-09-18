@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio mit Apple Navbar</title>
+  <title>Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
@@ -57,32 +57,21 @@
       
     </ul>
 
-    <!-- Icons / Mobile Menu Button -->
-    <div class="flex items-center space-x-4 lg:space-x-6">
-      <button>
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-        </svg>
-      </button>
-      <button>
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M6 2h12l1 5H5L6 2z"></path>
-          <path d="M5 7h14v13H5V7z"></path>
-        </svg>
-      </button>
-      <button id="mobile-toggle" class="lg:hidden">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
-      </button>
-    </div>
-  </div>
+<!-- Logo + Mobile Menu Button -->
+<div class="flex items-center justify-between w-full lg:w-auto">
+  <!-- Schriftzug nur auf Mobil -->
+  <a href="index.html" class="font-bold text-lg lg:hidden">hoeft.website</a>
+
+  <!-- Mobile Menü Button -->
+  <button id="mobile-toggle" class="lg:hidden ml-4">
+    <svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2"
+      viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="8" x2="21" y2="8"></line>
+      <line x1="3" y1="16" x2="21" y2="16"></line>
+    </svg>
+  </button>
+</div>
+
 
   <!-- Dropdown Menu -->
   <div id="dropdown" class="hidden lg:flex justify-center bg-white shadow-lg absolute w-full top-full left-0 z-40 scale-y-0 opacity-0">
@@ -103,11 +92,11 @@
 </nav>
 
 <main class="pt-20 max-w-6xl mx-auto px-5 mt-24">
-  <h1 class="text-6xl font-bold mb-4">
-    Willkommen auf der Seite dies ist mein Portfolio entdecken sie fortschrittliches responsives Design
+  <h1 class="text-4xl sm:text-6xl font-bold mb-4">
+    Willkommen bei hoeft.website dies sind die Leistungen entdecken sie fortschrittliches responsives Design
   </h1>
-  <p class="mb-4 mt-12">Dies ist ein Demo-Inhalt unter der Apple-ähnlichen Navbar.</p>
-  <p class="mb-4">Scrollbare Inhalte hier…</p>
+  <p class="mb-4 mt-12">Dies ist ein Demo.</p>
+  <p class="mb-4">Weitere Inhalte folgen in Kürze…</p>
   <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum...</p>
 
 
@@ -126,46 +115,67 @@
 
 
 
-<section 
-  x-data="{ showIframe: false }" 
-  class="relative bg-transparent rounded-2xl overflow-hidden mt-12 flex flex-col md:flex-row gap-6"
->
-  <!-- Linker Teil: Text -->
-  <div class="flex-1 flex flex-col justify-center p-4">
-    <h2 class="text-xl sm:text-2xl font-semibold mb-3 tracking-tight text-left">
-      Landingpage für Berliner Kanzlei 
-      <span class="block text-s text-gray-400 font-medium mt-1">· 07/2025</span>
-    </h2>
-    <p class="mb-4 text-left">
-      Website einer Berliner Anwältin. Minimalistisches, helles Design mit klarer Typografie. Fortschrittliche UX. Webpage Template 001
-    </p>
-    <ul class="flex flex-wrap gap-2 sm:mb-5">
-      <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">HTML</li>
-      <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">TailwindCSS</li>
-      <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">JavaScript</li>
-    </ul>
 
-    <!-- Desktop Button: nur auf md+ sichtbar -->
+  
+
+
+
+
+<section 
+  x-data="{ showIframe: false }"
+  class="bg-white rounded-2xl border border-gray-200 overflow-hidden mt-12 flex flex-col md:flex-row gap-0 shadow-sm hover:shadow-md transition-shadow"
+>
+  <!-- Linker Teil: Text + Button -->
+  <div class="flex-1 flex flex-col justify-between p-4 md:p-6">
+    <div>
+      <h2 class="text-lg sm:text-xl font-semibold text-gray-900 tracking-tight mb-2">
+        Landingpage für Berliner Kanzlei
+        <span class="block text-gray-900 text-s font-normal mt-1">· 07/2025</span>
+      </h2>
+      <p class="text-gray-700 text-sm mb-4">
+        Website einer Berliner Anwältin. Minimalistisches, helles Design mit klarer Typografie. Fortschrittliche UX. Webpage Template 001
+      </p>
+      <div class="flex flex-wrap gap-2 mb-5">
+        <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">HTML</span>
+        <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">TailwindCSS</span>
+        <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">JavaScript</span>
+      </div>
+    </div>
+
+    <!-- Desktop Button -->
     <div class="hidden md:flex mt-4">
       <button 
-        @click="showIframe = true" 
-        class="px-4 py-2 bg-gray-900 hover:bg-black text-white rounded-lg shadow transition text-sm"
+        @click="showIframe = true"
+        class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition"
       >
         Projekt ansehen
       </button>
     </div>
   </div>
 
-  <!-- Rechter Teil: Bild -->
-  <div class="flex-1 flex items-center justify-center sm:p-4">
-    <img src="anwältinb1.png" alt="Projekt Bild" class="rounded-xl shadow-md object-cover w-full h-full max-h-80">
+  <!-- Rechter Teil: Bild mit Overlay -->
+  <div class="flex-1 relative overflow-hidden p-0 md:p-6">
+    <button class="w-full h-full p-0 border-0 bg-transparent relative block" @click="showIframe = true">
+      <img 
+        src="anwältinb1.png" 
+        alt="Projekt Bild" 
+        class="w-full h-full object-cover block rounded-xl" 
+      >
+      <div class="overlay-container absolute inset-0">
+        <div class="overlay-row"></div>
+        <div class="overlay-row"></div>
+        <div class="overlay-row"></div>
+        <div class="overlay-row"></div>
+        <div class="overlay-row"></div>
+      </div>
+    </button>
   </div>
 
-  <!-- Mobile Button: nur auf kleinen Screens sichtbar -->
+  <!-- Mobile Button -->
   <div class="flex justify-center md:hidden p-4">
     <button 
       @click="showIframe = true" 
-      class="px-4 py-2 bg-gray-900 hover:bg-black text-white rounded-lg shadow transition text-sm"
+      class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition"
     >
       Projekt ansehen
     </button>
@@ -194,14 +204,6 @@
   </div>
 </section>
 
-
-
-<section class="mt-24" id="webdesign">
-  <h2>Webdesign</h2>
-  <p>Hier steht alles zum Webdesign. hier schreibe ich zu dem Theama Webdesign rein</p>
-</section>
-
-  
     
 
 
@@ -220,11 +222,41 @@
 </footer>
 
 <script>
+
 const MENU_CONTENT = {
 
-  Leistungen: { firstUl: { title: "Webdesign", items: ["Wie ensteht Webdesign","Top 10 in Webdesign","Grafiken","Farbwelt","Typographie","Performance"] },
-         secondUl: { title: "UX UI Design", items: ["Choose your Mac","Mac vs PC","Which Mac is right for you?","Shop with a Specialist"] },
-         thirdUl: { title: "Webentwicklung", items: ["Figma","Vs Code","HTML","TailwindCSS"] } },
+  Leistungen: { 
+  firstUl: { 
+    title: { label: "Webdesign", url: "nheimleistungen.html" }, 
+    items: [
+      { label: "Wie ensteht Webdesign", url: "nheimleistungen.html#webdesign" },
+      { label: "Top 10 in Webdesign", url: "nheimleistungen.html" },
+      { label: "Grafiken", url: "nheimleistungen.html" },
+      { label: "Farbwelt", url: "nheimleistungen.html" },
+      { label: "Typographie", url: "nheimleistungen.html" },
+      { label: "Performance", url: "nheimleistungen.html" }
+    ] 
+  },
+  secondUl: { 
+    title: { label: "UX UI Design", url: "ux-ui-design.html" }, 
+    items: [
+      { label: "Choose your Mac", url: "choose-mac.html" },
+      { label: "Mac vs PC", url: "mac-vs-pc.html" },
+      { label: "Which Mac is right for you?", url: "which-mac.html" },
+      { label: "Shop with a Specialist", url: "shop-specialist.html" }
+    ] 
+  },
+  thirdUl: { 
+    title: { label: "Webentwicklung", url: "webentwicklung.html" }, 
+    items: [
+      { label: "Figma", url: "figma.html" },
+      { label: "Vs Code", url: "vscode.html" },
+      { label: "HTML", url: "html.html" },
+      { label: "TailwindCSS", url: "tailwind.html" }
+    ] 
+  } 
+},
+
   Preise: { firstUl: { title: "Preisentstehung", items: ["Shop Mac","MacBook Air","MacBook Pro","iMac","Mac mini","Mac Studio","Mac Pro"] },
          secondUl: { title: "Beispielpreise", items: ["Choose your Mac","Mac vs PC","Which Mac is right for you?","Shop with a Specialist"] },
          thirdUl: { title: "Fragen zu Preisen", items: ["Figma","Vs Code","HTML","TailwindCSS"] } },
@@ -237,8 +269,9 @@ const MENU_CONTENT = {
   Kontakt: { firstUl: { title: "Website", items: ["Shop Apple Watch","Apple Watch Series 9","Apple Watch SE","Apple Watch Ultra 2","Compare Apple Watch","Apple Watch Studio"] },
            secondUl: { title: "Mailsupport", items: ["Apple Watch Support","AppleCare+ for Apple Watch","watchOS 10","Apple Fitness+"] },
            thirdUl: { title: "Telefonsupport", items: ["Apple Watch Bands","AirPods","Apple TV+","Apple One"] } }
- 
+
 };
+
 
 // per-key hover-ignore (persistiert über Seitenwechsel via sessionStorage)
 let ignoreMenuKey = null;
@@ -249,10 +282,14 @@ const menuItems = document.querySelectorAll('.menu-item');
 const dropdown = document.getElementById('dropdown');
 const dropdownContent = document.getElementById('dropdown-content');
 const blurBg = document.getElementById('blur-bg');
-const mobileToggle = document.getElementById('mobile-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileMenuItems = document.getElementById('mobile-menu-items');
-const mobileClose = document.getElementById('mobile-close');
+
+// --- MOBILES MENÜ ELEMENTE ---
+const mobileToggle = document.getElementById('mobile-toggle'); // Hamburger Button
+const mobileMenu = document.getElementById('mobile-menu');     // Mobile Menu Container
+const mobileMenuItems = document.getElementById('mobile-menu-items'); // Mobile Menu Items List
+const mobileClose = document.getElementById('mobile-close');   // Close Button im Mobile Menu
+// --- ENDE MOBILES MENÜ ---
+
 
 function openDropdown(key) {
   // Wenn genau dieser Menü-Key kurz zuvor geklickt wurde -> nicht öffnen
@@ -265,7 +302,14 @@ function openDropdown(key) {
   ['firstUl','secondUl','thirdUl'].forEach(section => {
     const col = document.createElement('div');
     col.innerHTML = `
-      <h3 class="title-item font-semibold mb-2">${content[section].title}</h3>
+      <h3 class="title-item font-semibold mb-2">
+  ${
+    typeof content[section].title === "string"
+      ? content[section].title
+      : `<a href="${content[section].title.url}" class="hover:underline">${content[section].title.label}</a>`
+  }
+      </h3>
+
       <ul class="space-y-1 text-sm">
         ${content[section].items
           .map(i => {
@@ -302,13 +346,15 @@ menuItems.forEach(item => {
 const navbarArea = document.querySelector('nav');
 navbarArea.addEventListener('mouseleave', closeDropdown);
 
+// --- MOBILES MENÜ TOGGLE ---
 mobileToggle.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
+  mobileMenu.classList.toggle('hidden'); // Öffnen / Schließen
 });
 
 mobileClose.addEventListener('click', () => {
-  mobileMenu.classList.add('hidden');
+  mobileMenu.classList.add('hidden'); // Schließen
 });
+// --- ENDE MOBILES MENÜ TOGGLE ---
 
 Object.keys(MENU_CONTENT).forEach(key => {
   const li = document.createElement('li');
@@ -344,7 +390,7 @@ function attachMenuLinkHandlers() {
 
       // UX: Menüs schließen sofort (Navigation folgt normal)
       closeDropdown();
-      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.add('hidden'); // MOBILE MENU SCHLIESSEN
       // NICHT preventDefault — wir wollen die Navigation
     });
   });
@@ -352,8 +398,6 @@ function attachMenuLinkHandlers() {
 
 // rufe jetzt gleich auf (so sind die Handler vor einem Klick gebunden)
 attachMenuLinkHandlers();
-
-
 
 
 // Beim Laden prüfen, ob vorher ein Menüpunkt geklickt wurde — temporäre Sperre setzen
@@ -379,8 +423,9 @@ attachMenuLinkHandlers();
   }
 })();
 
-
 </script>
+
 
 </body>
 </html>
+

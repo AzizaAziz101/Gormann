@@ -60,7 +60,7 @@
 <!-- Logo + Mobile Menu Button -->
 <div class="flex items-center justify-between w-full lg:w-auto">
   <!-- Schriftzug nur auf Mobil -->
-  <a href="index.html" class="font-bold text-lg lg:hidden">19thara</a>
+  <a href="index.html" class="font-bold text-lg lg:hidden">hoeft.website</a>
 
   <!-- Mobile Menü Button -->
   <button id="mobile-toggle" class="lg:hidden ml-4">
@@ -80,14 +80,22 @@
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden lg:hidden bg-white w-full h-screen p-8 overflow-auto z-50 fixed top-0 left-0">
-    <button id="mobile-close" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 transition">
-      <svg class="w-8 h-8 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
+    <button id="mobile-close" class="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-200 transition">
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
         viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
-    <ul id="mobile-menu-items" class="flex flex-col gap-6 text-xl font-semibold mt-12"></ul>
+     <!-- Hier das mobile Menü hartcodiert einfügen -->
+  <ul id="mobile-menu-items" class="flex flex-col gap-6 text-xl font-semibold mt-12">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="nheimleistungen.html">Leistungen</a></li>
+    <li><a href="nheimpreise.html">Preise</a></li>
+    <li><a href="nheimlösungen.html">Lösungen</a></li>
+    <li><a href="nheimübermich.html">Über mich</a></li>
+    <li><a href="nheimkontakt.html">Kontakt</a></li>
+  </ul>
   </div>
 </nav>
 
@@ -130,7 +138,7 @@
     <div>
       <h2 class="text-lg sm:text-xl font-semibold text-gray-900 tracking-tight mb-2">
         Landingpage für Berliner Kanzlei
-        <span class="block text-gray-400 text-s font-normal mt-1">· 07/2025</span>
+        <span class="block text-gray-900 text-s font-normal mt-1">· 07/2025</span>
       </h2>
       <p class="text-gray-700 text-sm mb-4">
         Website einer Berliner Anwältin. Minimalistisches, helles Design mit klarer Typografie. Fortschrittliche UX. Webpage Template 001
@@ -222,6 +230,7 @@
 </footer>
 
 <script>
+
 const MENU_CONTENT = {
 
   Leistungen: { 
@@ -268,8 +277,9 @@ const MENU_CONTENT = {
   Kontakt: { firstUl: { title: "Website", items: ["Shop Apple Watch","Apple Watch Series 9","Apple Watch SE","Apple Watch Ultra 2","Compare Apple Watch","Apple Watch Studio"] },
            secondUl: { title: "Mailsupport", items: ["Apple Watch Support","AppleCare+ for Apple Watch","watchOS 10","Apple Fitness+"] },
            thirdUl: { title: "Telefonsupport", items: ["Apple Watch Bands","AirPods","Apple TV+","Apple One"] } }
- 
+
 };
+
 
 // per-key hover-ignore (persistiert über Seitenwechsel via sessionStorage)
 let ignoreMenuKey = null;
@@ -280,10 +290,14 @@ const menuItems = document.querySelectorAll('.menu-item');
 const dropdown = document.getElementById('dropdown');
 const dropdownContent = document.getElementById('dropdown-content');
 const blurBg = document.getElementById('blur-bg');
-const mobileToggle = document.getElementById('mobile-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
-const mobileMenuItems = document.getElementById('mobile-menu-items');
-const mobileClose = document.getElementById('mobile-close');
+
+// --- MOBILES MENÜ ELEMENTE ---
+const mobileToggle = document.getElementById('mobile-toggle'); // Hamburger Button
+const mobileMenu = document.getElementById('mobile-menu');     // Mobile Menu Container
+const mobileMenuItems = document.getElementById('mobile-menu-items'); // Mobile Menu Items List
+const mobileClose = document.getElementById('mobile-close');   // Close Button im Mobile Menu
+// --- ENDE MOBILES MENÜ ---
+
 
 function openDropdown(key) {
   // Wenn genau dieser Menü-Key kurz zuvor geklickt wurde -> nicht öffnen
@@ -340,23 +354,17 @@ menuItems.forEach(item => {
 const navbarArea = document.querySelector('nav');
 navbarArea.addEventListener('mouseleave', closeDropdown);
 
+// --- MOBILES MENÜ TOGGLE ---
 mobileToggle.addEventListener('click', () => {
-  mobileMenu.classList.toggle('hidden');
+  mobileMenu.classList.toggle('hidden'); // Öffnen / Schließen
 });
 
 mobileClose.addEventListener('click', () => {
-  mobileMenu.classList.add('hidden');
+  mobileMenu.classList.add('hidden'); // Schließen
 });
+// --- ENDE MOBILES MENÜ TOGGLE ---
 
-Object.keys(MENU_CONTENT).forEach(key => {
-  const li = document.createElement('li');
-  const a = document.createElement('a');
-  a.textContent = key;
-  a.href = key.toLowerCase().replace(/\s+/g, "-") + ".html"; // z. B. uebermich.html oder tv-&-home.html
-  a.classList.add("cursor-pointer", "hover:underline");
-  li.appendChild(a);
-  mobileMenuItems.appendChild(li);
-});
+
 
 
 // Attach click handlers to all nav / mobile links — speichern des geklickten Haupt-Keys
@@ -382,7 +390,7 @@ function attachMenuLinkHandlers() {
 
       // UX: Menüs schließen sofort (Navigation folgt normal)
       closeDropdown();
-      mobileMenu.classList.add('hidden');
+      mobileMenu.classList.add('hidden'); // MOBILE MENU SCHLIESSEN
       // NICHT preventDefault — wir wollen die Navigation
     });
   });
@@ -390,8 +398,6 @@ function attachMenuLinkHandlers() {
 
 // rufe jetzt gleich auf (so sind die Handler vor einem Klick gebunden)
 attachMenuLinkHandlers();
-
-
 
 
 // Beim Laden prüfen, ob vorher ein Menüpunkt geklickt wurde — temporäre Sperre setzen
@@ -417,8 +423,8 @@ attachMenuLinkHandlers();
   }
 })();
 
-
 </script>
+
 
 </body>
 </html>
