@@ -1,0 +1,156 @@
+<section 
+  x-data="{ showIframe: false }" 
+  class="relative bg-transparent rounded-2xl overflow-hidden mt-12 flex flex-col md:flex-row gap-6"
+>
+  <!-- Linker Teil: Text -->
+  <div class="flex-1 flex flex-col justify-center p-4">
+    <h2 class="text-xl sm:text-2xl font-semibold mb-3 tracking-tight text-left">
+      Landingpage für Berliner Kanzlei 
+      <span class="block text-s text-gray-400 font-medium mt-1">· 07/2025</span>
+    </h2>
+    <p class="mb-4 text-left">
+      Website einer Berliner Anwältin. Minimalistisches, helles Design mit klarer Typografie. Fortschrittliche UX. Webpage Template 001
+    </p>
+    <ul class="flex flex-wrap gap-2 sm:mb-5">
+      <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">HTML</li>
+      <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">TailwindCSS</li>
+      <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">JavaScript</li>
+    </ul>
+
+    <!-- Desktop Button: nur auf md+ sichtbar -->
+    <div class="hidden md:flex mt-4">
+      <button 
+        @click="showIframe = true" 
+        class="px-4 py-2 bg-gray-900 hover:bg-black text-white rounded-lg shadow transition text-sm"
+      >
+        Projekt ansehen
+      </button>
+    </div>
+  </div>
+
+  <!-- Rechter Teil: Bild -->
+  <div class="flex-1 flex items-center justify-center sm:p-4">
+    <img src="anwältinb1.png" alt="Projekt Bild" class="rounded-xl shadow-md object-cover w-full h-full max-h-80">
+  </div>
+
+  <!-- Mobile Button: nur auf kleinen Screens sichtbar -->
+  <div class="flex justify-center md:hidden p-4">
+    <button 
+      @click="showIframe = true" 
+      class="px-4 py-2 bg-gray-900 hover:bg-black text-white rounded-lg shadow transition text-s"
+    >
+      Projekt ansehen
+    </button>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Rechter Teil: Bild -->
+  <div 
+    @click="showIframe = true"
+    class="flex-1 relative cursor-pointer overflow-hidden rounded-2xl group"
+  >
+    <img src="anwältinb1.png" alt="Projekt Bild" class="w-full h-full object-cover rounded-2xl transition-transform duration-300 group-hover:scale-105">
+    <!-- Overlay beim Hover -->
+    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-10 transition-opacity rounded-2xl flex items-center justify-center">
+      <span class="text-white font-medium text-sm opacity-0 group-hover:opacity-100">Vorschau öffnen</span>
+    </div>
+  </div>
+
+
+
+
+
+
+    <!-- Rechter Teil: Bild als Netflix-Style Card -->
+  <div 
+    @click="showIframe = true"
+    class="relative flex-1 cursor-pointer group overflow-hidden rounded-xl"
+  >
+    <img src="anwältinb1.png" alt="Projekt Bild" class="w-full h-full object-cover rounded-xl transition-transform duration-300 group-hover:scale-105">
+    
+    <!-- Overlay beim Hover -->
+    <div class="absolute inset-0 bg-black bg-opacity-25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+      
+    </div>
+  </div>
+
+
+
+      
+<section 
+  x-data="{ showIframe: false }"
+  class="bg-white rounded-2xl border border-gray-200 overflow-hidden mt-12 flex flex-col md:flex-row gap-6 shadow-sm hover:shadow-md transition-shadow"
+>
+  <!-- Linker Teil: Text -->
+  <div class="flex-1 flex flex-col justify-between p-6">
+    <div>
+      <h2 class="text-lg sm:text-xl font-semibold text-gray-900 tracking-tight mb-2">
+        Landingpage für Berliner Kanzlei
+        <span class="block text-gray-400 text-s font-normal mt-1">· 07/2025</span>
+      </h2>
+      <p class="text-gray-700 text-sm mb-4">
+        Website einer Berliner Anwältin. Minimalistisches, helles Design mit klarer Typografie. Fortschrittliche UX. Webpage Template 001
+      </p>
+      <div class="flex flex-wrap gap-2 mb-5">
+        <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">HTML</span>
+        <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">TailwindCSS</span>
+        <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">JavaScript</span>
+      </div>
+    </div>
+    <button 
+      @click="showIframe = true"
+      class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition"
+    >
+      Projekt ansehen
+    </button>
+  </div>
+
+<!-- Projekt Card mit Row-Overlay -->
+<div class="relative flex-1 cursor-pointer group overflow-hidden rounded-xl">
+  <button class="w-full h-full p-0 border-0 bg-transparent relative overflow-hidden" @click="showIframe = true">
+    <img src="anwältinb1.png" alt="Projekt Bild" class="w-full h-full object-cover rounded-xl transition-transform duration-300 group-hover:scale-105">
+
+    <!-- Overlay Container -->
+    <div class="overlay-container absolute inset-0">
+      <div class="overlay-row"></div>
+      <div class="overlay-row"></div>
+      <div class="overlay-row"></div>
+      <div class="overlay-row"></div>
+      <div class="overlay-row"></div>
+    </div>
+  </button>
+</div>
+
+
+
+  <!-- Modal -->
+  <div 
+    x-show="showIframe"
+    x-cloak
+    x-transition
+    class="fixed inset-0 z-50 flex flex-col bg-white"
+    x-init="$watch('showIframe', value => { document.body.classList.toggle('overflow-hidden', value) })"
+  >
+    <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
+      <h3 class="text-gray-900 text-sm font-medium">Projekt Vorschau</h3>
+      <button 
+        @click="showIframe = false" 
+        class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
+      >
+        Schließen
+      </button>
+    </div>
+    <iframe src="10000.html" class="w-full flex-1 border-0"></iframe>
+  </div>
+</section>
+
+
