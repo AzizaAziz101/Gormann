@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smooth Image Scroll Reveal with Crossfade</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #121212;
+      overflow-x: hidden;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .image-clip {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+      opacity: 0;
+      transform: scale(1);
+      transition: none; /* Wir animieren mit JS */
+    }
+
+    /* Progress bar */
+    #progress {
+      transition: height 0.1s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div class="fixed right-4 top-1/2 w-0.5 -translate-x-1/2 -translate-y-1/2 h-30 bg-[rgb(40,40,40)] lg:right-12">
+    <div id="progress" class="absolute left-0 top-0 w-full bg-white h-0"></div>
+  </div>
+
+  <!-- Scroll container -->
+  <div id="scroll-container" class="relative h-[500vh] w-full">
+    <section class="sticky top-0 h-screen w-full flex justify-center items-center">
+      <div id="image-container" class="relative w-full max-w-xl h-[70%]">
+        <img src="333.jpg" class="image-clip" />
+        <img src="33.jpg" class="image-clip" />
+        <img src="11.jpg" class="image-clip" />
+        <img src="33.jpg" class="image-clip" />
+        <img src="333.jpg" class="image-clip" />
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('#image-container img');
+    const progressBar = document.getElementById('progress');
+    const totalImages = images.length;
+
+    let targetScroll = 0;
+    let currentScroll = 0;
+    let currentProgress = 0;
+
+    window.addEventListener('scroll', () => {
+      targetScroll = window.scrollY;
+    });
+
+    // Linear interpolation
+    function lerp(a, b, t) {
+      return a + (b - a) * t;
+    }
+
+    // EaseInOutCubic für sanftes Starten und Stoppen
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScroll() {
+      // Dynamischer Lerp: immer harmonisch
+      const diff = targetScroll - currentScroll;
+      const lerpFactor = Math.min(Math.abs(diff) * 0.03, 0.08); 
+      currentScroll = lerp(currentScroll, targetScroll, lerpFactor);
+
+      updateImages(currentScroll);
+      requestAnimationFrame(smoothScroll);
+    }
+
+    smoothScroll();
+
+    function updateImages(scrollY) {
+      const container = document.getElementById('scroll-container');
+      const containerHeight = container.offsetHeight - window.innerHeight;
+      let scrollProgress = scrollY / containerHeight;
+      scrollProgress = Math.min(Math.max(scrollProgress, 0), 1);
+
+      // Gesamtfortschritt für Bilder
+      const totalProgress = scrollProgress * totalImages;
+      const currentIndex = Math.floor(totalProgress);
+      const fractionalProgress = totalProgress - currentIndex;
+      const easedFraction = easeInOutCubic(fractionalProgress);
+
+      // Progress bar
+      currentProgress = lerp(currentProgress, scrollProgress, 0.1);
+      progressBar.style.height = `${Math.min(currentProgress * 100, 100)}%`;
+
+      images.forEach((img, index) => {
+        if (index === currentIndex) {
+          // Aktuelles Bild
+          img.style.opacity = 1 - easedFraction; // sanft ausblenden
+          img.style.transform = `scale(${1 - 0.05 * easedFraction}) translateY(${easedFraction * 10}px)`;
+        } else if (index === currentIndex + 1) {
+          // Nächstes Bild
+          img.style.opacity = easedFraction; // sanft einblenden
+          img.style.transform = `scale(${0.95 + 0.05 * easedFraction}) translateY(${(1 - easedFraction) * 10}px)`;
+        } else {
+          img.style.opacity = 0;
+          img.style.transform = "scale(0.95) translateY(10px)";
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kompakte Projektkarten</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    [x-cloak] { display: none !important; }
+  </style>
+</head>
+<body class="bg-gray-100 flex flex-col items-center justify-start min-h-screen text-gray-900 font-sans p-6">
+
+  <main class="max-w-4xl mx-auto space-y-10 w-full">
+
+    <!-- Projekt Card 1 -->
+    <section 
+      x-data="{ showIframe: false }" 
+      class="relative bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm p-6"
+    >
+      <h2 class="text-xl sm:text-2xl font-semibold mb-3 tracking-tight">
+        Landingpage für Berliner Kanzlei 
+        <span class="block text-xs text-gray-400 font-medium mt-1">· 08/2025</span>
+      </h2>
+      <p class="text-sm leading-relaxed text-gray-600 mb-4">
+        Website einer Berliner Anwältin. Minimalistisches, helles Design mit klarer Typografie. Fortschrittliche UX. Webpage Template 001
+      </p>
+      <ul class="flex flex-wrap gap-2 mb-5">
+        <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">HTML</li>
+        <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">TailwindCSS</li>
+        <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">JavaScript</li>
+      </ul>
+      <button 
+        @click="showIframe = true" 
+        class="px-4 py-2 bg-gray-900 hover:bg-black text-white rounded-lg shadow transition text-sm font-medium">
+        Projekt ansehen
+      </button>
+
+      <!-- Modal mit Overlay -->
+      <div 
+        x-show="showIframe"
+        x-cloak
+        x-transition
+        class="fixed inset-0 z-50 flex items-center justify-center"
+        x-init="$watch('showIframe', value => { 
+          document.body.classList.toggle('overflow-hidden', value) 
+        })"
+      >
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/50" @click="showIframe = false"></div>
+
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-xl shadow-lg w-[90%] max-w-2xl flex flex-col h-[80%]">
+          <div class="flex justify-between items-center px-4 py-2 border-b border-gray-200">
+            <h3 class="text-sm font-semibold text-gray-900">Projekt Vorschau</h3>
+            <button 
+              @click="showIframe = false" 
+              class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
+            >
+              Schließen
+            </button>
+          </div>
+          <iframe src="10000.html" class="w-full flex-1 border-0 rounded-b-xl"></iframe>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Projekt Card 2 -->
+    <section 
+      x-data="{ showIframe: false, iframeLoaded: false }" 
+      class="relative bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm p-6"
+    >
+      <h2 class="text-xl sm:text-2xl font-semibold mb-3 tracking-tight">
+        Selbstprojekt 
+        <span class="block text-xs text-gray-400 font-medium mt-1">· 07/2025</span>
+      </h2>
+      <p class="text-sm leading-relaxed text-gray-600 mb-4">
+        Ein eigenständiges Projekt zur Weiterentwicklung meiner UI-Fähigkeiten. Thema: Erfüllt sein, creating your reality. Webpage Template 002
+      </p>
+      <ul class="flex flex-wrap gap-2 mb-5">
+        <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">HTML</li>
+        <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">TailwindCSS</li>
+        <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">JavaScript</li>
+      </ul>
+      <button 
+        @click="
+          showIframe = true;
+          iframeLoaded = false;
+          $nextTick(() => {
+            $refs.projectIframe.src = 'https://selbst.vercel.app/';
+          })
+        "
+        class="px-4 py-2 bg-gray-900 hover:bg-black text-white rounded-lg shadow transition text-sm font-medium"
+      >
+        Projekt ansehen
+      </button>
+
+      <!-- Modal mit Overlay -->
+      <div 
+        x-show="showIframe" 
+        x-cloak
+        x-transition
+        class="fixed inset-0 z-50 flex items-center justify-center"
+        x-init="$watch('showIframe', value => { 
+          document.body.classList.toggle('overflow-hidden', value);
+          if (!value) iframeLoaded = false;
+        })"
+      >
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/50" @click="showIframe = false"></div>
+
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-xl shadow-lg w-[90%] max-w-2xl flex flex-col h-[80%]">
+          <div class="flex justify-between items-center px-4 py-2 border-b border-gray-200">
+            <h3 class="text-sm font-semibold text-gray-900">Projekt Vorschau</h3>
+            <button 
+              @click="showIframe = false" 
+              class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
+            >
+              Schließen
+            </button>
+          </div>
+          <iframe 
+            x-ref="projectIframe" 
+            x-show="iframeLoaded" 
+            @load="iframeLoaded = true" 
+            src="" 
+            class="w-full flex-1 border-0 rounded-b-xl"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Projekt Card 3 -->
+    <section 
+      x-data="{ showIframe: false }" 
+      class="relative bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm p-6"
+    >
+      <h2 class="text-xl sm:text-2xl font-semibold mb-3 tracking-tight">
+        Landingpage für Schlosserei 
+        <span class="block text-xs text-gray-400 font-medium mt-1">· 09/2025</span>
+      </h2>
+      <p class="text-sm leading-relaxed text-gray-600 mb-4">
+        Landingpage der Schlosserei Müller. Klare Struktur in Verbindung mit moderner UI. Webpage Template 003
+      </p>
+      <ul class="flex flex-wrap gap-2 mb-5">
+        <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">HTML</li>
+        <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">TailwindCSS</li>
+        <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">JavaScript</li>
+      </ul>
+      <button 
+        @click="showIframe = true" 
+        class="px-4 py-2 bg-gray-900 hover:bg-black text-white rounded-lg shadow transition text-sm font-medium">
+        Projekt ansehen
+      </button>
+
+      <!-- Modal mit Overlay -->
+      <div 
+        x-show="showIframe"
+        x-cloak
+        x-transition
+        class="fixed inset-0 z-50 flex items-center justify-center"
+        x-init="$watch('showIframe', value => { 
+          document.body.classList.toggle('overflow-hidden', value) 
+        })"
+      >
+        <!-- Overlay -->
+        <div class="absolute inset-0 bg-black/50" @click="showIframe = false"></div>
+
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-xl shadow-lg w-[90%] max-w-2xl flex flex-col h-[80%]">
+          <div class="flex justify-between items-center px-4 py-2 border-b border-gray-200">
+            <h3 class="text-sm font-semibold text-gray-900">Projekt Vorschau</h3>
+            <button 
+              @click="showIframe = false" 
+              class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
+            >
+              Schließen
+            </button>
+          </div>
+          <iframe src="https://6666-five.vercel.app/" class="w-full flex-1 border-0 rounded-b-xl"></iframe>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

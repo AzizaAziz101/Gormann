@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smooth Image Scroll Reveal with Crossfade</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #121212;
+      overflow-x: hidden;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    .image-clip {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%;
+      width: auto;
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: none;
+      will-change: opacity, transform;
+    }
+
+    @media (min-width: 640px) {
+      .image-clip {
+        max-width: 100%;
+      }
+    }
+
+    #progress {
+      transition: height 0.1s ease;
+    }
+
+    /* Text unterhalb, nicht mitskalierend */
+    .image-text {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgb(0, 0, 0);
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: none;
+      will-change: opacity, transform;
+      text-align: center;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Progress bar -->
+  <div class="fixed right-4 top-1/2 w-0.5 -translate-x-1/2 -translate-y-1/2 h-30 bg-[rgb(40,40,40)] lg:right-12">
+    <div id="progress" class="absolute left-0 top-0 w-full bg-white h-0"></div>
+  </div>
+
+  <!-- Scroll container -->
+  <div id="scroll-container" class="relative h-[500vh] w-full">
+    <section class="sticky top-0 h-screen w-full flex justify-center items-center">
+      <div id="image-container" class="relative w-full max-w-xl h-[70%]">
+
+        <!-- Bilder mit Links -->
+        <a href="https://example.com/1" target="_blank">
+          <img src="333.jpg" class="image-clip" alt="Bild 1" />
+        </a>
+        <a href="https://example.com/2" target="_blank">
+          <img src="33.jpg" class="image-clip" alt="Bild 2" />
+        </a>
+        <a href="https://example.com/3" target="_blank">
+          <img src="11.jpg" class="image-clip" alt="Bild 3" />
+        </a>
+        <a href="https://example.com/4" target="_blank">
+          <img src="33.jpg" class="image-clip" alt="Bild 4" />
+        </a>
+        <a href="https://example.com/5" target="_blank">
+          <img src="333.jpg" class="image-clip" alt="Bild 5" />
+        </a>
+
+        <!-- Texte für jedes Bild -->
+        <p class="image-text">HTML Basics</p>
+        <p class="image-text">TailwindCSS Styling</p>
+        <p class="image-text">JavaScript Logic</p>
+        <p class="image-text">Frontend Animation</p>
+        <p class="image-text">Final Project</p>
+
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('#image-container img');
+    const texts = document.querySelectorAll('#image-container .image-text');
+    const progressBar = document.getElementById('progress');
+    const totalImages = images.length;
+
+    let targetScroll = 0;
+    let currentScroll = 0;
+    let currentProgress = 0;
+
+    window.addEventListener('scroll', () => {
+      targetScroll = window.scrollY;
+    });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScroll() {
+      const diff = targetScroll - currentScroll;
+      const lerpFactor = Math.min(Math.abs(diff) * 0.03, 0.08);
+      currentScroll = lerp(currentScroll, targetScroll, lerpFactor);
+
+      updateImages(currentScroll);
+      requestAnimationFrame(smoothScroll);
+    }
+
+    smoothScroll();
+
+    function updateImages(scrollY) {
+      const container = document.getElementById('scroll-container');
+      const containerHeight = container.offsetHeight - window.innerHeight;
+      let scrollProgress = scrollY / containerHeight;
+      scrollProgress = Math.min(Math.max(scrollProgress, 0), 1);
+
+      const totalProgress = scrollProgress * totalImages;
+      const currentIndex = Math.floor(totalProgress);
+      const fractionalProgress = totalProgress - currentIndex;
+      const easedFraction = easeInOutCubic(fractionalProgress);
+
+      // Progress bar
+      currentProgress = lerp(currentProgress, scrollProgress, 0.1);
+      progressBar.style.height = `${Math.min(currentProgress * 100, 100)}%`;
+
+      images.forEach((img, index) => {
+        if (index === currentIndex) {
+          img.style.opacity = 1 - easedFraction;
+          img.style.transform = `translate(-50%, calc(-50% + ${easedFraction * 10}px)) scale(${1 - 0.05 * easedFraction})`;
+        } else if (index === currentIndex + 1) {
+          img.style.opacity = easedFraction;
+          img.style.transform = `translate(-50%, calc(-50% + ${(1 - easedFraction) * 10}px)) scale(${0.95 + 0.05 * easedFraction})`;
+        } else {
+          img.style.opacity = 0;
+          img.style.transform = "translate(-50%, -50%) scale(0.95)";
+        }
+      });
+
+      texts.forEach((txt, index) => {
+        if (index === currentIndex) {
+          txt.style.opacity = 1 - easedFraction;
+          txt.style.transform = `translate(-50%, 0px)`;
+        } else if (index === currentIndex + 1) {
+          txt.style.opacity = easedFraction;
+          txt.style.transform = `translate(-50%, 0px)`;
+        } else {
+          txt.style.opacity = 0;
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>

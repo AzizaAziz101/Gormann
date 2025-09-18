@@ -1,0 +1,416 @@
+
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apple Navbar Clone</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* Titel Animation nur Fade */
+  .title-item { 
+    opacity: 0; 
+    transition: opacity 0.4s ease-out; 
+  }
+  .title-item.show { 
+    opacity: 1; 
+  }
+
+  /* Blur Hintergrund */
+  #blur-bg { 
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    backdrop-filter: blur(10px); background: rgba(255,255,255,0.2); 
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+    z-index: 30;
+  }
+  #blur-bg.show { opacity: 1; pointer-events: all; }
+
+  /* Dropdown Slide Animation */
+  #dropdown { transform-origin: top; transition: all 0.3s ease-out; }
+  #dropdown.show { opacity: 1; transform: scaleY(1); }
+  #dropdown.hide { opacity: 0; transform: scaleY(0); pointer-events: none; }
+
+  /* Alle Navbar- und Mobile-Menüpunkte bekommen Pointer */
+  nav li, #mobile-menu li { cursor: pointer; }
+
+
+
+
+
+    .image-clip {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 90%;
+      width: auto;
+      height: auto;
+      max-height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: none;
+      will-change: opacity, transform;
+    }
+
+    @media (min-width: 640px) {
+      .image-clip {
+        max-width: 100%;
+      }
+    }
+
+    #progress {
+      transition: height 0.1s ease;
+    }
+
+    /* Text unterhalb, nicht mitskalierend */
+    .image-text {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgb(0, 0, 0);
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: none;
+      will-change: opacity, transform;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+
+
+
+</style>
+</head>
+<body class="bg-gray-100 relative">
+
+<!-- Blur Background -->
+<div id="blur-bg"></div>
+
+<!-- Navbar -->
+<nav class="fixed top-0 w-full z-40 bg-white shadow">
+  <div class="max-w-6xl mx-auto flex justify-between items-center px-5 py-3">
+    <!-- Desktop Menu -->
+    <ul class="hidden lg:flex space-x-6 text-sm font-medium" id="nav-items">
+      <li class="relative menu-item" data-key="Store">Store</li>
+      <li class="relative menu-item" data-key="Mac">Mac</li>
+      <li class="relative menu-item" data-key="iPad">iPad</li>
+      <li class="relative menu-item" data-key="iPhone">iPhone</li>
+      <li class="relative menu-item" data-key="Watch">Watch</li>
+      <li class="relative menu-item" data-key="AirPods">AirPods</li>
+      <li class="relative menu-item" data-key="Vision">Vision</li>
+      <li class="relative menu-item" data-key="TV & Home">TV & Home</li>
+      <li class="relative menu-item" data-key="Entertainment">Entertainment</li>
+      <li class="relative menu-item" data-key="Support">Support</li>
+    </ul>
+
+    <!-- Icons / Mobile Menu Button -->
+    <div class="flex items-center space-x-4 lg:space-x-6">
+      <button>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      <button>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2h12l1 5H5L6 2z"></path>
+          <path d="M5 7h14v13H5V7z"></path>
+        </svg>
+      </button>
+      <button id="mobile-toggle" class="lg:hidden">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Dropdown Menu -->
+  <div id="dropdown" class="hidden lg:flex justify-center bg-white shadow-lg absolute w-full top-full left-0 z-40 scale-y-0 opacity-0">
+    <div class="max-w-6xl w-full flex gap-12 p-6" id="dropdown-content"></div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-white w-full h-screen p-8 overflow-auto z-50 fixed top-0 left-0">
+    <ul id="mobile-menu-items" class="flex flex-col gap-6 text-xl font-semibold"></ul>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<main class="pt-20 max-w-6xl mx-auto px-5 mt-24">
+  <h1 class="text-6xl font-bold mb-4">Willkommen auf der Seite dies ist mein Portfolio entdecken sie fortschrittliches responsives Design</h1>
+  <p class="mb-4">Dies ist ein Demo-Inhalt unter der Apple-ähnlichen Navbar.</p>
+  <p class="mb-4">Scrollbare Inhalte hier…</p>
+  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum...</p>
+</main>
+
+
+
+
+  <!-- Progress bar -->
+  <div class="fixed right-4 top-1/2 w-0.5 -translate-x-1/2 -translate-y-1/2 h-30 bg-[rgb(40,40,40)] lg:right-12">
+    <div id="progress" class="absolute left-0 top-0 w-full bg-white h-0"></div>
+  </div>
+
+  <!-- Scroll container -->
+  <div id="scroll-container" class="relative h-[500vh] w-full">
+    <section class="sticky top-0 h-screen w-full flex justify-center items-center">
+      <div id="image-container" class="relative w-full max-w-xl h-[70%]">
+
+        <!-- Bilder mit Links -->
+        <a href="https://example.com/1" target="_blank">
+          <img src="333.jpg" class="image-clip" alt="Bild 1" />
+        </a>
+        <a href="https://example.com/2" target="_blank">
+          <img src="33.jpg" class="image-clip" alt="Bild 2" />
+        </a>
+        <a href="https://example.com/3" target="_blank">
+          <img src="landingpage1.jpg" class="image-clip" alt="Bild 3" />
+        </a>
+        <a href="https://example.com/4" target="_blank">
+          <img src="landingpage2.jpg" class="image-clip" alt="Bild 4" />
+        </a>
+        <a href="https://example.com/5" target="_blank">
+          <img src="landingpage3.jpg" class="image-clip" alt="Bild 5" />
+        </a>
+
+        <!-- Texte für jedes Bild -->
+        <p class="image-text">HTML Basics</p>
+        <p class="image-text">TailwindCSS Styling</p>
+        <p class="image-text">JavaScript Logic</p>
+        <p class="image-text">Frontend Animation</p>
+        <p class="image-text">Final Project</p>
+
+      </div>
+    </section>
+  </div>
+
+
+
+
+
+  <!-- Footer -->
+  <footer class="items-center mt-24 mb-6 text-center text-gray-600 text-sm">
+    <p>© 2025 19thara.com</p>
+    <div class="space-x-4 mt-2">
+      <a href="impressum.html" class="underline hover:text-gray-800">Impressum</a>
+      <a href="datenschutz.html" class="underline hover:text-gray-800">Datenschutz</a>
+    </div>
+  </footer>
+
+
+<script>
+const MENU_CONTENT = {
+  Store: { firstUl: { title: "Shop", items: ["Shop the latest","Mac","iPad","iPhone","Watch","AirPods","Vision"] },
+           secondUl: { title: "Quick Links", items: ["Find a store","Help me choose","Check order status","Contact us"] },
+           thirdUl: { title: "Shop Special Features", items: ["Find a store","Help me choose","Check order status","Contact us"] } },
+  Mac: { firstUl: { title: "Mac", items: ["Shop Mac","MacBook Air","MacBook Pro","iMac","Mac mini","Mac Studio","Mac Pro"] },
+         secondUl: { title: "Compare Mac", items: ["Choose your Mac","Mac vs PC","Which Mac is right for you?","Shop with a Specialist"] },
+         thirdUl: { title: "More from Mac", items: ["Mac Support","AppleCare+ for Mac","macOS Sonoma","Continuity"] } },
+  iPad: { firstUl: { title: "iPad", items: ["Shop iPad","iPad Pro","iPad Air","iPad","iPad mini","Apple Pencil","Smart Keyboard"] },
+          secondUl: { title: "Compare iPad", items: ["Choose your iPad","iPad vs MacBook","Which iPad is right for you?","Shop with a Specialist"] },
+          thirdUl: { title: "More from iPad", items: ["iPad Support","AppleCare+ for iPad","iPadOS 17","Apple Pencil"] } },
+  iPhone: { firstUl: { title: "iPhone", items: ["Shop iPhone","iPhone 15 Pro","iPhone 15","iPhone 14","iPhone SE","Compare iPhone","AirPods"] },
+            secondUl: { title: "Switch to iPhone", items: ["Move to iOS","Shop iPhone","iPhone at Work","Shop with a Specialist"] },
+            thirdUl: { title: "More from iPhone", items: ["iPhone Support","AppleCare+ for iPhone","iOS 17","Privacy"] } },
+  Watch: { firstUl: { title: "Watch", items: ["Shop Apple Watch","Apple Watch Series 9","Apple Watch SE","Apple Watch Ultra 2","Compare Apple Watch","Apple Watch Studio"] },
+           secondUl: { title: "More from Watch", items: ["Apple Watch Support","AppleCare+ for Apple Watch","watchOS 10","Apple Fitness+"] },
+           thirdUl: { title: "Shop Watch Accessories", items: ["Apple Watch Bands","AirPods","Apple TV+","Apple One"] } },
+  AirPods: { firstUl: { title: "AirPods", items: ["Shop AirPods","AirPods Pro","AirPods","AirPods Max","AirPods (3rd generation)","Compare AirPods"] },
+             secondUl: { title: "More from AirPods", items: ["AirPods Support","AppleCare+ for AirPods","Apple Music","Spatial Audio"] },
+             thirdUl: { title: "Shop Accessories", items: ["AirPods Cases","Lightning Cables","Wireless Charging","Apple TV+"] } },
+  Vision: { firstUl: { title: "Vision", items: ["Shop Apple Vision Pro","Apple Vision Pro","Compare Apple Vision Pro","AppleCare+ for Vision Pro"] },
+            secondUl: { title: "More from Vision", items: ["Vision Pro Support","visionOS","Apple TV+","Apple Arcade"] },
+            thirdUl: { title: "Shop Accessories", items: ["Vision Pro Accessories","Apple TV+","Apple Music","Apple One"] } },
+  "TV & Home": { firstUl: { title: "TV & Home", items: ["Shop Apple TV","Apple TV 4K","Apple TV+","HomePod","HomePod mini","Apple TV app"] },
+                 secondUl: { title: "More from TV & Home", items: ["Apple TV Support","HomePod Support","AppleCare+","Apple Music"] },
+                 thirdUl: { title: "Shop Accessories", items: ["Apple TV Remote","HomeKit","Apple TV+","Apple Arcade"] } },
+  Entertainment: { firstUl: { title: "Entertainment", items: ["Apple TV+","Apple Music","Apple Arcade","Apple Podcasts","Apple Books","App Store"] },
+                   secondUl: { title: "Support", items: ["Apple TV+ Support","Apple Music Support","Apple Arcade Support","Apple Books Support"] },
+                   thirdUl: { title: "Account", items: ["Manage your Apple ID","Apple One","Apple Account","Privacy"] } },
+  Support: { firstUl: { title: "Support", items: ["Apple Support","AppleCare+","AppleCare Products","Apple Support App","Apple Support Community"] },
+             secondUl: { title: "More from Support", items: ["Contact Apple Support","Apple Support Phone Numbers","Apple Support Chat","Apple Support Email"] },
+             thirdUl: { title: "Resources", items: ["Apple Manuals","Apple Software Downloads","Apple Service Programs","Apple Legal"] } }
+};
+
+const menuItems = document.querySelectorAll('.menu-item');
+const dropdown = document.getElementById('dropdown');
+const dropdownContent = document.getElementById('dropdown-content');
+const blurBg = document.getElementById('blur-bg');
+const mobileToggle = document.getElementById('mobile-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuItems = document.getElementById('mobile-menu-items');
+
+// Funktion: Dropdown zeigen
+function openDropdown(key) {
+  const content = MENU_CONTENT[key];
+  dropdownContent.innerHTML = '';
+  ['firstUl','secondUl','thirdUl'].forEach(section => {
+    const col = document.createElement('div');
+    col.innerHTML = `<h3 class="title-item font-semibold mb-2">${content[section].title}</h3>
+      <ul class="space-y-1 text-sm">
+        ${content[section].items.map(i => `<li class="cursor-pointer hover:underline">${i}</li>`).join('')}
+      </ul>`;
+    dropdownContent.appendChild(col);
+  });
+  dropdown.classList.remove('hidden','hide');
+  dropdown.classList.add('show');
+  blurBg.classList.add('show');
+
+  // Animation für Titel
+  const titles = dropdownContent.querySelectorAll('.title-item');
+  titles.forEach((el, i) => {
+    setTimeout(() => el.classList.add('show'), i*100);
+  });
+}
+
+// Funktion: Dropdown schließen
+function closeDropdown() {
+  dropdown.classList.remove('show');
+  dropdown.classList.add('hide');
+  blurBg.classList.remove('show');
+  dropdownContent.querySelectorAll('.title-item').forEach(el => el.classList.remove('show'));
+}
+
+// Desktop Dropdown Events
+menuItems.forEach(item => {
+  item.addEventListener('mouseenter', () => openDropdown(item.dataset.key));
+});
+
+// Dropdown schließen wenn Maus Header + Dropdown verlässt
+const navbarArea = document.querySelector('nav');
+navbarArea.addEventListener('mouseleave', closeDropdown);
+
+// Mobile Toggle
+mobileToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+});
+
+// Populate Mobile Menu
+Object.keys(MENU_CONTENT).forEach(key => {
+  const li = document.createElement('li');
+  li.textContent = key;
+  li.classList.add('cursor-pointer');
+  mobileMenuItems.appendChild(li);
+});
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+  <script>
+    const images = document.querySelectorAll('#image-container img');
+    const texts = document.querySelectorAll('#image-container .image-text');
+    const progressBar = document.getElementById('progress');
+    const totalImages = images.length;
+
+    let targetScroll = 0;
+    let currentScroll = 0;
+    let currentProgress = 0;
+
+    window.addEventListener('scroll', () => {
+      targetScroll = window.scrollY;
+    });
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function smoothScroll() {
+      const diff = targetScroll - currentScroll;
+      const lerpFactor = Math.min(Math.abs(diff) * 0.03, 0.08);
+      currentScroll = lerp(currentScroll, targetScroll, lerpFactor);
+
+      updateImages(currentScroll);
+      requestAnimationFrame(smoothScroll);
+    }
+
+    smoothScroll();
+
+function updateImages(scrollY) {
+  const container = document.getElementById('scroll-container');
+  const containerHeight = container.offsetHeight - window.innerHeight;
+
+  const firstImageHold = window.innerHeight * 0.5; // Erstes Bild
+  const footer = document.querySelector('footer');
+  const footerTop = footer.getBoundingClientRect().top + window.scrollY;
+  const lastImageHold = Math.max(footerTop - window.innerHeight, 0); // Letztes Bild
+
+  let scrollProgress;
+
+  if(scrollY < firstImageHold) {
+    // Erstes Bild steht komplett
+    scrollProgress = 0;
+  } else if(scrollY > lastImageHold) {
+    // Letztes Bild steht komplett
+    scrollProgress = totalImages - 1;
+  } else {
+    // Animation für mittlere Bilder
+    const effectiveScroll = scrollY - firstImageHold;
+    const maxEffectiveScroll = lastImageHold - firstImageHold;
+    scrollProgress = (effectiveScroll / maxEffectiveScroll) * (totalImages - 1);
+  }
+
+  const currentIndex = Math.floor(scrollProgress);
+  const fractionalProgress = scrollProgress - currentIndex;
+  const easedFraction = easeInOutCubic(fractionalProgress);
+
+  // Progress bar
+  currentProgress = lerp(currentProgress, scrollProgress / (totalImages - 1), 0.1);
+  progressBar.style.height = `${Math.min(currentProgress * 100, 100)}%`;
+
+  images.forEach((img, index) => {
+    if(index === currentIndex) {
+      img.style.opacity = 1 - easedFraction;
+      img.style.transform = `translate(-50%, calc(-50% + ${easedFraction * 10}px)) scale(${1 - 0.05 * easedFraction})`;
+    } else if(index === currentIndex + 1) {
+      img.style.opacity = easedFraction;
+      img.style.transform = `translate(-50%, calc(-50% + ${(1 - easedFraction) * 10}px)) scale(${0.95 + 0.05 * easedFraction})`;
+    } else {
+      img.style.opacity = 0;
+      img.style.transform = "translate(-50%, -50%) scale(0.95)";
+    }
+  });
+
+  texts.forEach((txt, index) => {
+    if(index === currentIndex) {
+      txt.style.opacity = 1 - easedFraction;
+      txt.style.transform = `translate(-50%, 0px)`;
+    } else if(index === currentIndex + 1) {
+      txt.style.opacity = easedFraction;
+      txt.style.transform = `translate(-50%, 0px)`;
+    } else {
+      txt.style.opacity = 0;
+    }
+  });
+}
+
+
+  </script>
+
+
+
+
+
+
+
+
+</body>
+</html>

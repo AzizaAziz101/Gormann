@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio mit Apple Navbar</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    /* Titel Animation nur Fade */
+    .title-item { 
+      opacity: 0; 
+      transition: opacity 0.4s ease-out; 
+    }
+    .title-item.show { 
+      opacity: 1; 
+    }
+
+    /* Blur Hintergrund */
+    #blur-bg { 
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      backdrop-filter: blur(10px); background: rgba(255,255,255,0.2); 
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+      z-index: 30;
+    }
+    #blur-bg.show { opacity: 1; pointer-events: all; }
+
+    /* Dropdown Slide Animation */
+    #dropdown { transform-origin: top; transition: all 0.3s ease-out; }
+    #dropdown.show { opacity: 1; transform: scaleY(1); }
+    #dropdown.hide { opacity: 0; transform: scaleY(0); pointer-events: none; }
+
+    nav li, #mobile-menu li { cursor: pointer; }
+
+    [x-cloak] { display: none !important; }
+
+
+
+  </style>
+</head>
+<body class="bg-gray-100 relative font-sans text-gray-900">
+
+<!-- Blur Background -->
+<div id="blur-bg"></div>
+
+<!-- Navbar -->
+<nav class="fixed top-0 w-full z-40 bg-white shadow">
+  <div class="max-w-6xl mx-auto flex justify-between items-center px-5 py-3">
+    <!-- Desktop Menu -->
+    <ul class="hidden lg:flex space-x-6 text-sm font-medium" id="nav-items">
+      <li class="relative menu-item" data-key="Leistungen">Leistungen</li>
+      <li class="relative menu-item" data-key="Übermich">Mac</li>
+      <li class="relative menu-item" data-key="iPad">iPad</li>
+      <li class="relative menu-item" data-key="iPhone">iPhone</li>
+      <li class="relative menu-item" data-key="Watch">Watch</li>
+      <li class="relative menu-item" data-key="AirPods">AirPods</li>
+      <li class="relative menu-item" data-key="Vision">Vision</li>
+      <li class="relative menu-item" data-key="TV & Home">TV & Home</li>
+      <li class="relative menu-item" data-key="Entertainment">Entertainment</li>
+      <li class="relative menu-item" data-key="Support">Support</li>
+    </ul>
+
+    <!-- Icons / Mobile Menu Button -->
+    <div class="flex items-center space-x-4 lg:space-x-6">
+      <button>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </button>
+      <button>
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 2h12l1 5H5L6 2z"></path>
+          <path d="M5 7h14v13H5V7z"></path>
+        </svg>
+      </button>
+      <button id="mobile-toggle" class="lg:hidden">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Dropdown Menu -->
+  <div id="dropdown" class="hidden lg:flex justify-center bg-white shadow-lg absolute w-full top-full left-0 z-40 scale-y-0 opacity-0">
+    <div class="max-w-6xl w-full flex gap-12 p-6" id="dropdown-content"></div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-white w-full h-screen p-8 overflow-auto z-50 fixed top-0 left-0">
+    <button id="mobile-close" class="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-200 transition">
+      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
+        viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <ul id="mobile-menu-items" class="flex flex-col gap-6 text-xl font-semibold mt-12"></ul>
+  </div>
+</nav>
+
+<main class="pt-20 max-w-6xl mx-auto px-5 mt-24">
+  <h1 class="text-6xl font-bold mb-4">
+    Willkommen in den Leistungen dies ist mein Portfolio entdecken sie fortschrittliches responsives Design
+  </h1>
+  <p class="mb-4 mt-12">Dies ist ein Demo-Inhalt unter der Apple-ähnlichen Navbar.</p>
+  <p class="mb-4">Scrollbare Inhalte hier…</p>
+  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum...</p>
+
+
+
+
+
+
+  <!-- Projekte -->
+
+  
+
+
+<!-- Projekt Card ohne Plus/Minus Button -->
+
+
+
+
+
+<section 
+  x-data="{ showIframe: false }" 
+  class="relative bg-transparent rounded-2xl overflow-hidden mt-12 flex flex-col md:flex-row gap-6"
+>
+  <!-- Linker Teil: Text -->
+  <div class="flex-1 flex flex-col justify-center p-4">
+    <h2 class="text-xl sm:text-2xl font-semibold mb-3 tracking-tight text-left">
+      Landingpage für Berliner Kanzlei 
+      <span class="block text-s text-gray-400 font-medium mt-1">· 07/2025</span>
+    </h2>
+    <p class="mb-4 text-left">
+      Website einer Berliner Anwältin. Minimalistisches, helles Design mit klarer Typografie. Fortschrittliche UX. Webpage Template 001
+    </p>
+    <ul class="flex flex-wrap gap-2 sm:mb-5">
+      <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">HTML</li>
+      <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">TailwindCSS</li>
+      <li class="px-2 py-0.5 rounded-full bg-gray-100 text-gray-700 text-xs">JavaScript</li>
+    </ul>
+
+    <!-- Desktop Button: nur auf md+ sichtbar -->
+    <div class="hidden md:flex mt-4">
+      <button 
+        @click="showIframe = true" 
+        class="px-4 py-2 bg-gray-900 hover:bg-black text-white rounded-lg shadow transition text-sm"
+      >
+        Projekt ansehen
+      </button>
+    </div>
+  </div>
+
+  <!-- Rechter Teil: Bild -->
+  <div class="flex-1 flex items-center justify-center sm:p-4">
+    <img src="anwältinb1.png" alt="Projekt Bild" class="rounded-xl shadow-md object-cover w-full h-full max-h-80">
+  </div>
+
+  <!-- Mobile Button: nur auf kleinen Screens sichtbar -->
+  <div class="flex justify-center md:hidden p-4">
+    <button 
+      @click="showIframe = true" 
+      class="px-4 py-2 bg-gray-900 hover:bg-black text-white rounded-lg shadow transition text-sm"
+    >
+      Projekt ansehen
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div 
+    x-show="showIframe"
+    x-cloak
+    x-transition
+    class="fixed inset-0 z-50 flex flex-col bg-white"
+    x-init="$watch('showIframe', value => { 
+      document.body.classList.toggle('overflow-hidden', value) 
+    })"
+  >
+    <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
+      <h3 class="text-gray-900 text-sm font-medium">Projekt Vorschau</h3>
+      <button 
+        @click="showIframe = false" 
+        class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
+      >
+        Schließen
+      </button>
+    </div>
+    <iframe src="10000.html" class="w-full flex-1 border-0"></iframe>
+  </div>
+</section>
+
+
+  
+    
+
+
+  </main>
+
+
+
+
+<!-- Footer -->
+<footer class="items-center mt-24 mb-6 text-center text-gray-700">
+  <p>© 2025 19thara.com</p>
+  <div class="space-x-4 mt-2">
+    <a href="impressum.html" class="hover:text-gray-800">Impressum</a>
+    <a href="datenschutz.html" class="hover:text-gray-800">Datenschutz</a>
+  </div>
+</footer>
+
+
+<script>
+const MENU_CONTENT = {
+
+  Leistungen: { 
+  firstUl: { 
+    title: "Webdesign", 
+    items: [
+      { label: "Shop the latest", url: "leistungen.html" },
+      { label: "Mac", url: "/leistungen/webdesign/mac" },
+      { label: "iPad", url: "/leistungen/webdesign/ipad" }
+    ] 
+  },
+           secondUl: { title: "UX UI Design", items: ["Find a store","Help me choose","Check order status","Contact us"] },
+           thirdUl: { title: "Webentwicklung", items: ["Find a store","Help me choose","Check order status","Contact us"] } },
+  Übermich: { firstUl: { title: "Vorgehensweise", items: ["Shop Mac","MacBook Air","MacBook Pro","iMac","Mac mini","Mac Studio","Mac Pro"] },
+         secondUl: { title: "Motivation", items: ["Choose your Mac","Mac vs PC","Which Mac is right for you?","Shop with a Specialist"] },
+         thirdUl: { title: "Fähigkeiten", items: ["Figma","Vs Code","HTML","TailwindCSS"] } },
+  iPad: { firstUl: { title: "iPad", items: ["Shop iPad","iPad Pro","iPad Air","iPad","iPad mini","Apple Pencil","Smart Keyboard"] },
+          secondUl: { title: "Compare iPad", items: ["Choose your iPad","iPad vs MacBook","Which iPad is right for you?","Shop with a Specialist"] },
+          thirdUl: { title: "More from iPad", items: ["iPad Support","AppleCare+ for iPad","iPadOS 17","Apple Pencil"] } },
+  iPhone: { firstUl: { title: "iPhone", items: ["Shop iPhone","iPhone 15 Pro","iPhone 15","iPhone 14","iPhone SE","Compare iPhone","AirPods"] },
+            secondUl: { title: "Switch to iPhone", items: ["Move to iOS","Shop iPhone","iPhone at Work","Shop with a Specialist"] },
+            thirdUl: { title: "More from iPhone", items: ["iPhone Support","AppleCare+ for iPhone","iOS 17","Privacy"] } },
+  Watch: { firstUl: { title: "Watch", items: ["Shop Apple Watch","Apple Watch Series 9","Apple Watch SE","Apple Watch Ultra 2","Compare Apple Watch","Apple Watch Studio"] },
+           secondUl: { title: "More from Watch", items: ["Apple Watch Support","AppleCare+ for Apple Watch","watchOS 10","Apple Fitness+"] },
+           thirdUl: { title: "Shop Watch Accessories", items: ["Apple Watch Bands","AirPods","Apple TV+","Apple One"] } },
+  AirPods: { firstUl: { title: "AirPods", items: ["Shop AirPods","AirPods Pro","AirPods","AirPods Max","AirPods (3rd generation)","Compare AirPods"] },
+             secondUl: { title: "More from AirPods", items: ["AirPods Support","AppleCare+ for AirPods","Apple Music","Spatial Audio"] },
+             thirdUl: { title: "Shop Accessories", items: ["AirPods Cases","Lightning Cables","Wireless Charging","Apple TV+"] } },
+  Vision: { firstUl: { title: "Vision", items: ["Shop Apple Vision Pro","Apple Vision Pro","Compare Apple Vision Pro","AppleCare+ for Vision Pro"] },
+            secondUl: { title: "More from Vision", items: ["Vision Pro Support","visionOS","Apple TV+","Apple Arcade"] },
+            thirdUl: { title: "Shop Accessories", items: ["Vision Pro Accessories","Apple TV+","Apple Music","Apple One"] } },
+  "TV & Home": { firstUl: { title: "TV & Home", items: ["Shop Apple TV","Apple TV 4K","Apple TV+","HomePod","HomePod mini","Apple TV app"] },
+                 secondUl: { title: "More from TV & Home", items: ["Apple TV Support","HomePod Support","AppleCare+","Apple Music"] },
+                 thirdUl: { title: "Shop Accessories", items: ["Apple TV Remote","HomeKit","Apple TV+","Apple Arcade"] } },
+  Entertainment: { firstUl: { title: "Entertainment", items: ["Apple TV+","Apple Music","Apple Arcade","Apple Podcasts","Apple Books","App Store"] },
+                   secondUl: { title: "Support", items: ["Apple TV+ Support","Apple Music Support","Apple Arcade Support","Apple Books Support"] },
+                   thirdUl: { title: "Account", items: ["Manage your Apple ID","Apple One","Apple Account","Privacy"] } },
+  Support: { firstUl: { title: "Support", items: ["Apple Support","AppleCare+","AppleCare Products","Apple Support App","Apple Support Community"] },
+             secondUl: { title: "More from Support", items: ["Contact Apple Support","Apple Support Phone Numbers","Apple Support Chat","Apple Support Email"] },
+             thirdUl: { title: "Resources", items: ["Apple Manuals","Apple Software Downloads","Apple Service Programs","Apple Legal"] } }
+};
+
+// per-key hover-ignore (persistiert über Seitenwechsel via sessionStorage)
+let ignoreMenuKey = null;
+const IGNORE_TIMEOUT = 900; // ms — Zeitspanne, nach der Hover wieder erlaubt ist (anpassen falls nötig)
+
+
+const menuItems = document.querySelectorAll('.menu-item');
+const dropdown = document.getElementById('dropdown');
+const dropdownContent = document.getElementById('dropdown-content');
+const blurBg = document.getElementById('blur-bg');
+const mobileToggle = document.getElementById('mobile-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuItems = document.getElementById('mobile-menu-items');
+const mobileClose = document.getElementById('mobile-close');
+
+function openDropdown(key) {
+  // Wenn genau dieser Menü-Key kurz zuvor geklickt wurde -> nicht öffnen
+  if (ignoreMenuKey && key === ignoreMenuKey) return;
+
+  const content = MENU_CONTENT[key];
+  if (!content) return;
+
+  dropdownContent.innerHTML = '';
+  ['firstUl','secondUl','thirdUl'].forEach(section => {
+    const col = document.createElement('div');
+    col.innerHTML = `
+      <h3 class="title-item font-semibold mb-2">${content[section].title}</h3>
+      <ul class="space-y-1 text-sm">
+        ${content[section].items
+          .map(i => {
+            if (typeof i === "string") return `<li>${i}</li>`;
+            return `<li><a href="${i.url}" class="cursor-pointer hover:underline">${i.label}</a></li>`;
+          })
+          .join('')}
+      </ul>
+    `;
+    dropdownContent.appendChild(col);
+  });
+
+  dropdown.classList.remove('hidden','hide');
+  dropdown.classList.add('show');
+  blurBg.classList.add('show');
+
+  const titles = dropdownContent.querySelectorAll('.title-item');
+  titles.forEach((el, i) => {
+    setTimeout(() => el.classList.add('show'), i*100);
+  });
+}
+
+function closeDropdown() {
+  dropdown.classList.remove('show');
+  dropdown.classList.add('hide');
+  blurBg.classList.remove('show');
+  dropdownContent.querySelectorAll('.title-item').forEach(el => el.classList.remove('show'));
+}
+
+menuItems.forEach(item => {
+  item.addEventListener('mouseenter', () => openDropdown(item.dataset.key));
+});
+
+const navbarArea = document.querySelector('nav');
+navbarArea.addEventListener('mouseleave', closeDropdown);
+
+mobileToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden');
+});
+
+mobileClose.addEventListener('click', () => {
+  mobileMenu.classList.add('hidden');
+});
+
+Object.keys(MENU_CONTENT).forEach(key => {
+  const li = document.createElement('li');
+  const a = document.createElement('a');
+  a.textContent = key;
+  a.href = key.toLowerCase().replace(/\s+/g, "-") + ".html"; // z. B. uebermich.html oder tv-&-home.html
+  a.classList.add("cursor-pointer", "hover:underline");
+  li.appendChild(a);
+  mobileMenuItems.appendChild(li);
+});
+
+
+// Attach click handlers to all nav / mobile links — speichern des geklickten Haupt-Keys
+function attachMenuLinkHandlers() {
+  document.querySelectorAll('nav a, #mobile-menu a').forEach(link => {
+    // Verhindere doppeltes Anhängen
+    if (link.dataset._handlerAttached) return;
+    link.dataset._handlerAttached = '1';
+
+    link.addEventListener('click', (e) => {
+      // bestimme den dazugehörigen menu-key (falls vorhanden)
+      const menuItem = link.closest('.menu-item') || link.closest('li');
+      const key = menuItem && menuItem.dataset ? menuItem.dataset.key : null;
+
+      if (key) {
+        sessionStorage.setItem('justClickedMenuKey', key);
+        sessionStorage.setItem('justClickedMenuTime', Date.now().toString());
+      } else {
+        // fallback: text (sollte nicht nötig sein, aber sicher)
+        sessionStorage.setItem('justClickedMenuKey', link.textContent.trim());
+        sessionStorage.setItem('justClickedMenuTime', Date.now().toString());
+      }
+
+      // UX: Menüs schließen sofort (Navigation folgt normal)
+      closeDropdown();
+      mobileMenu.classList.add('hidden');
+      // NICHT preventDefault — wir wollen die Navigation
+    });
+  });
+}
+
+// rufe jetzt gleich auf (so sind die Handler vor einem Klick gebunden)
+attachMenuLinkHandlers();
+
+
+
+
+// Beim Laden prüfen, ob vorher ein Menüpunkt geklickt wurde — temporäre Sperre setzen
+(function resumeIgnoreClickedMenu() {
+  const clickedKey = sessionStorage.getItem('justClickedMenuKey');
+  const clickedTime = Number(sessionStorage.getItem('justClickedMenuTime') || 0);
+
+  // nur wenn der Klick kürzlich war (sicherheitshalber < 5s) → sonst verwerfen
+  if (clickedKey && clickedTime && (Date.now() - clickedTime) < 5000) {
+    ignoreMenuKey = clickedKey;
+    closeDropdown(); // sicherstellen, dass Dropdown geschlossen bleibt
+
+    // nach kurzer Zeit wieder freigeben und sessionStorage aufräumen
+    setTimeout(() => {
+      ignoreMenuKey = null;
+      sessionStorage.removeItem('justClickedMenuKey');
+      sessionStorage.removeItem('justClickedMenuTime');
+    }, IGNORE_TIMEOUT);
+  } else {
+    // aufräumen, falls alte values vorhanden sind
+    sessionStorage.removeItem('justClickedMenuKey');
+    sessionStorage.removeItem('justClickedMenuTime');
+  }
+})();
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
