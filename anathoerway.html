@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -49,11 +50,11 @@
     <!-- Desktop Menu -->
     <ul class="hidden lg:flex space-x-6 text-sm font-medium" id="nav-items">
       <li class="relative menu-item" data-key=""><a href="index.html" class="hover:underline">Start</a></li>
-      <li class="relative menu-item" data-key="Leistungen"><a href="nheimleistungen.html" class="hober:underline">Leistungen</a></li>
-      <li class="relative menu-item" data-key="Preise"><a href="#" class="hover:underline">Preise</a></li>
-      <li class="relative menu-item" data-key="Lösungen"><a href="#" class="hover:underline">Lösungen</a></li>
-      <li class="relative menu-item" data-key="Übermich"><a href="#" class="hover:underline">Über mich</a></li>
-      <li class="relative menu-item" data-key="Kontakt"><a href="#" class="hover:underline">Kontakt</a></li>
+      <li class="relative menu-item" data-key="Leistungen"><a href="nheimleistungen.html" class="hover:underline">Leistungen</a></li>
+      <li class="relative menu-item" data-key="Preise"><a href="nheimpreise.html" class="hover:underline">Preise</a></li>
+      <li class="relative menu-item" data-key="Lösungen"><a href="nheimlösungen.html" class="hover:underline">Lösungen</a></li>
+      <li class="relative menu-item" data-key="Übermich"><a href="nheimübermich.html" class="hover:underline">Über mich</a></li>
+      <li class="relative menu-item" data-key="Kontakt"><a href="nheimkontakt.html" class="hover:underline">Kontakt</a></li>
       
     </ul>
 
@@ -237,43 +238,46 @@ const MENU_CONTENT = {
   firstUl: { 
     title: { label: "Webdesign", url: "nheimleistungen.html" }, 
     items: [
-      { label: "Wie ensteht Webdesign", url: "#" },
-      { label: "Top 10 in Webdesign", url: "#" },
-      { label: "Grafiken", url: "#" },
-      { label: "Farbwelt", url: "#" },
-      { label: "Typographie", url: "#" },
-      { label: "Performance", url: "#" }
+      { label: "Wie ensteht Webdesign", url: "nheimleistungen.html#webdesign" },
+      { label: "Top 10 in Webdesign", url: "nheimleistungen.html" },
+      { label: "Grafiken", url: "nheimleistungen.html" },
+      { label: "Farbwelt", url: "nheimleistungen.html" },
+      { label: "Typographie", url: "nheimleistungen.html" },
+      { label: "Performance", url: "nheimleistungen.html" }
     ] 
   },
   secondUl: { 
-    title: { label: "UX UI Design", url: "#" }, 
+    title: { label: "UX UI Design", url: "ux-ui-design.html" }, 
     items: [
-     
+      { label: "Choose your Mac", url: "choose-mac.html" },
+      { label: "Mac vs PC", url: "mac-vs-pc.html" },
+      { label: "Which Mac is right for you?", url: "which-mac.html" },
+      { label: "Shop with a Specialist", url: "shop-specialist.html" }
     ] 
   },
   thirdUl: { 
-    title: { label: "Webentwicklung", url: "#" }, 
+    title: { label: "Webentwicklung", url: "webentwicklung.html" }, 
     items: [
-      { label: "Figma", url: "#" },
-      { label: "Vs Code", url: "#" },
-      { label: "HTML", url: "#" },
-      { label: "TailwindCSS", url: "#" }
+      { label: "Figma", url: "figma.html" },
+      { label: "Vs Code", url: "vscode.html" },
+      { label: "HTML", url: "html.html" },
+      { label: "TailwindCSS", url: "tailwind.html" }
     ] 
   } 
 },
 
-  Preise: { firstUl: { title: "Preisentstehung", items: [] },
-         secondUl: { title: "Beispielpreise", items: [""] },
-         thirdUl: { title: "Fragen zu Preisen", items: ["Onepage","Multiwebpage","Multiwebpage & Marketing","Only Design"] } },
-  Lösungen: { firstUl: { title: "Anwendungsfälle", items: [] },
-          secondUl: { title: "Referenzen", items: [] },
-          thirdUl: { title: "Resonazen", items: [""] } },
-  Übermich: { firstUl: { title: "Wer ich bin", items: [] },
-            secondUl: { title: "Weg in die Selbstständigkeit", items: [] },
-            thirdUl: { title: "Warum Webdesign", items: [] } },
-  Kontakt: { firstUl: { title: "Website", items: [] },
-           secondUl: { title: "Mailsupport", items: [] },
-           thirdUl: { title: "Telefonsupport", items: [] } }
+  Preise: { firstUl: { title: "Preisentstehung", items: ["Shop Mac","MacBook Air","MacBook Pro","iMac","Mac mini","Mac Studio","Mac Pro"] },
+         secondUl: { title: "Beispielpreise", items: ["Choose your Mac","Mac vs PC","Which Mac is right for you?","Shop with a Specialist"] },
+         thirdUl: { title: "Fragen zu Preisen", items: ["Figma","Vs Code","HTML","TailwindCSS"] } },
+  Lösungen: { firstUl: { title: "Anwendungsfälle", items: ["Shop iPad","iPad Pro","iPad Air","iPad","iPad mini","Apple Pencil","Smart Keyboard"] },
+          secondUl: { title: "Referenzen", items: ["Choose your iPad","iPad vs MacBook","Which iPad is right for you?","Shop with a Specialist"] },
+          thirdUl: { title: "Resonazen", items: ["iPad Support","AppleCare+ for iPad","iPadOS 17","Apple Pencil"] } },
+  Übermich: { firstUl: { title: "Wer ich bin", items: ["Shop iPhone","iPhone 15 Pro","iPhone 15","iPhone 14","iPhone SE","Compare iPhone","AirPods"] },
+            secondUl: { title: "Weg in die Selbstständigkeit", items: ["Move to iOS","Shop iPhone","iPhone at Work","Shop with a Specialist"] },
+            thirdUl: { title: "Warum Webdesign", items: ["iPhone Support","AppleCare+ for iPhone","iOS 17","Privacy"] } },
+  Kontakt: { firstUl: { title: "Website", items: ["Shop Apple Watch","Apple Watch Series 9","Apple Watch SE","Apple Watch Ultra 2","Compare Apple Watch","Apple Watch Studio"] },
+           secondUl: { title: "Mailsupport", items: ["Apple Watch Support","AppleCare+ for Apple Watch","watchOS 10","Apple Fitness+"] },
+           thirdUl: { title: "Telefonsupport", items: ["Apple Watch Bands","AirPods","Apple TV+","Apple One"] } }
 
 };
 
@@ -425,5 +429,4 @@ attachMenuLinkHandlers();
 
 </body>
 </html>
-
 

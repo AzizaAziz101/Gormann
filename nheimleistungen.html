@@ -49,11 +49,11 @@
     <!-- Desktop Menu -->
     <ul class="hidden lg:flex space-x-6 text-sm font-medium" id="nav-items">
       <li class="relative menu-item" data-key=""><a href="index.html" class="hover:underline">Start</a></li>
-      <li class="relative menu-item" data-key="Leistungen"><a href="nheimleistungen.html" class="hover:underline">Leistungen</a></li>
-      <li class="relative menu-item" data-key="Preise"><a href="nheimpreise.html" class="hover:underline">Preise</a></li>
-      <li class="relative menu-item" data-key="Lösungen"><a href="nheimlösungen.html" class="hover:underline">Lösungen</a></li>
-      <li class="relative menu-item" data-key="Übermich"><a href="nheimübermich.html" class="hover:underline">Über mich</a></li>
-      <li class="relative menu-item" data-key="Kontakt"><a href="nheimkontakt.html" class="hover:underline">Kontakt</a></li>
+      <li class="relative menu-item" data-key="Leistungen"><a href="nheimleistungen.html" class="hober:underline">Leistungen</a></li>
+      <li class="relative menu-item" data-key="Preise"><a href="#" class="hover:underline">Preise</a></li>
+      <li class="relative menu-item" data-key="Lösungen"><a href="#" class="hover:underline">Lösungen</a></li>
+      <li class="relative menu-item" data-key="Übermich"><a href="#" class="hover:underline">Über mich</a></li>
+      <li class="relative menu-item" data-key="Kontakt"><a href="#" class="hover:underline">Kontakt</a></li>
       
     </ul>
 
@@ -80,24 +80,32 @@
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden lg:hidden bg-white w-full h-screen p-8 overflow-auto z-50 fixed top-0 left-0">
-    <button id="mobile-close" class="absolute top-5 right-5 p-2 rounded-full hover:bg-gray-200 transition">
-      <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
+    <button id="mobile-close" class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-200 transition">
+      <svg class="w-7 h-7 text-gray-700" fill="none" stroke="currentColor" stroke-width="2"
         viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
         <line x1="18" y1="6" x2="6" y2="18"></line>
         <line x1="6" y1="6" x2="18" y2="18"></line>
       </svg>
     </button>
-    <ul id="mobile-menu-items" class="flex flex-col gap-6 text-xl font-semibold mt-12"></ul>
+     <!-- Hier das mobile Menü hartcodiert einfügen -->
+  <ul id="mobile-menu-items" class="flex flex-col gap-6 text-xl font-semibold mt-12">
+    <li><a href="index.html">Start</a></li>
+    <li><a href="nheimleistungen.html">Leistungen</a></li>
+    <li><a href="nheimpreise.html">Preise</a></li>
+    <li><a href="nheimlösungen.html">Lösungen</a></li>
+    <li><a href="nheimübermich.html">Über mich</a></li>
+    <li><a href="nheimkontakt.html">Kontakt</a></li>
+  </ul>
   </div>
 </nav>
 
 <main class="pt-20 max-w-6xl mx-auto px-5 mt-24">
   <h1 class="text-4xl sm:text-6xl font-bold mb-4">
-    Willkommen bei hoeft.website dies sind die Leistungen entdecken sie fortschrittliches responsives Design
+    Willkommen bei hoeft.website dies ist mein Portfolio entdecken sie fortschrittliches & responsives Design
   </h1>
-  <p class="mb-4 mt-12">Dies ist ein Demo.</p>
-  <p class="mb-4">Weitere Inhalte folgen in Kürze…</p>
-  <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis bibendum...</p>
+  <p class="mb-4 mt-12">Webdesign aus Berlin</p>
+  <p class="mb-4">Ich entwickele Websiten für ihr Business</p>
+  <p class="mb-0">Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite sie in jedem Schritt...</p>
 
 
 
@@ -123,7 +131,7 @@
 
 <section 
   x-data="{ showIframe: false }"
-  class="bg-white rounded-2xl border border-gray-200 overflow-hidden mt-12 flex flex-col md:flex-row gap-0 shadow-sm hover:shadow-md transition-shadow"
+  class="bg-gray-400 rounded-2xl border border-gray-200 overflow-hidden mt-12 flex flex-col md:flex-row gap-0 shadow-sm hover:shadow-md transition-shadow"
 >
   <!-- Linker Teil: Text + Button -->
   <div class="flex-1 flex flex-col justify-between p-4 md:p-6">
@@ -229,46 +237,43 @@ const MENU_CONTENT = {
   firstUl: { 
     title: { label: "Webdesign", url: "nheimleistungen.html" }, 
     items: [
-      { label: "Wie ensteht Webdesign", url: "nheimleistungen.html#webdesign" },
-      { label: "Top 10 in Webdesign", url: "nheimleistungen.html" },
-      { label: "Grafiken", url: "nheimleistungen.html" },
-      { label: "Farbwelt", url: "nheimleistungen.html" },
-      { label: "Typographie", url: "nheimleistungen.html" },
-      { label: "Performance", url: "nheimleistungen.html" }
+      { label: "Wie ensteht Webdesign", url: "#" },
+      { label: "Top 10 in Webdesign", url: "#" },
+      { label: "Grafiken", url: "#" },
+      { label: "Farbwelt", url: "#" },
+      { label: "Typographie", url: "#" },
+      { label: "Performance", url: "#" }
     ] 
   },
   secondUl: { 
-    title: { label: "UX UI Design", url: "ux-ui-design.html" }, 
+    title: { label: "UX UI Design", url: "#" }, 
     items: [
-      { label: "Choose your Mac", url: "choose-mac.html" },
-      { label: "Mac vs PC", url: "mac-vs-pc.html" },
-      { label: "Which Mac is right for you?", url: "which-mac.html" },
-      { label: "Shop with a Specialist", url: "shop-specialist.html" }
+     
     ] 
   },
   thirdUl: { 
-    title: { label: "Webentwicklung", url: "webentwicklung.html" }, 
+    title: { label: "Webentwicklung", url: "#" }, 
     items: [
-      { label: "Figma", url: "figma.html" },
-      { label: "Vs Code", url: "vscode.html" },
-      { label: "HTML", url: "html.html" },
-      { label: "TailwindCSS", url: "tailwind.html" }
+      { label: "Figma", url: "#" },
+      { label: "Vs Code", url: "#" },
+      { label: "HTML", url: "#" },
+      { label: "TailwindCSS", url: "#" }
     ] 
   } 
 },
 
-  Preise: { firstUl: { title: "Preisentstehung", items: ["Shop Mac","MacBook Air","MacBook Pro","iMac","Mac mini","Mac Studio","Mac Pro"] },
-         secondUl: { title: "Beispielpreise", items: ["Choose your Mac","Mac vs PC","Which Mac is right for you?","Shop with a Specialist"] },
-         thirdUl: { title: "Fragen zu Preisen", items: ["Figma","Vs Code","HTML","TailwindCSS"] } },
-  Lösungen: { firstUl: { title: "Anwendungsfälle", items: ["Shop iPad","iPad Pro","iPad Air","iPad","iPad mini","Apple Pencil","Smart Keyboard"] },
-          secondUl: { title: "Referenzen", items: ["Choose your iPad","iPad vs MacBook","Which iPad is right for you?","Shop with a Specialist"] },
-          thirdUl: { title: "Resonazen", items: ["iPad Support","AppleCare+ for iPad","iPadOS 17","Apple Pencil"] } },
-  Übermich: { firstUl: { title: "Wer ich bin", items: ["Shop iPhone","iPhone 15 Pro","iPhone 15","iPhone 14","iPhone SE","Compare iPhone","AirPods"] },
-            secondUl: { title: "Weg in die Selbstständigkeit", items: ["Move to iOS","Shop iPhone","iPhone at Work","Shop with a Specialist"] },
-            thirdUl: { title: "Warum Webdesign", items: ["iPhone Support","AppleCare+ for iPhone","iOS 17","Privacy"] } },
-  Kontakt: { firstUl: { title: "Website", items: ["Shop Apple Watch","Apple Watch Series 9","Apple Watch SE","Apple Watch Ultra 2","Compare Apple Watch","Apple Watch Studio"] },
-           secondUl: { title: "Mailsupport", items: ["Apple Watch Support","AppleCare+ for Apple Watch","watchOS 10","Apple Fitness+"] },
-           thirdUl: { title: "Telefonsupport", items: ["Apple Watch Bands","AirPods","Apple TV+","Apple One"] } }
+  Preise: { firstUl: { title: "Preisentstehung", items: [] },
+         secondUl: { title: "Beispielpreise", items: [""] },
+         thirdUl: { title: "Fragen zu Preisen", items: ["Onepage","Multiwebpage","Multiwebpage & Marketing","Only Design"] } },
+  Lösungen: { firstUl: { title: "Anwendungsfälle", items: [] },
+          secondUl: { title: "Referenzen", items: [] },
+          thirdUl: { title: "Resonazen", items: [""] } },
+  Übermich: { firstUl: { title: "Wer ich bin", items: [] },
+            secondUl: { title: "Weg in die Selbstständigkeit", items: [] },
+            thirdUl: { title: "Warum Webdesign", items: [] } },
+  Kontakt: { firstUl: { title: "Website", items: [] },
+           secondUl: { title: "Mailsupport", items: [] },
+           thirdUl: { title: "Telefonsupport", items: [] } }
 
 };
 
@@ -356,15 +361,7 @@ mobileClose.addEventListener('click', () => {
 });
 // --- ENDE MOBILES MENÜ TOGGLE ---
 
-Object.keys(MENU_CONTENT).forEach(key => {
-  const li = document.createElement('li');
-  const a = document.createElement('a');
-  a.textContent = key;
-  a.href = key.toLowerCase().replace(/\s+/g, "-") + ".html"; // z. B. uebermich.html oder tv-&-home.html
-  a.classList.add("cursor-pointer", "hover:underline");
-  li.appendChild(a);
-  mobileMenuItems.appendChild(li);
-});
+
 
 
 // Attach click handlers to all nav / mobile links — speichern des geklickten Haupt-Keys
