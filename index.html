@@ -44,8 +44,11 @@
 <div id="blur-bg"></div>
 
 <!-- Navbar -->
-<nav class="fixed top-0 w-screen z-40 bg-white border-b border-gray-300">
-  <div class="w-full flex justify-between items-center px-5 py-3">
+<nav class="fixed top-0 left-0 right-0 w-screen z-40 bg-white border-b border-gray-300
+            pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]">
+
+    <div class="w-full lg:max-w-6xl mx-auto flex justify-between items-center px-5 py-3">
+
     <!-- Desktop Menu -->
     <ul class="hidden lg:flex space-x-6 text-sm font-medium" id="nav-items">
       <li class="relative menu-item" data-key=""><a href="index.html" class="hover:underline">Start</a></li>
