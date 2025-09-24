@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sticker im Layout</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+  <!-- Section mit Text & Sticker -->
+  <div class="max-w-4xl w-full px-6">
+    <div class="flex items-start justify-between">
+
+      <!-- Linker Text -->
+      <div class="max-w-lg">
+        <p class="mb-4 mt-12">Webdesign aus Berlin</p>
+        <p class="mb-4">Ich entwickele Webseiten für Ihr Business</p>
+        <p class="mb-0">
+          Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite Sie in jedem Schritt...
+        </p>
+      </div>
+
+      <!-- Rechter Sticker -->
+      <div id="sticker" 
+           class="opacity-0 scale-50 transition-all duration-300 ease-out
+                  bg-purple-600 text-white w-40 h-40 rounded-full shadow-lg flex items-center justify-center
+                  transform rotate-[-10deg] ml-6 shrink-0">
+        <span class="font-bold text-xl text-center leading-tight">
+          Neukunden<br>Rabatt 20%
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const sticker = document.getElementById("sticker");
+        sticker.classList.remove("opacity-0", "scale-50");
+        sticker.classList.add("opacity-100", "scale-100");
+      }, 1700); // erscheint nach 1,7 Sekunden
+    });
+  </script>
+
+</body>
+</html>

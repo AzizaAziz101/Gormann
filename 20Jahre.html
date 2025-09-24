@@ -34,18 +34,7 @@
 
     [x-cloak] { display: none !important; }
 
-    /* Eleganter Fade-In Effekt */
-    .fade-section {
-      opacity: 0;
-      transform: translateY(20px);
-      filter: blur(8px);
-      transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .fade-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0);
-    }
+
 
   </style>
 </head>
@@ -118,61 +107,10 @@
   <h1 class="text-4xl sm:text-6xl font-bold mb-4">
     Willkommen bei hoeft.website dies ist mein Portfolio entdecken sie fortschrittliches & responsives Design
   </h1>
+  <p class="mb-4 mt-12">Webdesign aus Berlin</p>
+  <p class="mb-4">Ich entwickele Webseiten für Ihr Business</p>
+  <p class="mb-0">Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite sie in jedem Schritt...</p>
 
-
-    <!-- Section mit Text & Sticker -->
-  <div class="w-full ">
-    <div class="flex items-start justify-between">
-
-      <!-- Linker Text -->
-      <div class="text-base text-gray-700">
-        <p class="mb-4 mt-12">Webdesign aus Berlin</p>
-        <p class="mb-4">Ich entwickele Webseiten für Ihr Business</p>
-        <p class="mb-0">
-          Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite Sie in jedem Schritt...
-        </p>
-      </div>
-
-      <!-- Rechter Sticker -->
-      <div id="sticker" 
-           class="opacity-0 scale-50 transition-all duration-300 ease-out
-                  bg-purple-600 text-white w-40 h-40 rounded-full shadow-lg flex items-center justify-center
-                  transform rotate-[-10deg] ml-6 shrink-0 md:mt-12">
-        <span class="font-bold text-xl text-center leading-tight">
-          Neukunden<br>Rabatt 20%
-        </span>
-      </div>
-
-    </div>
-  </div>
-
-
-
-    <!-- Header -->
-<header 
-  class="w-full flex flex-col"
-  x-data="animatedFuturistic()" 
-  x-init="init()"
->
-
-    <!-- Animierter Marketing-Absatz -->
-  <p class="text-3xl sm:text-4xl font-bold mt-6 leading-snug tracking-wide">
-    <template x-for="(letter, index) in letters" :key="index">
-      <span 
-        x-text="letter"
-        :class="visible[index] ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-125 blur-sm'"
-        class="inline-block transition-all duration-400 ease-out"
-      ></span>
-    </template>
-  </p>
-
-    <!-- Zweiter Absatz -->
-  <p class="mt-12 text-sm sm:text-base text-gray-700">
-    Frontend Developer • HTML • TailwindCSS • JavaScript
-  </p>
-
-
-</header>
 
 
 
@@ -197,29 +135,24 @@
 
 <section 
   x-data="{ showIframe: false }"
-  class="bg-gray-400 rounded-2xl border border-gray-200 overflow-hidden mt-14 flex flex-col md:flex-row gap-0 hover:shadow-md transition-shadow"
+  class="bg-gray-400 rounded-2xl border border-gray-200 overflow-hidden mt-12 flex flex-col md:flex-row gap-0 hover:shadow-md transition-shadow"
 >
   <!-- Linker Teil: Text + Button -->
   <div class="flex-1 flex flex-col justify-between p-4 md:p-6">
     <div>
       <h2 class="text-lg sm:text-xl font-semibold text-gray-900 tracking-tight mb-2">
         Landingpage für Berliner Kanzlei
-        </h2>
-        <span class="block text-gray-900 text-s font-normal mt-0">· 07/2025</span>
-      
-      
-      
-
-        <span class="block text-gray-900 text-s font-normal mt-1">· Preis 599,00€ Netto</span>
-        <span class="block text-gray-900 text-s font-normal mt-1">· Lieferzeit 7 Tage</span>
-
-        <div class="flex flex-wrap gap-2 mb-4 mt-7">
+        <span class="block text-gray-900 text-s font-normal mt-1">· 07/2025</span>
+      </h2>
+      <p class="text-gray-700 text-sm mb-4">
+        Website einer Berliner Anwältin. Minimalistisches, helles Design mit klarer Typografie. Fortschrittliche UX. Webpage Template 001
+      </p>
+      <div class="flex flex-wrap gap-2 mb-5">
         <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">HTML</span>
         <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">TailwindCSS</span>
         <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">JavaScript</span>
       </div>
     </div>
-
 
     <!-- Desktop Button -->
     <div class="hidden md:flex mt-4">
@@ -283,7 +216,7 @@
   </div>
 </section>
 
-
+    
 
 
   </main>
@@ -495,49 +428,68 @@ attachMenuLinkHandlers();
 
 
 
-
-
-
-
-
-
-
-
-
-<!-- Alpine.js Animation Moderne Interfaces... -->
-<script>
-  document.addEventListener('alpine:init', () => {
-    Alpine.data('animatedFuturistic', () => ({
-      text: 'Moderne Interfaces, klare Designs, schnelle Ergebnisse.',
-      letters: [],
-      visible: [],
-      init() {
-        this.letters = this.text.split('').map(c => c === ' ' ? '\u00A0' : c);
-        this.visible = this.letters.map(() => false);
-
-        const mid = Math.floor(this.letters.length / 2);
-
-        this.letters.forEach((_, i) => {
-          const distance = Math.abs(i - mid);
-          setTimeout(() => {
-            this.visible[i] = true;
-          }, distance * 80);
-        });
-      }
-    }));
-  });
-</script>
-
+  <!-- Alpine.js Animationen -->
   <script>
-    window.addEventListener("load", () => {
-      setTimeout(() => {
-        const sticker = document.getElementById("sticker");
-        sticker.classList.remove("opacity-0", "scale-50");
-        sticker.classList.add("opacity-100", "scale-100");
-      }, 1700); // erscheint nach 1,7 Sekunden
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('animatedTitle', () => ({
+        title: '19thara',
+        visible: [],
+        init() {
+          const letters = this.title.split('');
+          this.visible = letters.map(() => false);
+          letters.forEach((_, i) => {
+            setTimeout(() => {
+              this.visible[i] = true;
+            }, i * 100);
+          });
+        }
+      }));
+
+      Alpine.data('animatedFooterTitle', () => ({
+        footerText: '© 19thara.com. Alle Rechte vorbehalten',
+        visible: [],
+        animationStarted: false,
+        init() {
+          this.visible = this.footerText.split('').map(() => false);
+        },
+        observeFooter(el) {
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting && !this.animationStarted) {
+                this.animationStarted = true;
+                this.footerText.split('').forEach((_, i) => {
+                  setTimeout(() => {
+                    this.visible[i] = true;
+                  }, i * 60);
+                });
+                observer.unobserve(el);
+              }
+            });
+          }, { root: null, threshold: 0.1 });
+          observer.observe(el);
+        }
+      }));
+
+      Alpine.data('fadeInOnScroll', (delay = 0) => ({
+        visible: false,
+        observe(el) {
+          const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                setTimeout(() => {
+                  this.visible = true;
+                }, delay);
+                observer.unobserve(el);
+              }
+            });
+          }, { threshold: 0.50 }); // späterer Start: 50% sichtbar
+          observer.observe(el);
+        }
+      }));
     });
   </script>
-   
+
+
 </body>
 </html>
 
