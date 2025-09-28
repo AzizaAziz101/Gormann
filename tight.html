@@ -120,27 +120,11 @@
 </nav>
 
 <main class="pt-20 max-w-6xl mx-auto px-5 mt-24">
-
-
-<header 
-  class="w-full flex flex-col"
-  x-data="animatedH1()" 
-  x-init="init()"
->
-  <h1 class="text-4xl sm:text-6xl font-bold mb-4">
-    <template x-for="(part, i) in parts" :key="i">
-      <span 
-        x-html="part"
-        :class="visible[i] ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'"
-        class="inline transition-all duration-300"
-      ></span>
-    </template>
-  </h1>
-
- 
-</header>
-
   
+  <h1 class="text-4xl sm:text-6xl font-bold mb-4">
+  Willkommen bei <span class="text-purple-600">hoeft.website</span> dies ist mein Portfolio – entdecken Sie fortschrittliches & responsives Design
+</h1>
+ 
 
     <!-- Section mit Text & Sticker -->
   <div class="w-full ">
@@ -178,7 +162,7 @@
 >
 
     <!-- Animierter Marketing-Absatz -->
-  <p class="text-3xl sm:text-4xl font-bold mt-3 leading-snug tracking-wide">
+  <p class="text-3xl sm:text-4xl font-bold mt-6 leading-snug tracking-wide">
     <template x-for="(letter, index) in letters" :key="index">
       <span 
         x-text="letter"
@@ -188,15 +172,8 @@
     </template>
   </p>
 
-
-
-  <h1 class="text-3xl sm:text-4xl font-bold mt-6 mb-4 tracking-wide">
-  Moderne Interfaces, klare Designs.
-</h1>
- 
-
     <!-- Zweiter Absatz -->
-  <p class="mt-3 text-sm sm:text-base text-gray-700">
+  <p class="mt-6 text-sm sm:text-base text-gray-700">
     Frontend Developer • HTML • TailwindCSS • JavaScript
   </p>
 
@@ -226,7 +203,7 @@
 
 <section 
   x-data="{ showIframe: false }"
-  class="bg-gray-400 rounded-2xl border border-gray-200 overflow-hidden mt-20 flex flex-col md:flex-row gap-0 hover:shadow-md transition-shadow"
+  class="bg-gray-400 rounded-2xl border border-gray-200 overflow-hidden mt-14 flex flex-col md:flex-row gap-0 hover:shadow-md transition-shadow"
 >
   <!-- Linker Teil: Text + Button -->
   <div class="flex-1 flex flex-col justify-between p-4 md:p-6">
@@ -534,44 +511,27 @@ attachMenuLinkHandlers();
 
 
 <!-- Alpine.js Animation Moderne Interfaces... -->
-
 <script>
-document.addEventListener('alpine:init', () => {
-  Alpine.data('animatedH1', () => ({
-    parts: [],
-    visible: [],
-    init() {
-      const html = 'Willkommen bei <span class="text-purple-600">hoeft.website</span> dies ist mein Portfolio – entdecken Sie fortschrittliches & responsives Design';
-      
-      // Segmente: Text-Knoten und HTML-Tags trennen
-      const container = document.createElement('div');
-      container.innerHTML = html;
-      this.parts = [];
-      
-      container.childNodes.forEach(node => {
-        if (node.nodeType === Node.TEXT_NODE) {
-          node.textContent.split('').forEach(c => this.parts.push(c));
-        } else if (node.nodeType === Node.ELEMENT_NODE) {
-          const tag = node.tagName.toLowerCase();
-          const cls = node.className;
-          node.textContent.split('').forEach(c => {
-            this.parts.push(`<${tag} class="${cls}">${c}</${tag}>`);
-          });
-        }
-      });
+  document.addEventListener('alpine:init', () => {
+    Alpine.data('animatedFuturistic', () => ({
+      text: 'Moderne Interfaces, klare Designs.',
+      letters: [],
+      visible: [],
+      init() {
+        this.letters = this.text.split('').map(c => c === ' ' ? '\u00A0' : c);
+        this.visible = this.letters.map(() => false);
 
-      // Sichtbarkeit initial
-      this.visible = this.parts.map(() => false);
+        const mid = Math.floor(this.letters.length / 2);
 
-      // Animation: Mitte -> außen
-      const mid = Math.floor(this.parts.length / 2);
-      this.parts.forEach((_, i) => {
-        const distance = Math.abs(i - mid);
-        setTimeout(() => this.visible[i] = true, distance * 40);
-      });
-    }
-  }));
-});
+        this.letters.forEach((_, i) => {
+          const distance = Math.abs(i - mid);
+          setTimeout(() => {
+            this.visible[i] = true;
+          }, distance * 80);
+        });
+      }
+    }));
+  });
 </script>
 
   <script>
@@ -586,5 +546,4 @@ document.addEventListener('alpine:init', () => {
    
 </body>
 </html>
-
 
