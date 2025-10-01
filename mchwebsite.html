@@ -76,10 +76,11 @@
 
 
 
+
 <!-- Logo + Mobile Menu Button -->
 <div class="flex items-center justify-between w-full lg:w-auto">
   <!-- Schriftzug nur auf Mobil -->
-  <a href="index.html" class="font-bold text-lg lg:hidden text-gray-800">hoeft.website</a>
+  <a href="index.html" class="font-bold text-lg lg:hidden">hoeft.website</a>
 
 
 
@@ -107,7 +108,7 @@
   x-data="animatedH1()" 
   x-init="init()"
 >
-  <h1 class="text-4xl sm:text-6xl font-bold mb-4 text-gray-800">
+  <h1 class="text-4xl sm:text-6xl font-bold mb-4">
     <template x-for="(part, i) in parts" :key="i">
       <span 
         x-html="part"
@@ -116,9 +117,12 @@
       ></span>
     </template>
   </h1>
+
+ 
 </header>
 
   
+
     <!-- Section mit Text & Sticker -->
   <div class="w-full ">
     <div class="flex items-start justify-between">
@@ -147,6 +151,21 @@
 
 
 
+    <!-- Header -->
+<header>
+
+
+
+    <!-- Zweiter Absatz -->
+  <p class="mt-4 text-sm sm:text-base text-gray-700">
+    Frontend Developer • HTML • TailwindCSS • JavaScript
+  </p>
+
+
+</header>
+
+
+
 
 
 
@@ -164,15 +183,12 @@
 
     <!-- Text rechts -->
     <div class="flex-1 text-gray-700">
-      <h2 class="text-2xl md:text-3xl font-bold mb-4 mt-4">
-        Webdesign für Ihr Business
+      <h2 class="text-2xl md:text-3xl font-bold mb-4">
+        Modernes Webdesign für Ihr Business
       </h2>
       <p class="mb-4 text-base leading-relaxed">
-        Eine gute Webseite ist mehr als nur Design – sie ist das digitale Schaufenster Ihres Unternehmens.
-        
-      </p>
-      <p class="mb-4 text-base leading-relaxed">
-        Ich setze auf klare Strukturen,
+        Eine gute Webseite ist mehr als nur Design – sie ist das digitale
+        Schaufenster Ihres Unternehmens. Ich setze auf klare Strukturen,
         schnelle Ladezeiten und ein nutzerzentriertes Erlebnis.
       </p>
       <p class="mb-6 text-base leading-relaxed">
@@ -190,9 +206,16 @@
 
 
 
+
+
+
+
   <!-- Projekte -->
 
+  
 
+
+<!-- Projekt Card ohne Plus/Minus Button -->
 
 
 <section 
@@ -309,7 +332,7 @@
       @click="showIframe = true"
     >
       <img 
-        src="117.jpg" 
+        src="118.jpg" 
         alt="Projekt Bild" 
         class="w-full h-full object-cover"
       >
@@ -350,55 +373,6 @@
   </div>
 </section>
 
-
-
-
-<section class="py-16 bg-white mt-12 rounded-2xl">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
-
-      <!-- Punkt 01 -->
-      <div class="text-center lg:text-left">
-        <div class="flex justify-center lg:justify-start items-baseline mb-4">
-          <span class="text-6xl lg:text-7xl font-bold text-gray-800 leading-none">01</span>
-        </div>
-        <h3 class="text-xl lg:text-2xl font-bold text-gray-800 mb-3 tracking-tight">
-          Strategie &<br>Konzeption
-        </h3>
-        <p class="text-base text-gray-600 leading-relaxed">
-          Ihre Ziele definieren meine Technologie. Wir beginnen mit einer tiefgehenden Analyse, um eine Webstrategie zu entwickeln, die Ihr Geschäft voranbringt.
-        </p>
-      </div>
-
-      <!-- Punkt 02 -->
-      <div class="text-center lg:text-left">
-        <div class="flex justify-center lg:justify-start items-baseline mb-4">
-          <span class="text-6xl lg:text-7xl font-bold text-gray-800 leading-none">02</span>
-        </div>
-        <h3 class="text-xl lg:text-2xl font-bold text-gray-800 mb-3 tracking-tight">
-          Umsetzung &<br>Technologie
-        </h3>
-        <p class="text-base text-gray-600 leading-relaxed">
-          Aus unserer Strategie entsteht eine robuste, hochperformante Website. Sauberer Code, responsive Design und Fokus auf Benutzerführung sind mein Standard.
-        </p>
-      </div>
-
-      <!-- Punkt 03 -->
-      <div class="text-center lg:text-left">
-        <div class="flex justify-center lg:justify-start items-baseline mb-4">
-          <span class="text-6xl lg:text-7xl font-bold text-gray-800 leading-none">03</span>
-        </div>
-        <h3 class="text-xl lg:text-2xl font-bold text-gray-800 mb-3 tracking-tight">
-          Partnerschaft &<br>Support
-        </h3>
-        <p class="text-base text-gray-600 leading-relaxed">
-          Meine Arbeit ist erst fertig, wenn Sie zufrieden sind. Ich sorge für klare Kommunikation, termingetreue Lieferung und nehme mir Zeit für Ihre Einweisung.
-        </p>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 
 
@@ -613,6 +587,13 @@ attachMenuLinkHandlers();
 
 
 
+
+
+
+
+
+
+
 <!-- Alpine.js Animation Moderne Interfaces... -->
 
 <script>
@@ -666,4 +647,5 @@ document.addEventListener('alpine:init', () => {
    
 </body>
 </html>
+
 
