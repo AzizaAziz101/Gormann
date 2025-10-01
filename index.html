@@ -86,7 +86,7 @@
 
   <!-- Telefonnummer Button -->
 <a href="tel:+49123456789" class="ml-4 text-purple-600 font-semibold hover:underline">
-  +49 123 456 789
+  +49 162 54 26 438
 </a>
   
 </div>
@@ -176,67 +176,55 @@
 <!-- Projekt Card ohne Plus/Minus Button -->
 
 
-
-
-
-
-  
-
-
-
-
-
 <section 
   x-data="{ showIframe: false }"
-  class="bg-transparent rounded-2xl border border-purple-600 overflow-hidden mt-20 flex flex-col md:flex-row gap-0"
+  class="bg-transparent rounded-xl border-2 border-purple-600 overflow-hidden mt-12 flex flex-col md:flex-row max-w-4xl mx-auto shadow-sm"
 >
-  <!-- Linke Seite: Text + Button -->
-  <div class="flex-1 flex flex-col justify-between p-4 md:p-6">
+  <!-- Linke Seite: Text -->
+  <div class="flex-1 p-4 md:p-5 flex flex-col justify-between">
     <div>
-      <h2 class="text-lg sm:text-xl font-semibold text-gray-900 tracking-tight mt-3 sm:mt-7 mb-2">
+      <h2 class="text-base sm:text-lg font-semibold text-gray-900 mb-1">
         Landingpage für Berliner Kanzlei
       </h2>
-      <span class="block text-gray-900 text-s font-normal mt-4">· 07/2025</span>
+      <span class="block text-gray-600 text-xs mb-3">· 07/2025</span>
 
-      <ul class="mt-4 space-y-1 text-gray-800 text-s">
+      <ul class="text-gray-800 text-sm space-y-0.5">
         <li>· Preis <span class="font-semibold">699,00€ Netto</span></li>
         <li>· Lieferzeit <span class="font-semibold">7 Tage</span></li>
       </ul>
     </div>
 
     <!-- Desktop Button -->
-    <div class="hidden md:flex mt-6">
+    <div class="hidden md:flex mt-4">
       <button 
         @click="showIframe = true"
-        class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition shadow-sm hover:shadow-md"
+        class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
       >
         Projekt ansehen
       </button>
     </div>
   </div>
 
-  <!-- Rechte Seite: Bild mit Overlay -->
-  <div class="flex-1 relative overflow-hidden p-0 md:p-6">
+  <!-- Rechte Seite: Bild -->
+  <div class="flex-1 relative md:p-4">
     <button 
-      class="w-full h-full p-0 border-0 bg-transparent relative block rounded-xl overflow-hidden" 
+      class="w-full block relative overflow-hidden rounded-lg aspect-video"
       @click="showIframe = true"
     >
       <img 
         src="anwältinb12.png" 
         alt="Projekt Bild" 
-        class="w-full h-full object-cover block rounded-xl" 
+        class="w-full h-full object-cover"
       >
-      <!-- Subtilerer Gradient Overlay -->
-<div class="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-transparent rounded-xl"></div>
-
+      <div class="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-transparent"></div>
     </button>
   </div>
 
   <!-- Mobile Button -->
-  <div class="flex justify-center md:hidden p-4">
+  <div class="flex justify-center md:hidden p-3">
     <button 
       @click="showIframe = true" 
-      class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition shadow-sm hover:shadow-md"
+      class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
     >
       Projekt ansehen
     </button>
@@ -268,63 +256,59 @@
 
 <section 
   x-data="{ showIframe: false }"
-  class="bg-transparent rounded-2xl border border-purple-600 overflow-hidden mt-20 flex flex-col md:flex-row-reverse gap-0"
+  class="bg-transparent rounded-xl border-2 border-purple-600 overflow-hidden mt-12 flex flex-col md:flex-row-reverse max-w-4xl mx-auto shadow-sm"
 >
-
-
-  <!-- Linke Seite (Desktop rechts): Text + Button -->
-  <div class="flex-1 flex flex-col justify-between p-4 md:p-6">
+  <!-- Linke Seite (Desktop rechts): Text -->
+  <div class="flex-1 p-4 md:p-5 flex flex-col justify-between">
     <div>
-      <h2 class="text-lg sm:text-xl font-semibold text-gray-900 tracking-tight mt-3 sm:mt-7 mb-2">
+      <h2 class="text-base sm:text-lg font-semibold text-gray-900 mb-1">
         Landingpage für Physiotherapeutische Praxis
       </h2>
-      <span class="block text-gray-900 text-s font-normal mt-4">· 10/2025</span>
+      <span class="block text-gray-600 text-xs mb-3">· 10/2025</span>
 
-      <ul class="mt-4 space-y-1 text-gray-800 text-s">
+      <ul class="text-gray-800 text-sm space-y-0.5">
         <li>· Preis <span class="font-semibold">499,00€ Netto</span></li>
         <li>· Lieferzeit <span class="font-semibold">6 Tage</span></li>
       </ul>
     </div>
 
     <!-- Desktop Button -->
-    <div class="hidden md:flex mt-6">
+    <div class="hidden md:flex mt-4">
       <button 
         @click="showIframe = true"
-        class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition shadow-sm hover:shadow-md"
+        class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
       >
         Projekt ansehen
       </button>
     </div>
   </div>
 
-  <!-- Rechte Seite (Desktop links): Bild mit Overlay -->
-  <div class="flex-1 relative overflow-hidden p-0 md:p-6">
+  <!-- Rechte Seite (Desktop links): Bild -->
+  <div class="flex-1 relative md:p-4">
     <button 
-      class="w-full h-full p-0 border-0 bg-transparent relative block rounded-xl overflow-hidden" 
+      class="w-full block relative overflow-hidden rounded-lg aspect-video"
       @click="showIframe = true"
     >
       <img 
         src="118.jpg" 
         alt="Projekt Bild" 
-        class="w-full h-full object-cover block rounded-xl" 
+        class="w-full h-full object-cover"
       >
-      <!-- Subtilerer Gradient Overlay -->
-<div class="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-transparent rounded-xl"></div>
-
+      <div class="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-transparent"></div>
     </button>
   </div>
 
   <!-- Mobile Button -->
-  <div class="flex justify-center md:hidden p-4">
+  <div class="flex justify-center md:hidden p-3">
     <button 
       @click="showIframe = true" 
-      class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-sm font-medium transition shadow-sm hover:shadow-md"
+      class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
     >
       Projekt ansehen
     </button>
   </div>
 
-<!-- Modal -->
+  <!-- Modal -->
   <div 
     x-show="showIframe"
     x-cloak
@@ -357,7 +341,7 @@
 
 <!-- Footer -->
 <footer class="items-center mt-24 mb-6 text-center text-gray-700">
-  <p>© 2025 19thara.com</p>
+  <p>© 2025 hoeft.website</p>
   <div class="space-x-4 mt-2">
     <a href="impressum001.html" class="hover:text-gray-800">Impressum</a>
     <a href="datenschutz001.html" class="hover:text-gray-800">Datenschutz</a>
