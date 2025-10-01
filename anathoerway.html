@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Portfolio</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -35,7 +34,18 @@
 
     [x-cloak] { display: none !important; }
 
-
+    /* Eleganter Fade-In Effekt */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(8px);
+      transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
 
   </style>
 </head>
@@ -44,19 +54,28 @@
 <!-- Blur Background -->
 <div id="blur-bg"></div>
 
+
+
 <!-- Navbar -->
-<nav class="fixed top-0 w-full z-40 bg-white shadow">
-  <div class="max-w-6xl mx-auto flex justify-between items-center px-5 py-3">
+<nav class="fixed top-0 inset-x-0 z-40 bg-white border-b border-gray-300">
+
+
+
+    <div class="w-full lg:max-w-6xl mx-auto flex justify-between items-center px-5 py-3">
+
     <!-- Desktop Menu -->
     <ul class="hidden lg:flex space-x-6 text-sm font-medium" id="nav-items">
       <li class="relative menu-item" data-key=""><a href="index.html" class="hover:underline">Start</a></li>
       <li class="relative menu-item" data-key="Leistungen"><a href="nheimleistungen.html" class="hover:underline">Leistungen</a></li>
-      <li class="relative menu-item" data-key="Preise"><a href="nheimpreise.html" class="hover:underline">Preise</a></li>
-      <li class="relative menu-item" data-key="Lösungen"><a href="nheimlösungen.html" class="hover:underline">Lösungen</a></li>
-      <li class="relative menu-item" data-key="Übermich"><a href="nheimübermich.html" class="hover:underline">Über mich</a></li>
-      <li class="relative menu-item" data-key="Kontakt"><a href="nheimkontakt.html" class="hover:underline">Kontakt</a></li>
+      <li class="relative menu-item" data-key="Preise"><a href="#" class="hover:underline">Preise</a></li>
+      <li class="relative menu-item" data-key="Lösungen"><a href="#" class="hover:underline">Lösungen</a></li>
+      <li class="relative menu-item" data-key="Übermich"><a href="#" class="hover:underline">Über mich</a></li>
+      <li class="relative menu-item" data-key="Kontakt"><a href="#" class="hover:underline">Kontakt</a></li>
       
     </ul>
+
+
+
 
 <!-- Logo + Mobile Menu Button -->
 <div class="flex items-center justify-between w-full lg:w-auto">
@@ -91,23 +110,98 @@
      <!-- Hier das mobile Menü hartcodiert einfügen -->
   <ul id="mobile-menu-items" class="flex flex-col gap-6 text-xl font-semibold mt-12">
     <li><a href="index.html">Start</a></li>
-    <li><a href="nheimleistungen.html">Leistungen</a></li>
-    <li><a href="nheimpreise.html">Preise</a></li>
-    <li><a href="nheimlösungen.html">Lösungen</a></li>
-    <li><a href="nheimübermich.html">Über mich</a></li>
-    <li><a href="nheimkontakt.html">Kontakt</a></li>
+    <li><a href="#">Leistungen</a></li>
+    <li><a href="#">Preise</a></li>
+    <li><a href="#">Lösungen</a></li>
+    <li><a href="#">Über mich</a></li>
+    <li><a href="#">Kontakt</a></li>
   </ul>
   </div>
 </nav>
 
 <main class="pt-20 max-w-6xl mx-auto px-5 mt-24">
-  <h1 class="text-4xl sm:text-6xl font-bold mb-4">
-    Willkommen bei hoeft.website dies ist mein Portfolio entdecken sie fortschrittliches & responsives Design
-  </h1>
-  <p class="mb-4 mt-12">Webdesign aus Berlin</p>
-  <p class="mb-4">Ich entwickele Websiten für ihr Business</p>
-  <p class="mb-0">Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite sie in jedem Schritt...</p>
 
+
+<header 
+  class="w-full flex flex-col"
+  x-data="animatedH1()" 
+  x-init="init()"
+>
+  <h1 class="text-4xl sm:text-6xl font-bold mb-4">
+    <template x-for="(part, i) in parts" :key="i">
+      <span 
+        x-html="part"
+        :class="visible[i] ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'"
+        class="inline transition-all duration-300"
+      ></span>
+    </template>
+  </h1>
+
+ 
+</header>
+
+  
+
+    <!-- Section mit Text & Sticker -->
+  <div class="w-full ">
+    <div class="flex items-start justify-between">
+
+      <!-- Linker Text -->
+      <div class="text-base text-gray-700">
+        <p class="mb-4 mt-12">Webdesign aus Berlin</p>
+        <p class="mb-4">Ich entwickele Webseiten für Ihr Business</p>
+        <p class="mb-0">
+          Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite Sie in jedem Schritt...
+        </p>
+      </div>
+
+      <!-- Rechter Sticker -->
+      <div id="sticker" 
+           class="opacity-0 scale-50 transition-all duration-300 ease-out
+                  bg-purple-600 text-white w-40 h-40 rounded-full shadow-lg flex items-center justify-center
+                  transform rotate-[-10deg] ml-6 shrink-0 md:mt-12">
+        <span class="font-bold text-xl text-center leading-tight">
+          Neukunden<br>Rabatt 20%
+        </span>
+      </div>
+
+    </div>
+  </div>
+
+
+
+    <!-- Header -->
+<header 
+  class="w-full flex flex-col"
+  x-data="animatedFuturistic()" 
+  x-init="init()"
+>
+
+    <!-- Animierter Marketing-Absatz -->
+  <p class="text-3xl sm:text-4xl font-bold mt-3 leading-snug tracking-wide">
+    <template x-for="(letter, index) in letters" :key="index">
+      <span 
+        x-text="letter"
+        :class="visible[index] ? 'opacity-100 scale-100 blur-0' : 'opacity-0 scale-125 blur-sm'"
+        class="inline-block transition-all duration-400 ease-out"
+      ></span>
+    </template>
+  </p>
+
+
+
+  <h1 class="text-3xl sm:text-4xl font-bold mt-6 mb-4 tracking-wide">
+  Moderne Interfaces, klare Designs.
+</h1>
+ 
+
+    <!-- Zweiter Absatz -->
+  <p class="mt-3 text-sm sm:text-base text-gray-700">
+    Frontend Developer • HTML • TailwindCSS • JavaScript
+  </p>
+
+
+</header>
 
 
 
@@ -132,24 +226,29 @@
 
 <section 
   x-data="{ showIframe: false }"
-  class="bg-gray-400 rounded-2xl border border-gray-200 overflow-hidden mt-12 flex flex-col md:flex-row gap-0 shadow-sm hover:shadow-md transition-shadow"
+  class="bg-gray-400 rounded-2xl border border-gray-200 overflow-hidden mt-20 flex flex-col md:flex-row gap-0 hover:shadow-md transition-shadow"
 >
   <!-- Linker Teil: Text + Button -->
   <div class="flex-1 flex flex-col justify-between p-4 md:p-6">
     <div>
       <h2 class="text-lg sm:text-xl font-semibold text-gray-900 tracking-tight mb-2">
         Landingpage für Berliner Kanzlei
-        <span class="block text-gray-900 text-s font-normal mt-1">· 07/2025</span>
-      </h2>
-      <p class="text-gray-700 text-sm mb-4">
-        Website einer Berliner Anwältin. Minimalistisches, helles Design mit klarer Typografie. Fortschrittliche UX. Webpage Template 001
-      </p>
-      <div class="flex flex-wrap gap-2 mb-5">
+        </h2>
+        <span class="block text-gray-900 text-s font-normal mt-0">· 07/2025</span>
+      
+      
+      
+
+        <span class="block text-gray-900 text-s font-normal mt-1">· Preis 599,00€ Netto</span>
+        <span class="block text-gray-900 text-s font-normal mt-1">· Lieferzeit 7 Tage</span>
+
+        <div class="flex flex-wrap gap-2 mb-4 mt-7">
         <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">HTML</span>
         <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">TailwindCSS</span>
         <span class="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">JavaScript</span>
       </div>
     </div>
+
 
     <!-- Desktop Button -->
     <div class="hidden md:flex mt-4">
@@ -213,7 +312,7 @@
   </div>
 </section>
 
-    
+
 
 
   </main>
@@ -238,46 +337,43 @@ const MENU_CONTENT = {
   firstUl: { 
     title: { label: "Webdesign", url: "nheimleistungen.html" }, 
     items: [
-      { label: "Wie ensteht Webdesign", url: "nheimleistungen.html#webdesign" },
-      { label: "Top 10 in Webdesign", url: "nheimleistungen.html" },
-      { label: "Grafiken", url: "nheimleistungen.html" },
-      { label: "Farbwelt", url: "nheimleistungen.html" },
-      { label: "Typographie", url: "nheimleistungen.html" },
-      { label: "Performance", url: "nheimleistungen.html" }
+      { label: "Wie ensteht Webdesign", url: "#" },
+      { label: "Top 10 in Webdesign", url: "#" },
+      { label: "Grafiken", url: "#" },
+      { label: "Farbwelt", url: "#" },
+      { label: "Typographie", url: "#" },
+      { label: "Performance", url: "#" }
     ] 
   },
   secondUl: { 
-    title: { label: "UX UI Design", url: "ux-ui-design.html" }, 
+    title: { label: "UX UI Design", url: "#" }, 
     items: [
-      { label: "Choose your Mac", url: "choose-mac.html" },
-      { label: "Mac vs PC", url: "mac-vs-pc.html" },
-      { label: "Which Mac is right for you?", url: "which-mac.html" },
-      { label: "Shop with a Specialist", url: "shop-specialist.html" }
+     
     ] 
   },
   thirdUl: { 
-    title: { label: "Webentwicklung", url: "webentwicklung.html" }, 
+    title: { label: "Webentwicklung", url: "#" }, 
     items: [
-      { label: "Figma", url: "figma.html" },
-      { label: "Vs Code", url: "vscode.html" },
-      { label: "HTML", url: "html.html" },
-      { label: "TailwindCSS", url: "tailwind.html" }
+      { label: "Figma", url: "#" },
+      { label: "Vs Code", url: "#" },
+      { label: "HTML", url: "#" },
+      { label: "TailwindCSS", url: "#" }
     ] 
   } 
 },
 
-  Preise: { firstUl: { title: "Preisentstehung", items: ["Shop Mac","MacBook Air","MacBook Pro","iMac","Mac mini","Mac Studio","Mac Pro"] },
-         secondUl: { title: "Beispielpreise", items: ["Choose your Mac","Mac vs PC","Which Mac is right for you?","Shop with a Specialist"] },
-         thirdUl: { title: "Fragen zu Preisen", items: ["Figma","Vs Code","HTML","TailwindCSS"] } },
-  Lösungen: { firstUl: { title: "Anwendungsfälle", items: ["Shop iPad","iPad Pro","iPad Air","iPad","iPad mini","Apple Pencil","Smart Keyboard"] },
-          secondUl: { title: "Referenzen", items: ["Choose your iPad","iPad vs MacBook","Which iPad is right for you?","Shop with a Specialist"] },
-          thirdUl: { title: "Resonazen", items: ["iPad Support","AppleCare+ for iPad","iPadOS 17","Apple Pencil"] } },
-  Übermich: { firstUl: { title: "Wer ich bin", items: ["Shop iPhone","iPhone 15 Pro","iPhone 15","iPhone 14","iPhone SE","Compare iPhone","AirPods"] },
-            secondUl: { title: "Weg in die Selbstständigkeit", items: ["Move to iOS","Shop iPhone","iPhone at Work","Shop with a Specialist"] },
-            thirdUl: { title: "Warum Webdesign", items: ["iPhone Support","AppleCare+ for iPhone","iOS 17","Privacy"] } },
-  Kontakt: { firstUl: { title: "Website", items: ["Shop Apple Watch","Apple Watch Series 9","Apple Watch SE","Apple Watch Ultra 2","Compare Apple Watch","Apple Watch Studio"] },
-           secondUl: { title: "Mailsupport", items: ["Apple Watch Support","AppleCare+ for Apple Watch","watchOS 10","Apple Fitness+"] },
-           thirdUl: { title: "Telefonsupport", items: ["Apple Watch Bands","AirPods","Apple TV+","Apple One"] } }
+  Preise: { firstUl: { title: "Preisentstehung", items: [] },
+         secondUl: { title: "Beispielpreise", items: [""] },
+         thirdUl: { title: "Fragen zu Preisen", items: ["Onepage","Multiwebpage","Multiwebpage & Marketing","Only Design"] } },
+  Lösungen: { firstUl: { title: "Anwendungsfälle", items: [] },
+          secondUl: { title: "Referenzen", items: [] },
+          thirdUl: { title: "Resonazen", items: [""] } },
+  Übermich: { firstUl: { title: "Wer ich bin", items: [] },
+            secondUl: { title: "Weg in die Selbstständigkeit", items: [] },
+            thirdUl: { title: "Warum Webdesign", items: [] } },
+  Kontakt: { firstUl: { title: "Website", items: [] },
+           secondUl: { title: "Mailsupport", items: [] },
+           thirdUl: { title: "Telefonsupport", items: [] } }
 
 };
 
@@ -423,10 +519,72 @@ attachMenuLinkHandlers();
     sessionStorage.removeItem('justClickedMenuTime');
   }
 })();
-
+   
 </script>
 
 
+
+
+
+
+
+
+
+
+
+
+<!-- Alpine.js Animation Moderne Interfaces... -->
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('animatedH1', () => ({
+    parts: [],
+    visible: [],
+    init() {
+      const html = 'Willkommen bei <span class="text-purple-600">hoeft.website</span> dies ist mein Portfolio – entdecken Sie fortschrittliches & responsives Design';
+      
+      // Segmente: Text-Knoten und HTML-Tags trennen
+      const container = document.createElement('div');
+      container.innerHTML = html;
+      this.parts = [];
+      
+      container.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.textContent.split('').forEach(c => this.parts.push(c));
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const tag = node.tagName.toLowerCase();
+          const cls = node.className;
+          node.textContent.split('').forEach(c => {
+            this.parts.push(`<${tag} class="${cls}">${c}</${tag}>`);
+          });
+        }
+      });
+
+      // Sichtbarkeit initial
+      this.visible = this.parts.map(() => false);
+
+      // Animation: Mitte -> außen
+      const mid = Math.floor(this.parts.length / 2);
+      this.parts.forEach((_, i) => {
+        const distance = Math.abs(i - mid);
+        setTimeout(() => this.visible[i] = true, distance * 40);
+      });
+    }
+  }));
+});
+</script>
+
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const sticker = document.getElementById("sticker");
+        sticker.classList.remove("opacity-0", "scale-50");
+        sticker.classList.add("opacity-100", "scale-100");
+      }, 1900); // erscheint nach 1,7 Sekunden
+    });
+  </script>
+   
 </body>
 </html>
+
 
