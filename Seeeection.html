@@ -1,0 +1,159 @@
+  <!-- Projekte -->
+
+
+
+
+<section 
+  x-data="{ showIframe: false }"
+  class="bg-gray-200 rounded-xl border-2 border-purple-600 overflow-hidden mt-12 flex flex-col md:flex-row max-w-4xl mx-auto shadow-sm"
+>
+  <!-- Linke Seite: Text -->
+  <div class="flex-1 p-4 md:p-5 flex flex-col justify-between">
+    <div>
+      <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-1">
+        Landingpage für Berliner Kanzlei
+      </h2>
+      <span class="block text-gray-700 text-s mb-3">· 07/2025</span>
+
+      <ul class="text-gray-800 text-s space-y-0.5">
+        <li>· Preis <span class="font-bold">699,00€ Netto</span></li>
+        <li>· Lieferzeit <span class="font-semibold">7 Tage</span></li>
+      </ul>
+    </div>
+
+    <!-- Desktop Button -->
+    <div class="hidden md:flex mt-4">
+      <button 
+        @click="showIframe = true"
+        class="px-3 py-1.5 bg-gray-700 hover:bg-gray-800 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
+      >
+        Projekt ansehen
+      </button>
+    </div>
+  </div>
+
+  <!-- Rechte Seite: Bild -->
+  <div class="flex-1 relative md:p-4">
+    <button 
+      class="w-full block relative overflow-hidden rounded-lg aspect-video"
+      @click="showIframe = true"
+    >
+      <img 
+        src="anwältinb12.png" 
+        alt="Projekt Bild" 
+        class="w-full h-full object-cover"
+      >
+      <div class="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-transparent"></div>
+    </button>
+  </div>
+
+  <!-- Mobile Button -->
+  <div class="flex justify-center md:hidden p-3">
+    <button 
+      @click="showIframe = true" 
+      class="px-3 py-1.5 bg-transparent text-white rounded-md text-s font-medium transition"
+    >
+      Projekt ansehen
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div 
+    x-show="showIframe"
+    x-cloak
+    x-transition
+    class="fixed inset-0 z-50 flex flex-col bg-white"
+    x-init="$watch('showIframe', value => { 
+      document.body.classList.toggle('overflow-hidden', value) 
+    })"
+  >
+    <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
+      <h3 class="text-gray-900 text-sm font-medium">Projekt Vorschau</h3>
+      <button 
+        @click="showIframe = false" 
+        class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
+      >
+        Schließen
+      </button>
+    </div>
+    <iframe src="10000.html" class="w-full flex-1 border-0"></iframe>
+  </div>
+</section>
+
+
+<section 
+  x-data="{ showIframe: false }"
+  class="bg-gray-200 rounded-xl border-2 border-purple-600 overflow-hidden mt-12 flex flex-col md:flex-row-reverse max-w-4xl mx-auto shadow-sm"
+>
+  <!-- Linke Seite (Desktop rechts): Text -->
+  <div class="flex-1 p-4 md:p-5 flex flex-col justify-between">
+    <div>
+      <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-1">
+        Landingpage für Physiotherapeutische Praxis
+      </h2>
+      <span class="block text-gray-700 text-s mb-3">· 10/2025</span>
+
+      <ul class="text-gray-800 text-s space-y-0.5">
+        <li>· Preis <span class="font-bold">499,00€ Netto</span></li>
+        <li>· Lieferzeit <span class="font-semibold">6 Tage</span></li>
+      </ul>
+    </div>
+
+    <!-- Desktop Button -->
+    <div class="hidden md:flex mt-4">
+      <button 
+        @click="showIframe = true"
+        class="px-3 py-1.5 bg-gray-700 hover:bg-gray-800 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
+      >
+        Projekt ansehen
+      </button>
+    </div>
+  </div>
+
+  <!-- Rechte Seite (Desktop links): Bild -->
+  <div class="flex-1 relative md:p-4">
+    <button 
+      class="w-full block relative overflow-hidden rounded-lg aspect-video"
+      @click="showIframe = true"
+    >
+      <img 
+        src="117.jpg" 
+        alt="Projekt Bild" 
+        class="w-full h-full object-cover"
+      >
+      <div class="absolute inset-0 bg-gradient-to-t from-black/15 via-black/5 to-transparent"></div>
+    </button>
+  </div>
+
+  <!-- Mobile Button -->
+  <div class="flex justify-center md:hidden p-3">
+    <button 
+      @click="showIframe = true" 
+      class="px-3 py-1.5 bg-transparent text-white rounded-md text-s font-medium transition"
+    >
+      Projekt ansehen
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div 
+    x-show="showIframe"
+    x-cloak
+    x-transition
+    class="fixed inset-0 z-50 flex flex-col bg-white"
+    x-init="$watch('showIframe', value => { 
+      document.body.classList.toggle('overflow-hidden', value) 
+    })"
+  >
+    <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
+      <h3 class="text-gray-900 text-sm font-medium">Projekt Vorschau</h3>
+      <button 
+        @click="showIframe = false" 
+        class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
+      >
+        Schließen
+      </button>
+    </div>
+    <iframe src="https://alexandra-bice.vercel.app/" class="w-full flex-1 border-0"></iframe>
+  </div>
+</section>
