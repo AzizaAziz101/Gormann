@@ -46,8 +46,6 @@
       transform: translateY(0);
       filter: blur(0);
     }
-    
-    [x-cloak] { display: none !important; }
 
   </style>
 </head>
@@ -114,7 +112,7 @@
       <span 
         x-html="part"
         :class="visible[i] ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'"
-        class="inline transition-all duration-500"
+        class="inline transition-all duration-300"
       ></span>
     </template>
   </h1>
@@ -199,18 +197,18 @@
 
 <section 
   x-data="{ showIframe: false }"
-  class="bg-gray-300 rounded-xl border-2 border-purple-600 overflow-hidden mt-12 flex flex-col md:flex-row max-w-4xl mx-auto shadow-sm"
+  class="bg-transparent rounded-xl border-2 border-purple-600 overflow-hidden mt-12 flex flex-col md:flex-row max-w-4xl mx-auto shadow-sm"
 >
   <!-- Linke Seite: Text -->
   <div class="flex-1 p-4 md:p-5 flex flex-col justify-between">
     <div>
-      <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-1">
+      <h2 class="text-base sm:text-lg font-semibold text-gray-900 mb-1">
         Landingpage für Berliner Kanzlei
       </h2>
-      <span class="block text-gray-700 text-s mb-3">· 07/2025</span>
+      <span class="block text-gray-600 text-xs mb-3">· 07/2025</span>
 
-      <ul class="text-gray-800 text-s space-y-0.5">
-        <li>· Preis <span class="font-bold">699,00€ Netto</span></li>
+      <ul class="text-gray-800 text-sm space-y-0.5">
+        <li>· Preis <span class="font-semibold">699,00€ Netto</span></li>
         <li>· Lieferzeit <span class="font-semibold">7 Tage</span></li>
       </ul>
     </div>
@@ -219,7 +217,7 @@
     <div class="hidden md:flex mt-4">
       <button 
         @click="showIframe = true"
-        class="px-3 py-1.5 bg-gray-700 hover:bg-gray-800 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
+        class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
       >
         Projekt ansehen
       </button>
@@ -245,7 +243,7 @@
   <div class="flex justify-center md:hidden p-3">
     <button 
       @click="showIframe = true" 
-      class="px-3 py-1.5 bg-transparent text-white rounded-md text-s font-medium transition"
+      class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
     >
       Projekt ansehen
     </button>
@@ -277,18 +275,18 @@
 
 <section 
   x-data="{ showIframe: false }"
-  class="bg-gray-300 rounded-xl border-2 border-purple-600 overflow-hidden mt-12 flex flex-col md:flex-row-reverse max-w-4xl mx-auto shadow-sm"
+  class="bg-transparent rounded-xl border-2 border-purple-600 overflow-hidden mt-12 flex flex-col md:flex-row-reverse max-w-4xl mx-auto shadow-sm"
 >
   <!-- Linke Seite (Desktop rechts): Text -->
   <div class="flex-1 p-4 md:p-5 flex flex-col justify-between">
     <div>
-      <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-1">
+      <h2 class="text-base sm:text-lg font-semibold text-gray-900 mb-1">
         Landingpage für Physiotherapeutische Praxis
       </h2>
-      <span class="block text-gray-700 text-s mb-3">· 10/2025</span>
+      <span class="block text-gray-600 text-xs mb-3">· 10/2025</span>
 
-      <ul class="text-gray-800 text-s space-y-0.5">
-        <li>· Preis <span class="font-bold">499,00€ Netto</span></li>
+      <ul class="text-gray-800 text-sm space-y-0.5">
+        <li>· Preis <span class="font-semibold">499,00€ Netto</span></li>
         <li>· Lieferzeit <span class="font-semibold">6 Tage</span></li>
       </ul>
     </div>
@@ -297,7 +295,7 @@
     <div class="hidden md:flex mt-4">
       <button 
         @click="showIframe = true"
-        class="px-3 py-1.5 bg-gray-700 hover:bg-gray-800 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
+        class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
       >
         Projekt ansehen
       </button>
@@ -323,7 +321,7 @@
   <div class="flex justify-center md:hidden p-3">
     <button 
       @click="showIframe = true" 
-      class="px-3 py-1.5 bg-transparent text-white rounded-md text-s font-medium transition"
+      class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
     >
       Projekt ansehen
     </button>
@@ -351,10 +349,6 @@
     <iframe src="https://alexandra-bice.vercel.app/" class="w-full flex-1 border-0"></iframe>
   </div>
 </section>
-
-
-
-
 
 
 
@@ -403,50 +397,7 @@
       </div>
 
     </div>
-
-
-
-
-<div class="mt-12 text-center" x-data="{ open: false }">
-
-  <button
-    @click="open = true"
-    class="relative inline-flex items-center px-6 py-2.5 text-base font-medium text-white bg-gray-800 border border-purple-500
-           rounded-tl-[1.5rem] rounded-tr-[0.3rem] rounded-bl-[0.2rem] rounded-br-[1.2rem]
-           transform skew-x-[-8deg] overflow-hidden
-           after:absolute after:inset-0 after:bg-gradient-to-r after:from-transparent after:via-purple-400/40 after:to-transparent after:skew-x-[-20deg] after:animate-[shine_3s_infinite]">
-    <span class="relative z-10 tracking-wider skew-x-[8deg]">Kostenloses Erstgespräch</span>
-  </button>
-
-  <!-- Modal -->
-  <div
-    x-show="open"
-    x-cloak
-    x-transition.opacity
-    class="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
-    <div 
-      class="bg-white rounded-2xl p-8 max-w-md text-center relative"
-      @click.away="open = false">
-      
-      <h2 class="text-2xl font-bold mb-4 text-gray-800">Kontakt</h2>
-      <p class="text-gray-600 leading-relaxed mb-6">
-        Für ein <strong>kostenloses Erstgespräch</strong> & bei Anfragen senden Sie mir bitte eine E-Mail an:<br>
-        <a href="mailto:tonihoeftofficial@gmail.com" class="text-purple-600 font-medium hover:underline">tonihoeftofficial@gmail.com</a>
-      </p>
-      
-      <button
-        @click="open = false"
-        class="px-6 py-2 bg-purple-600 text-white rounded-lg">
-        Schließen
-      </button>
-    </div>
   </div>
-</div>
-
-
-
-
-
 </section>
 
 
@@ -457,27 +408,13 @@
 
 
 <!-- Footer -->
-<footer class="items-center mt-24 mb-6 text-center text-gray-800">
+<footer class="items-center mt-24 mb-6 text-center text-gray-700">
   <p>© 2025 hoeft.website</p>
   <div class="space-x-4 mt-2">
-    <a href="impressum001.html">Impressum</a>
-    <a href="datenschutz001.html">Datenschutz</a>
+    <a href="impressum001.html" class="hover:text-gray-800">Impressum</a>
+    <a href="datenschutz001.html" class="hover:text-gray-800">Datenschutz</a>
   </div>
 </footer>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <script>
 
@@ -710,7 +647,7 @@ document.addEventListener('alpine:init', () => {
       const mid = Math.floor(this.parts.length / 2);
       this.parts.forEach((_, i) => {
         const distance = Math.abs(i - mid);
-        setTimeout(() => this.visible[i] = true, distance * 30);
+        setTimeout(() => this.visible[i] = true, distance * 40);
       });
     }
   }));
