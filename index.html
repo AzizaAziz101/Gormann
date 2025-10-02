@@ -409,15 +409,18 @@
 
 <div class="mt-12 text-center" x-data="{ open: false }">
 
-  <button
+<button
     @click="open = true"
-    class="relative inline-flex items-center px-6 py-2.5 text-base font-medium text-white bg-gray-800 border border-purple-500
+    class="relative inline-flex items-center px-6 py-2.5 text-base font-medium text-black border border-black
            rounded-tl-[1.5rem] rounded-tr-[0.3rem] rounded-bl-[0.2rem] rounded-br-[1.2rem]
            transform skew-x-[-8deg] overflow-hidden
-           after:absolute after:inset-0 after:bg-gradient-to-r after:from-transparent after:via-purple-400/40 after:to-transparent after:skew-x-[-20deg] after:animate-[shine_3s_infinite]">
+           after:absolute after:inset-0 after:bg-gradient-to-r after:from-transparent after:via-black/10 after:to-transparent after:skew-x-[-20deg] after:animate-[shine_3s_infinite]">
     <span class="relative z-10 tracking-wider skew-x-[8deg]">Kostenloses Erstgespräch</span>
-  </button>
+</button>
 
+
+
+  
   <!-- Modal -->
   <div
     x-show="open"
@@ -684,7 +687,7 @@ document.addEventListener('alpine:init', () => {
     parts: [],
     visible: [],
     init() {
-      const html = 'Willkommen bei <span class="text-purple-600">hoeft.website</span> dies ist mein Portfolio – entdecken Sie fortschrittliches & responsives Design';
+      const html = 'Willkommen bei <span class="text-purple-600">hoeft.website</span> dies ist mein Portfolio – entdecken Sie fortschrittliches & responsives Design &nbsp;&nbsp;';
       
       // Segmente: Text-Knoten und HTML-Tags trennen
       const container = document.createElement('div');
