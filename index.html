@@ -365,8 +365,13 @@
 </section>
 
 
+
+
+
+
+
 <section 
-  x-data="{ showIframe: false }"
+  x-data
   class="bg-gray-200 rounded-xl overflow-hidden mt-12 flex flex-col md:flex-row-reverse max-w-4xl mx-auto shadow-sm"
 >
   <!-- Linke Seite (Desktop rechts): Text -->
@@ -386,7 +391,7 @@
     <!-- Desktop Button -->
     <div class="hidden md:flex mt-4">
       <button 
-        @click="showIframe = true"
+        @click="window.open('https://meee-five.vercel.app/', '_blank')"
         class="px-3 py-1.5 bg-gray-700 hover:bg-gray-800 text-white rounded-md text-xs font-medium transition shadow-sm hover:shadow"
       >
         Projekt ansehen
@@ -398,7 +403,7 @@
   <div class="flex-1 relative md:p-4">
     <button 
       class="w-full block relative overflow-hidden aspect-video sm:rounded-lg"
-      @click="showIframe = true"
+      @click="window.open('https://meee-five.vercel.app/', '_blank')"
     >
       <img 
         src="selbst.png" 
@@ -412,33 +417,11 @@
   <!-- Mobile Button -->
   <div class="flex justify-center md:hidden p-3">
     <button 
-      @click="showIframe = true" 
+      @click="window.open('https://meee-five.vercel.app/', '_blank')" 
       class="px-3 py-1.5 bg-transparent text-gray-500 rounded-md text-s font-medium transition"
     >
       Projekt ansehen
     </button>
-  </div>
-
-  <!-- Modal -->
-  <div 
-    x-show="showIframe"
-    x-cloak
-    x-transition
-    class="fixed inset-0 z-50 flex flex-col bg-white"
-    x-init="$watch('showIframe', value => { 
-      document.body.classList.toggle('overflow-hidden', value) 
-    })"
-  >
-    <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
-      <h3 class="text-gray-900 text-sm font-medium">Projekt Vorschau</h3>
-      <button 
-        @click="showIframe = false" 
-        class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
-      >
-        Schließen
-      </button>
-    </div>
-    <iframe src="https://meee-five.vercel.app/" class="w-full flex-1 border-0"></iframe>
   </div>
 </section>
 
@@ -545,7 +528,7 @@
 
 <div
 class="mt-12 text-center">
-<p>*Alle Preise inkl. 19% MwSt</p>
+<p>*Alle Preise inkl. 19% MwSt.</p>
   </div>
 
 </section>
