@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -48,13 +49,6 @@
     }
     
     [x-cloak] { display: none !important; }
-
-
-
-
-    
-
-
 
   </style>
 </head>
@@ -108,7 +102,7 @@
  
 </nav>
 
-<main class="pt-20 max-w-6xl mx-auto px-5 mt-20">
+<main class="pt-20 max-w-6xl mx-auto px-5 mt-24">
 
 
 <header 
@@ -128,31 +122,31 @@
 </header>
 
   
+    <!-- Section mit Text & Sticker -->
+  <div class="w-full ">
+    <div class="flex items-start justify-between">
 
+      <!-- Linker Text -->
+      <div class="text-base text-gray-700">
+        <p class="mb-4 mt-12">Webdesign aus Berlin</p>
+        <p class="mb-4">Ich entwickele Webseiten für Ihr Business</p>
+        <p class="mb-0">
+          Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite Sie in jedem Schritt...
+        </p>
+      </div>
 
-<!-- Section mit Text & Sticker -->
-<div class="w-full flex flex-col items-center">
+      <!-- Rechter Sticker -->
+      <div id="sticker" 
+           class="opacity-0 scale-50 transition-all duration-300 ease-out
+                  bg-purple-600 text-white w-40 h-40 rounded-full shadow-lg flex items-center justify-center
+                  transform rotate-[-10deg] ml-6 shrink-0 md:mt-12">
+        <span class="font-bold text-xl text-center leading-tight">
+          Neukunden<br>Rabatt 20%
+        </span>
+      </div>
 
-  <!-- Rechter Sticker (jetzt mittig oben) -->
-  <div id="sticker" 
-       class="opacity-0 scale-50 transition-all duration-300 ease-out
-              bg-purple-600 text-white w-40 h-40 rounded-full shadow-lg flex items-center justify-center
-              transform rotate-[-10deg] mb-6 mt-8">
-    <span class="font-bold text-xl text-center leading-tight">
-      Neukunden<br>Rabatt 20%
-    </span>
+    </div>
   </div>
-
-  <!-- Linker Text (jetzt unterhalb, über volle Breite) -->
-  <div class="text-base text-gray-700 w-full">
-    <p class="mb-4 mt-4">Webdesign aus Berlin</p>
-    <p class="mb-4">Ich entwickele Webseiten für Ihr Business</p>
-    <p class="mb-0">
-      Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite Sie in jedem Schritt...
-    </p>
-  </div>
-
-</div>
 
 
 
@@ -212,14 +206,14 @@
 <!-- Linke Seite: Text -->
   <div class="flex-1 p-4 md:p-5 flex flex-col justify-between">
     <div>
-      <h2 class="text-base sm:text-lg font-extrabold text-gray-800 mb-1">
-        Landingpage für Berliner Kanzlei Projekt 01
+      <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-1">
+        Landingpage für Berliner Kanzlei
       </h2>
       <span class="block text-gray-700 text-s mb-3">· 07/2025</span>
 
       <ul class="text-gray-800 text-s space-y-0.5">
-        <li>· Lieferzeit 7 Tage</li>
-        <li>· € 799,00*</li>
+        <li>· Preis <span class="font-bold">699,00€ Netto</span></li>
+        <li>· Lieferzeit <span class="font-semibold">7 Tage</span></li>
       </ul>
     </div>
 
@@ -256,7 +250,7 @@
   <div class="flex justify-center md:hidden p-3">
     <button 
       @click="showIframe = true" 
-      class="px-3 py-1.5 bg-transparent text-gray-500 rounded-md text-s font-medium transition"
+      class="px-3 py-1.5 bg-transparent text-white rounded-md text-s font-medium transition"
     >
       Projekt ansehen
     </button>
@@ -293,15 +287,14 @@
   <!-- Linke Seite (Desktop rechts): Text -->
   <div class="flex-1 p-4 md:p-5 flex flex-col justify-between">
     <div>
-      <h2 class="text-base sm:text-lg font-extrabold text-gray-800 mb-1">
-        Landingpage für Physiotherapeutische Praxis Projekt 02
+      <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-1">
+        Landingpage für Physiotherapeutische Praxis
       </h2>
       <span class="block text-gray-700 text-s mb-3">· 10/2025</span>
 
       <ul class="text-gray-800 text-s space-y-0.5">
-        
-        <li>· Lieferzeit 6 Tage</li>
-        <li>· € 699,00*</li>
+        <li>· Preis <span class="font-bold">499,00€ Netto</span></li>
+        <li>· Lieferzeit <span class="font-semibold">6 Tage</span></li>
       </ul>
     </div>
 
@@ -335,7 +328,7 @@
   <div class="flex justify-center md:hidden p-3">
     <button 
       @click="showIframe = true" 
-      class="px-3 py-1.5 bg-transparent text-gray-500 rounded-md text-s font-medium transition"
+      class="px-3 py-1.5 bg-transparent text-white rounded-md text-s font-medium transition"
     >
       Projekt ansehen
     </button>
@@ -372,14 +365,14 @@
   <!-- Linke Seite (Desktop rechts): Text -->
   <div class="flex-1 p-4 md:p-5 flex flex-col justify-between">
     <div>
-      <h2 class="text-base sm:text-lg font-extrabold text-gray-800 mb-1">
-        Selbst Projekt Animation 03
+      <h2 class="text-base sm:text-lg font-bold text-gray-800 mb-1">
+        Landingpage für Physiotherapeutische Praxis
       </h2>
       <span class="block text-gray-700 text-s mb-3">· 11/2025</span>
 
       <ul class="text-gray-800 text-s space-y-0.5">
-        <li>· Lieferzeit 9 Tage</li>
-        <li>· € 1199,00*</li>
+        <li>· Preis <span class="font-bold">799,00€ Netto</span></li>
+        <li>· Lieferzeit <span class="font-semibold">9 Tage</span></li>
       </ul>
     </div>
 
@@ -413,7 +406,7 @@
   <div class="flex justify-center md:hidden p-3">
     <button 
       @click="showIframe = true" 
-      class="px-3 py-1.5 bg-transparent text-gray-500 rounded-md text-s font-medium transition"
+      class="px-3 py-1.5 bg-transparent text-white rounded-md text-s font-medium transition"
     >
       Projekt ansehen
     </button>
@@ -438,7 +431,7 @@
         Schließen
       </button>
     </div>
-    <iframe src="https://meee-five.vercel.app/" class="w-full flex-1 border-0"></iframe>
+    <iframe src="https://alexandra-bice.vercel.app/" class="w-full flex-1 border-0"></iframe>
   </div>
 </section>
 
@@ -458,7 +451,7 @@
           <span class="text-6xl lg:text-7xl font-bold text-gray-800 leading-none">01</span>
         </div>
         <h3 class="text-xl lg:text-2xl font-bold text-gray-800 mb-3 tracking-tight">
-          Strategie & Konzeption
+          Strategie &<br>Konzeption
         </h3>
         <p class="text-base text-gray-600 leading-relaxed">
           Ihre Ziele sind mein Fokus, um eine Webstrategie zu entwickeln, die Ihr Geschäft voranbringt.
@@ -471,7 +464,7 @@
           <span class="text-6xl lg:text-7xl font-bold text-gray-800 leading-none">02</span>
         </div>
         <h3 class="text-xl lg:text-2xl font-bold text-gray-800 mb-3 tracking-tight">
-          Umsetzung & Technologie
+          Umsetzung &<br>Technologie
         </h3>
         <p class="text-base text-gray-600 leading-relaxed">
           Aus unserer Strategie entsteht eine robuste, hochperformante Website. Sauberer Code, responsive Design und Fokus auf Benutzerführung sind mein Standard.
@@ -484,7 +477,7 @@
           <span class="text-6xl lg:text-7xl font-bold text-gray-800 leading-none">03</span>
         </div>
         <h3 class="text-xl lg:text-2xl font-bold text-gray-800 mb-3 tracking-tight">
-          Partnerschaft & Support
+          Partnerschaft &<br>Support
         </h3>
         <p class="text-base text-gray-600 leading-relaxed">
           Meine Arbeit ist erst fertig, wenn Sie zufrieden sind. Ich sorge für klare Kommunikation, termingetreue Lieferung und nehme mir Zeit für Ihre Einweisung.
@@ -502,18 +495,13 @@
 
 
 
-
-
-
-<!-- Button -->
-<button
-  id="ctaButton"
+  <button 
   @click="open = true"
-  class="relative px-6 py-2.5 text-sm font-medium text-white bg-black rounded-full hover:bg-gray-800 focus:outline-none transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform">
+  class="px-4 py-2 text-sm font-medium text-black border border-black rounded hover:bg-black/70 hover:text-white">
   Kostenloses Erstgespräch
 </button>
 
-<!-- Button -->
+
 
 
   
@@ -524,7 +512,7 @@
     x-transition.opacity
     class="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
     <div 
-      class="bg-gray-200 rounded-2xl p-8 max-w-md text-center relative"
+      class="bg-white rounded-2xl p-8 max-w-md text-center relative"
       @click.away="open = false">
       
       <h2 class="text-2xl font-bold mb-4 text-gray-600">Kontakt</h2>
@@ -543,10 +531,8 @@
 </div>
 
 
-<div
-class="mt-12 text-center">
-<p>*Alle Preise inkl. 19% MwSt</p>
-  </div>
+
+
 
 </section>
 
@@ -558,7 +544,7 @@ class="mt-12 text-center">
 
 
 <!-- Footer -->
-<footer class="items-center py-16 text-center text-gray-900 bg-gray-200">
+<footer class="items-center mt-20 py-16 text-center text-gray-900 bg-gray-600">
   <p>© 2025 19thara.website</p>
   <div class="space-x-4 mt-2">
     <a href="impressum001.html">Impressum</a>
@@ -828,26 +814,6 @@ document.addEventListener('alpine:init', () => {
     });
   </script>
    
-
-
-
-<script>
-  const btn = document.getElementById('ctaButton');
-
-  function pulse() {
-    // Sanft hoch + leicht größer
-    btn.style.transform = 'translateY(-4px) scale(1.05)';
-
-    // etwas länger „oben“ bleiben (1.2s), dann smooth zurück
-    setTimeout(() => {
-      btn.style.transform = 'translateY(0) scale(1)';
-    }, 1200);
-  }
-
-  // Erste Bewegung nach 1.2s, dann alle 10s
-  setTimeout(pulse, 1200);
-  setInterval(pulse, 10000);
-</script>
-
 </body>
 </html>
+
