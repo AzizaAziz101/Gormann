@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>iPhone Mockup mit Modal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2rem 1rem;
+    }
+
+    .mockup-container {
+      background: white;
+      border-radius: 1.75rem;
+      padding: 2rem;
+      max-width: 900px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer; /* Klickbar */
+    }
+
+    .iphone-outer {
+      position: relative;
+      border-radius: 60px;
+      padding: 5px;
+      background: linear-gradient(145deg, #9ea0a3, #c3c5c7, #7b7c7e);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+      display: inline-block;
+      transform: translateY(18%);
+    }
+
+    .iphone-frame {
+      width: 420px;
+      height: 650px;
+      border-radius: 52px;
+      background: #000;
+      border: 7px solid #1f1f1f;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .iphone-frame::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 110px;
+      height: 26px;
+      background: #111;
+      border-radius: 13px;
+      z-index: 3;
+    }
+
+    .iphone-screen {
+      width: 100%;
+      height: 100%;
+      border-radius: 44px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000;
+    }
+
+    
+
+    .project-description {
+      text-align: center;
+      color: white;
+      margin-top: 3rem;
+      max-width: 700px;
+      padding: 0 1rem;
+    }
+
+    .project-description h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-description p {
+      opacity: 0.9;
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1024px) { .iphone-frame { width: 380px; height: 600px; } .iphone-outer { transform: translateY(20%); } }
+    @media (max-width: 768px) { .iphone-frame { width: 340px; height: 540px; } .iphone-outer { transform: translateY(22%); } .mockup-container { padding: 1.5rem; } }
+    @media (max-width: 480px) { .iphone-frame { width: 300px; height: 480px; } .iphone-outer { transform: translateY(24%); } .mockup-container { padding: 1.25rem; } }
+    @media (max-width: 380px) { .iphone-frame { width: 270px; height: 440px; } .iphone-outer { transform: translateY(26%); } .mockup-container { padding: 1rem; } }
+  </style>
+</head>
+<body x-data="{ showIframe: false }">
+
+
+<section class="mockup-container" @click="showIframe = true">
+  <div class="iphone-outer">
+    <div class="iphone-frame">
+      <div class="iphone-screen">
+        <video 
+          class="w-full h-full object-cover"
+          playsinline 
+          muted 
+          loop 
+          autoplay 
+          preload="metadata" 
+          
+        >
+          <source src="01.mp4" type="video/mp4">
+          Dein Browser unterstützt dieses Video nicht.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Beschreibung -->
+  <div class="project-description">
+    <h2>Landingpage für Berliner Kanzlei – Projekt 01</h2>
+    <p>· 07/2025 · Lieferzeit 7 Tage · € 799,00*</p>
+    <p>
+      Dieses Projekt zeigt eine elegante, minimalistische Landingpage mit klarer Struktur, 
+      die Vertrauen schafft und perfekt auf das Branding einer Berliner Kanzlei abgestimmt ist.
+    </p>
+
+    <!-- Button -->
+    <button 
+      @click="showIframe = true" 
+      class="mt-4 px-4 py-2 bg-gray-700 hover:bg-gray-800 text-white rounded-md transition"
+    >
+      Projekt in voller Größe ansehen
+    </button>
+  </div>
+
+  <!-- Modal -->
+  <div 
+    x-show="showIframe" 
+    x-cloak
+    x-transition
+    class="fixed inset-0 z-50 flex flex-col bg-white"
+    x-init="$watch('showIframe', value => { document.body.classList.toggle('overflow-hidden', value) })"
+  >
+    <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
+      <h3 class="text-gray-900 text-sm font-medium">Projekt Vorschau</h3>
+      <button 
+        @click="showIframe = false" 
+        class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
+      >
+        Schließen
+      </button>
+    </div>
+    <iframe src="10000.html" class="w-full flex-1 border-0"></iframe>
+  </div>
+
+
+
+
+
+
+
+</body>
+</html>
