@@ -499,7 +499,7 @@
 <button
   id="ctaButton"
   @click="open = true"
-  class="relative px-6 py-2.5 text-sm font-medium text-white bg-black rounded-full border-2 border-[#ffa066] focus:outline-none transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform">
+  class="relative px-6 py-2.5 text-sm font-medium text-white bg-black rounded-full focus:outline-none transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform">
   Kostenloses Erstgespräch
 </button>
 
@@ -835,9 +835,9 @@ document.addEventListener('alpine:init', () => {
     }, 1200);
   }
 
-  // Erste Bewegung nach 1.2s, dann alle 10s
+  // Erste Bewegung nach 1.2s, dann alle 7s
   setTimeout(pulse, 1200);
-  setInterval(pulse, 6000);
+  setInterval(pulse, 7000);
 </script>
 
 </body>
