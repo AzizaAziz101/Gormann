@@ -110,82 +110,51 @@
  
 </nav>
 
-<main class="pt-20 max-w-6xl mx-auto px-5 mt-12">
+<main class="pt-20 max-w-6xl mx-auto px-5 mt-20">
 
 
-
-
-
-
-
-<section 
-  class="relative w-full h-screen bg-cover bg-center bg-no-repeat flex flex-col justify-between 
-         rounded-2xl overflow-hidden" 
-  style="background-image: url('nycui.jpg');"
+<header 
+  class="w-full flex flex-col"
+  x-data="animatedH1()" 
+  x-init="init()"
 >
-  <header 
-    class="w-full flex flex-col items-center pt-12"
-    x-data="animatedH1()" 
-    x-init="init()"
-  >
-    <h1 class="text-4xl sm:text-6xl font-bold mb-4 text-gray-800">
-      <template x-for="(part, i) in parts" :key="i">
-        <span 
-          x-html="part"
-          :class="visible[i] ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'"
-          class="inline transition-all duration-500"
-        ></span>
-      </template>
-    </h1>
-  </header>
+  <h1 class="text-4xl sm:text-6xl font-bold mb-4 text-gray-800">
+    <template x-for="(part, i) in parts" :key="i">
+      <span 
+        x-html="part"
+        :class="visible[i] ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'"
+        class="inline transition-all duration-500"
+      ></span>
+    </template>
+  </h1>
+</header>
 
-  <!-- Section mit Text & Sticker -->
-  <div class="w-full flex flex-col items-center">
+  
 
-    <!-- Rechter Sticker (mittig oben über dem Text) -->
-    <div id="sticker" 
-        class="opacity-0 scale-50 transition-all duration-300 ease-out
-                bg-purple-600 text-white w-40 h-40 rounded-full shadow-lg flex items-center justify-center
-                transform rotate-[-10deg] mb-6 -mt-8 z-10">
-      <span class="font-bold text-xl text-center leading-tight">
-        Neukunden<br>Rabatt 20%
-      </span>
-    </div>
 
-    <!-- Textblock, der mit der Unterkante des Bildes abschließt -->
-    <div class="text-base text-gray-200 w-full bg-black/90 backdrop-blur-sm rounded-t-2xl p-6">
-      <p class="mb-4 mt-4">Webdesign Global</p>
-      <p class="mb-4">Ich entwickele Webseiten für Ihr Business</p>
-      <p class="mb-4">
-        Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite Sie in jedem Schritt...
-      </p>
-    </div>
+<!-- Section mit Text & Sticker -->
+<div class="w-full flex flex-col items-center">
 
+  <!-- Rechter Sticker (jetzt mittig oben) -->
+  <div id="sticker" 
+       class="opacity-0 scale-50 transition-all duration-300 ease-out
+              bg-purple-600 text-white w-40 h-40 rounded-full shadow-lg flex items-center justify-center
+              transform rotate-[-10deg] mb-6 mt-8">
+    <span class="font-bold text-xl text-center leading-tight">
+      Neukunden<br>Rabatt 20%
+    </span>
   </div>
-</section>
 
+  <!-- Linker Text (jetzt unterhalb, über volle Breite) -->
+  <div class="text-base text-gray-700 w-full">
+    <p class="mb-4 mt-4">Webdesign aus Berlin</p>
+    <p class="mb-4">Ich entwickele Webseiten für Ihr Business</p>
+    <p class="mb-0">
+      Von der Idee über die Umsetzung bis hin zur Veröffentlichung, ich begleite Sie in jedem Schritt...
+    </p>
+  </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</div>
 
 
 
@@ -194,9 +163,14 @@
 
 
 <!-- Second Hero Section -->
-<section class="w-full mt-12">
+<section class="w-full mt-16">
   <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8">
 
+<!-- Bild links mit Overlay -->
+<div class="flex-1 relative">
+  <img src="Arbeitsplatz001.jpg" alt="Webdesign Beispiel" class="w-full h-auto shadow-lg object-cover">
+  <div class="absolute inset-0 bg-black bg-opacity-50"></div> <!-- schwarzes Overlay mit 50% Transparenz -->
+</div>
 
 
 
@@ -412,7 +386,7 @@
 <div class="text-center text-gray-800 mt-8 max-w-[600px] px-4 mx-auto">
   <h2 class="text-xl font-bold mb-2">Selbst Projekt Animation – Projekt 03</h2>
   <p class="opacity-90 mb-1">· 10/2025 · Lieferzeit 7 Tage · € 1199,00*</p>
-  <p class="opacity-90 mb-16 leading-relaxed">
+  <p class="opacity-90 mb-24 leading-relaxed">
     Futuristisches Animations-Intro – klar, modern und international für einen Mindset-Blog in drei Sprachen.
   </p>
 </div>
@@ -424,11 +398,6 @@
 
 
 
-<!-- Bild links mit Overlay -->
-<div class="flex-1 relative">
-  <img src="Arbeitsplatz001.jpg" alt="Webdesign Beispiel" class="w-full h-auto shadow-lg object-cover">
-  <div class="absolute inset-0 bg-black bg-opacity-80"></div> <!-- schwarzes Overlay mit 50% Transparenz -->
-</div>
 
 
 

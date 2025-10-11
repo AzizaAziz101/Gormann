@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio – Dark Edition</title>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+
+  <body class="bg-gray-950 text-gray-100 font-sans antialiased leading-relaxed">
+
+    <!-- HEADER / HERO -->
+    <header class="px-6 py-20 text-center">
+      <div class="max-w-3xl mx-auto">
+        <h1 class="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+          Webdesign mit Tiefe & Klarheit
+        </h1>
+        <p class="text-gray-400 text-lg max-w-xl mx-auto">
+          Ich gestalte moderne, minimalistische Webauftritte für Marken, die Persönlichkeit und Präzision verbinden.
+        </p>
+      </div>
+    </header>
+
+    <!-- PROJEKTE -->
+    <section id="projekte" class="py-24 px-6">
+      <div class="max-w-5xl mx-auto text-center mb-20">
+        <h2 class="text-4xl font-bold mb-4 bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+          Projekte
+        </h2>
+        <p class="text-gray-400 max-w-xl mx-auto">
+          Eine Auswahl realisierter Projekte mit Fokus auf Nutzererlebnis, Struktur und emotionale Klarheit.
+        </p>
+      </div>
+
+      <div class="flex flex-col items-center space-y-24">
+
+        <!-- PROJEKT 1 -->
+        <section 
+          class="max-w-[700px] w-full flex flex-col items-center relative overflow-hidden cursor-pointer"
+          x-data="{ showIframe: false }"
+        >
+          <div 
+            class="relative rounded-[50px] p-[3px] bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 inline-block translate-y-[20%]
+                   transform transition-transform duration-300 ease-out hover:scale-[1.03]"
+            @click="showIframe = true"
+          >
+            <div 
+              class="w-[280px] h-[360px] md:w-[260px] md:h-[400px] rounded-[46px] bg-black border-[6px] border-gray-900 overflow-hidden relative flex flex-col justify-end"
+            >
+              <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-[70px] h-[22px] bg-gray-900 rounded-[12px] z-10"></div>
+              <div class="w-full h-full flex items-center justify-center bg-black">
+                <img src="anwältinx.jpg" alt="Projekt Vorschau" class="w-full h-full object-cover" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <!-- MODAL -->
+          <div 
+            x-show="showIframe" 
+            x-cloak
+            x-transition
+            class="fixed inset-0 z-50 flex flex-col bg-gray-950"
+            x-init="$watch('showIframe', value => { document.body.classList.toggle('overflow-hidden', value) })"
+          >
+            <div class="flex justify-between items-center px-4 py-2 bg-gray-900 border-b border-gray-800">
+              <h3 class="text-gray-200 text-sm font-medium">Projekt Vorschau</h3>
+              <button 
+                @click="showIframe = false" 
+                class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs rounded-md transition"
+              >Schließen</button>
+            </div>
+            <iframe src="10000.html" class="w-full flex-1 border-0"></iframe>
+          </div>
+
+          <!-- BESCHREIBUNG -->
+          <div class="text-center mt-12 max-w-[600px] px-4 mx-auto">
+            <h3 class="text-2xl font-semibold mb-2">Landingpage für Berliner Kanzlei</h3>
+            <p class="text-sm text-gray-400 mb-3">· 07/2025 · Lieferzeit 7 Tage · € 799,00*</p>
+            <p class="text-gray-300 leading-relaxed">
+              Eine elegante, minimalistische Landingpage mit klarer Struktur – Vertrauen durch Ruhe und Klarheit.
+            </p>
+          </div>
+        </section>
+
+
+        <!-- PROJEKT 2 -->
+        <section 
+          class="max-w-[700px] w-full flex flex-col items-center relative overflow-hidden cursor-pointer"
+          x-data="{ showIframe: false }"
+        >
+          <div 
+            class="relative rounded-[50px] p-[3px] bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 inline-block translate-y-[20%]
+                   transform transition-transform duration-300 ease-out hover:scale-[1.03]"
+            @click="showIframe = true"
+          >
+            <div 
+              class="w-[280px] h-[360px] md:w-[260px] md:h-[400px] rounded-[46px] bg-black border-[6px] border-gray-900 overflow-hidden relative flex flex-col justify-end"
+            >
+              <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-[70px] h-[22px] bg-gray-900 rounded-[12px] z-10"></div>
+              <div class="w-full h-full flex items-center justify-center bg-black">
+                <img src="alexandraaa.jpg" alt="Projekt Vorschau" class="w-full h-full object-cover" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <div 
+            x-show="showIframe" 
+            x-cloak
+            x-transition
+            class="fixed inset-0 z-50 flex flex-col bg-gray-950"
+          >
+            <div class="flex justify-between items-center px-4 py-2 bg-gray-900 border-b border-gray-800">
+              <h3 class="text-gray-200 text-sm font-medium">Projekt Vorschau</h3>
+              <button 
+                @click="showIframe = false" 
+                class="px-3 py-1 bg-red-600 hover:bg-red-700 text-white text-xs rounded-md transition"
+              >Schließen</button>
+            </div>
+            <iframe src="https://alexandra-bice.vercel.app/" class="w-full flex-1 border-0"></iframe>
+          </div>
+
+          <div class="text-center mt-12 max-w-[600px] px-4 mx-auto">
+            <h3 class="text-2xl font-semibold mb-2">Physiotherapeutin – Projekt 02</h3>
+            <p class="text-sm text-gray-400 mb-3">· 10/2025 · Lieferzeit 6 Tage · € 699,00*</p>
+            <p class="text-gray-300 leading-relaxed">
+              Minimalistische Landingpage für eine Praxis in Berlin Mitte – UX, Klarheit und Vertrauen im Fokus.
+            </p>
+          </div>
+        </section>
+
+
+        <!-- PROJEKT 3 -->
+        <section 
+          class="max-w-[700px] w-full flex flex-col items-center relative overflow-hidden cursor-pointer"
+          @click="window.open('https://meee-five.vercel.app/', '_blank')"
+        >
+          <div 
+            class="relative rounded-[50px] p-[3px] bg-gradient-to-br from-gray-700 via-gray-800 to-gray-900 inline-block translate-y-[20%]
+                   transform transition-transform duration-300 ease-out hover:scale-[1.03]"
+          >
+            <div 
+              class="w-[280px] h-[360px] md:w-[260px] md:h-[400px] rounded-[46px] bg-black border-[6px] border-gray-900 overflow-hidden relative flex flex-col justify-end"
+            >
+              <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-[70px] h-[22px] bg-gray-900 rounded-[12px] z-10"></div>
+              <div class="w-full h-full flex items-center justify-center bg-black">
+                <img src="screenselbstprojekt.png" alt="Projekt Vorschau" class="w-full h-full object-cover" loading="lazy">
+              </div>
+            </div>
+          </div>
+
+          <div class="text-center mt-12 max-w-[600px] px-4 mx-auto">
+            <h3 class="text-2xl font-semibold mb-2">Selbst Projekt Animation – Projekt 03</h3>
+            <p class="text-sm text-gray-400 mb-3">· 10/2025 · Lieferzeit 7 Tage · € 1199,00*</p>
+            <p class="text-gray-300 leading-relaxed">
+              Futuristisches Animations-Intro für einen internationalen Mindset-Blog – klar, modern, dreisprachig.
+            </p>
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer class="text-center py-12 border-t border-gray-800 text-gray-500 text-sm">
+      <p>© 2025 Dein Name · Webdesign & Entwicklung</p>
+      <p class="mt-1">
+        <a href="mailto:info@deinname.de" class="hover:text-purple-400 transition">info@deinname.de</a>
+      </p>
+    </footer>
+
+  </body>
+</html>
