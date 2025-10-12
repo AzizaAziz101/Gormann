@@ -303,3 +303,72 @@ document.addEventListener('alpine:init', () => {
   }));
 });
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- HEADER MIT DEINER ORIGINALEN ANIMATION -->
+  <header 
+    class="relative z-10 w-full flex flex-col items-center pt-12"
+    x-data="animatedH1()" 
+    x-init="init()"
+  >
+    <h1 class="text-4xl sm:text-6xl font-bold mb-4 text-gray-100 p-4 sm:p-6 md:p-8">
+      <template x-for="(part, i) in parts" :key="i">
+        <span 
+          x-html="part"
+          :class="visible[i] ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'"
+          class="inline transition-all duration-500"
+        ></span>
+      </template>
+    </h1>
+  </header>
+
+
+
+  
+  <!-- Alpine.js sanfte Fade-In/Slide-Up Animation -->
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('animatedH1', () => ({
+    parts: [],
+    visible: [],
+    init() {
+      const html = 'Willkommen bei <span class="text-purple-600">Tharawave</span> – entdecken Sie fortschrittliches & responsives Design';
+      
+      // HTML in einzelne Zeichen zerlegen (wie vorher)
+      const container = document.createElement('div');
+      container.innerHTML = html;
+      this.parts = [];
+
+      container.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.textContent.split('').forEach(c => this.parts.push(c));
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const tag = node.tagName.toLowerCase();
+          const cls = node.className;
+          node.textContent.split('').forEach(c => {
+            this.parts.push(`<${tag} class="${cls}">${c}</${tag}>`);
+          });
+        }
+      });
+
+      // Sichtbarkeit initial
+      this.visible = this.parts.map(() => false);
+
+      // Animation: sanfter linearer Fade von links nach rechts
+      this.parts.forEach((_, i) => {
+        setTimeout(() => this.visible[i] = true, i * 35);
+      });
+    }
+  }));
+});
+</script>

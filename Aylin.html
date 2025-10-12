@@ -53,24 +53,7 @@
 
 
 
-.animate-char {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(0.25rem);
-  will-change: transform, opacity;
-  animation: charFadeUp 0.52s cubic-bezier(.2,.9,.2,1) forwards;
-}
-
-.char-space {
-  display: inline-block;
-  width: 0.5rem;
-  opacity: 0;
-}
-
-@keyframes charFadeUp {
-  from { opacity: 0; transform: translateY(0.3rem); }
-  to { opacity: 1; transform: translateY(0); }
-}
+    
 
 
 
@@ -141,20 +124,22 @@
 
 
 
+  <!-- HEADER MIT DEINER ORIGINALEN ANIMATION -->
   <header 
-  class="relative z-10 w-full flex flex-col items-center pt-12"
-  x-data="animatedH1()" 
-  x-init="init()"
->
-  <h1 
-    id="animated-h1"
-    class="text-4xl sm:text-6xl font-bold mb-4 text-gray-100 p-4 sm:p-6 md:p-8"
+    class="relative z-10 w-full flex flex-col items-center pt-12"
+    x-data="animatedH1()" 
+    x-init="init()"
   >
-    <template x-for="(part, i) in parts" :key="i">
-      <span x-html="part"></span>
-    </template>
-  </h1>
-</header>
+    <h1 class="text-4xl sm:text-6xl font-bold mb-4 text-gray-100 p-4 sm:p-6 md:p-8">
+      <template x-for="(part, i) in parts" :key="i">
+        <span 
+          x-html="part"
+          :class="visible[i] ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2'"
+          class="inline transition-all duration-500"
+        ></span>
+      </template>
+    </h1>
+  </header>
 
 
 
@@ -802,49 +787,46 @@ attachMenuLinkHandlers();
 
 
 
+
+  
+  <!-- Alpine.js sanfte Fade-In/Slide-Up Animation -->
 <script>
 document.addEventListener('alpine:init', () => {
   Alpine.data('animatedH1', () => ({
     parts: [],
+    visible: [],
     init() {
       const html = 'Willkommen bei <span class="text-purple-600">Tharawave</span> – entdecken Sie fortschrittliches & responsives Design';
+      
+      // HTML in einzelne Zeichen zerlegen (wie vorher)
       const container = document.createElement('div');
       container.innerHTML = html;
-
-      const chars = [];
-      let idx = 0;
+      this.parts = [];
 
       container.childNodes.forEach(node => {
         if (node.nodeType === Node.TEXT_NODE) {
-          for (const ch of node.textContent.split('')) {
-            if (ch === ' ') {
-              chars.push(`<span class="animate-char char-space" style="animation-delay:${idx * 35}ms">&nbsp;</span>`);
-            } else {
-              const esc = ch === '<' ? '&lt;' : ch;
-              chars.push(`<span class="animate-char" style="animation-delay:${idx * 35}ms">${esc}</span>`);
-            }
-            idx++;
-          }
+          node.textContent.split('').forEach(c => this.parts.push(c));
         } else if (node.nodeType === Node.ELEMENT_NODE) {
           const tag = node.tagName.toLowerCase();
-          const cls = node.className ? ` ${node.className}` : '';
-          for (const ch of node.textContent.split('')) {
-            if (ch === ' ') {
-              chars.push(`<span class="animate-char char-space" style="animation-delay:${idx * 35}ms">&nbsp;</span>`);
-            } else {
-              const esc = ch === '<' ? '&lt;' : ch;
-              chars.push(`<span class="animate-char" style="animation-delay:${idx * 35}ms"><${tag} class="${cls.trim()}">${esc}</${tag}></span>`);
-            }
-            idx++;
-          }
+          const cls = node.className;
+          node.textContent.split('').forEach(c => {
+            this.parts.push(`<${tag} class="${cls}">${c}</${tag}>`);
+          });
         }
       });
 
-      this.parts = chars;
+      // Sichtbarkeit initial
+      this.visible = this.parts.map(() => false);
+
+      // Animation: sanfter linearer Fade von links nach rechts
+      this.parts.forEach((_, i) => {
+        setTimeout(() => this.visible[i] = true, i * 35);
+      });
     }
   }));
 });
 </script>
+
 
   <script>
     window.addEventListener("load", () => {
@@ -879,3 +861,6 @@ document.addEventListener('alpine:init', () => {
 
 </body>
 </html>
+
+
+
