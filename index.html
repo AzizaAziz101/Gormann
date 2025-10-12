@@ -118,13 +118,15 @@
          rounded-2xl overflow-hidden"
   style="background-image: url('29.jpg');"
 >
+     <!-- Dunkles Overlay -->
+  <div class="absolute inset-0 bg-black bg-opacity-70"></div>
   <!-- HEADER MIT DEINER ORIGINALEN ANIMATION -->
   <header 
-    class="w-full flex flex-col items-center pt-12"
+    class="relative z-10 w-full flex flex-col items-center pt-12"
     x-data="animatedH1()" 
     x-init="init()"
   >
-    <h1 class="text-4xl sm:text-6xl font-bold mb-4 text-gray-800">
+    <h1 class="text-4xl sm:text-6xl font-bold mb-4 text-gray-100 p-4 sm:p-6 md:p-8">
       <template x-for="(part, i) in parts" :key="i">
         <span 
           x-html="part"
@@ -138,17 +140,23 @@
   <!-- INHALTSBEREICH -->
   <div class="w-full flex flex-col items-center">
 
-    <!-- STICKER: JETZT WIEDER GRÖSSER -->
-    <div id="sticker" 
-        class="opacity-0 scale-50 transition-all duration-300 ease-out
-                bg-purple-600 text-white 
-                w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-44 lg:h-44
-                rounded-full shadow-lg flex items-center justify-center
-                transform rotate-[-10deg] mb-16 mt-12 sm:-mt-8 z-10 md:mb-10 md:mt-8">
-      <span class="font-bold text-base sm:text-lg md:text-xl lg:text-2xl text-center leading-tight">
-        Neukunden<br>Rabatt 20%
-      </span>
-    </div>
+   
+
+
+    
+  <!-- STICKER: JETZT WIEDER ETWAS GRÖSSER -->
+<div id="sticker" 
+    class="opacity-0 scale-50 transition-all duration-300 ease-out
+            bg-purple-600 text-white 
+            w-40 h-40 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-52 lg:h-52
+            rounded-full shadow-lg flex items-center justify-center
+            transform rotate-[-10deg] mb-16 mt-12 sm:-mt-8 z-10 md:mb-16 md:mt-0">
+  <span class="font-bold text-lg sm:text-xl md:text-xl lg:text-2xl text-center leading-tight">
+    Neukunden<br>Rabatt 20 %
+  </span>
+</div>
+
+
 
     <!-- TEXTBLOCK: VOLLE BREITE BIS ZUR SECTION-AUSSENKANTE -->
     <div class="text-base text-gray-200 w-full bg-black/90 backdrop-blur-sm rounded-t-2xl p-4 sm:p-6 md:p-8">
@@ -194,7 +202,7 @@
 
 <!-- Second Hero Section -->
 <section class="w-full mt-12">
-  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8 p-4 sm:p-6 md:p-8">
 
 
 
@@ -424,14 +432,15 @@
 
 
 
-
-
 <!-- Bild links mit Overlay -->
+<div class="flex justify-center md:justify-center lg:justify-center">
 <div class="flex-1 relative max-w-full md:max-w-md lg:max-w-sm xl:max-w-xs">
   <img src="Arbeitsplatz001.jpg" alt="Webdesign Beispiel"
        class="w-full h-auto shadow-lg object-cover">
-  <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
 </div>
+</div>
+
 
 
 
@@ -802,7 +811,7 @@ document.addEventListener('alpine:init', () => {
       const mid = Math.floor(this.parts.length / 2);
       this.parts.forEach((_, i) => {
         const distance = Math.abs(i - mid);
-        setTimeout(() => this.visible[i] = true, distance * 30);
+        setTimeout(() => this.visible[i] = true, distance * 40);
       });
     }
   }));
