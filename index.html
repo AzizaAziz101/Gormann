@@ -120,6 +120,11 @@
 >
      <!-- Dunkles Overlay -->
   <div class="absolute inset-0 bg-black bg-opacity-70"></div>
+
+
+
+
+
   <!-- HEADER MIT DEINER ORIGINALEN ANIMATION -->
   <header 
     class="relative z-10 w-full flex flex-col items-center pt-12"
@@ -136,6 +141,12 @@
       </template>
     </h1>
   </header>
+
+
+
+
+
+
 
   <!-- INHALTSBEREICH -->
   <div class="w-full flex flex-col items-center">
@@ -777,21 +788,20 @@ attachMenuLinkHandlers();
 
 
 
-<!-- Alpine.js Animation Moderne Interfaces... -->
-
+  <!-- Alpine.js sanfte Fade-In/Slide-Up Animation -->
 <script>
 document.addEventListener('alpine:init', () => {
   Alpine.data('animatedH1', () => ({
     parts: [],
     visible: [],
     init() {
-      const html = 'Willkommen bei <span class="text-purple-600">Tharawave</span> dies ist mein Portfolio – entdecken Sie fortschrittliches & responsives Design';
+      const html = 'Willkommen bei <span class="text-purple-600">Tharawave</span> – entdecken Sie fortschrittliches & responsives Design';
       
-      // Segmente: Text-Knoten und HTML-Tags trennen
+      // HTML in einzelne Zeichen zerlegen (wie vorher)
       const container = document.createElement('div');
       container.innerHTML = html;
       this.parts = [];
-      
+
       container.childNodes.forEach(node => {
         if (node.nodeType === Node.TEXT_NODE) {
           node.textContent.split('').forEach(c => this.parts.push(c));
@@ -807,16 +817,15 @@ document.addEventListener('alpine:init', () => {
       // Sichtbarkeit initial
       this.visible = this.parts.map(() => false);
 
-      // Animation: Mitte -> außen
-      const mid = Math.floor(this.parts.length / 2);
+      // Animation: sanfter linearer Fade von links nach rechts
       this.parts.forEach((_, i) => {
-        const distance = Math.abs(i - mid);
-        setTimeout(() => this.visible[i] = true, distance * 40);
+        setTimeout(() => this.visible[i] = true, i * 35);
       });
     }
   }));
 });
 </script>
+
 
   <script>
     window.addEventListener("load", () => {

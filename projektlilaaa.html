@@ -258,3 +258,48 @@
         Neukunden<br>Rabatt 20%
       </span>
     </div>
+
+
+
+
+
+<!-- Alpine.js Animation Moderne Interfaces... -->
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('animatedH1', () => ({
+    parts: [],
+    visible: [],
+    init() {
+      const html = 'Willkommen bei <span class="text-purple-600">Tharawave</span> dies ist mein Portfolio – entdecken Sie fortschrittliches & responsives Design';
+      
+      // Segmente: Text-Knoten und HTML-Tags trennen
+      const container = document.createElement('div');
+      container.innerHTML = html;
+      this.parts = [];
+      
+      container.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.textContent.split('').forEach(c => this.parts.push(c));
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          const tag = node.tagName.toLowerCase();
+          const cls = node.className;
+          node.textContent.split('').forEach(c => {
+            this.parts.push(`<${tag} class="${cls}">${c}</${tag}>`);
+          });
+        }
+      });
+
+      // Sichtbarkeit initial
+      this.visible = this.parts.map(() => false);
+
+      // Animation: Mitte -> außen
+      const mid = Math.floor(this.parts.length / 2);
+      this.parts.forEach((_, i) => {
+        const distance = Math.abs(i - mid);
+        setTimeout(() => this.visible[i] = true, distance * 40);
+      });
+    }
+  }));
+});
+</script>
