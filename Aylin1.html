@@ -72,6 +72,12 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+.word {
+  display: inline-block;
+  white-space: nowrap; /* Verhindert Zeilenumbruch innerhalb des Wortes */
+}
+
+
 
 
   </style>
@@ -801,7 +807,6 @@ attachMenuLinkHandlers();
 </script>
 
 
-
 <script>
 document.addEventListener('alpine:init', () => {
   Alpine.data('animatedH1', () => ({
@@ -814,29 +819,25 @@ document.addEventListener('alpine:init', () => {
       const chars = [];
       let idx = 0;
 
+      function wrapWord(word, cls='') {
+        const letters = word.split('').map(ch => {
+          idx++;
+          return `<span class="animate-char${cls}" style="animation-delay:${idx*35}ms">${ch}</span>`;
+        }).join('');
+        return `<span class="word" style="white-space: nowrap">${letters}</span>`;
+      }
+
       container.childNodes.forEach(node => {
         if (node.nodeType === Node.TEXT_NODE) {
-          for (const ch of node.textContent.split('')) {
-            if (ch === ' ') {
-              chars.push(`<span class="animate-char char-space" style="animation-delay:${idx * 35}ms">&nbsp;</span>`);
-            } else {
-              const esc = ch === '<' ? '&lt;' : ch;
-              chars.push(`<span class="animate-char" style="animation-delay:${idx * 35}ms">${esc}</span>`);
-            }
-            idx++;
-          }
+          node.textContent.split(' ').forEach((word, i) => {
+            if(word) chars.push(wrapWord(word));
+            if (i < node.textContent.split(' ').length - 1) chars.push('<span class="animate-char char-space">&nbsp;</span>');
+          });
         } else if (node.nodeType === Node.ELEMENT_NODE) {
-          const tag = node.tagName.toLowerCase();
-          const cls = node.className ? ` ${node.className}` : '';
-          for (const ch of node.textContent.split('')) {
-            if (ch === ' ') {
-              chars.push(`<span class="animate-char char-space" style="animation-delay:${idx * 35}ms">&nbsp;</span>`);
-            } else {
-              const esc = ch === '<' ? '&lt;' : ch;
-              chars.push(`<span class="animate-char" style="animation-delay:${idx * 35}ms"><${tag} class="${cls.trim()}">${esc}</${tag}></span>`);
-            }
-            idx++;
-          }
+          node.textContent.split(' ').forEach((word, i) => {
+            if(word) chars.push(wrapWord(word, ` ${node.className}`));
+            if (i < node.textContent.split(' ').length - 1) chars.push('<span class="animate-char char-space">&nbsp;</span>');
+          });
         }
       });
 
@@ -846,13 +847,20 @@ document.addEventListener('alpine:init', () => {
 });
 </script>
 
+
+
+
+
+
+
+
   <script>
     window.addEventListener("load", () => {
       setTimeout(() => {
         const sticker = document.getElementById("sticker");
         sticker.classList.remove("opacity-0", "scale-50");
         sticker.classList.add("opacity-100", "scale-100");
-      }, 2300); // erscheint nach 1,7 Sekunden
+      }, 2400); // erscheint nach 1,7 Sekunden
     });
   </script>
    
@@ -879,3 +887,5 @@ document.addEventListener('alpine:init', () => {
 
 </body>
 </html>
+
+
