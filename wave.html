@@ -1,10 +1,284 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    /* Titel Animation nur Fade */
+    .title-item { 
+      opacity: 0; 
+      transition: opacity 0.4s ease-out; 
+    }
+    .title-item.show { 
+      opacity: 1; 
+    }
 
-<!-- Projekt 1 (verkleinert) -->
+    /* Blur Hintergrund */
+    #blur-bg { 
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      backdrop-filter: blur(10px); background: rgba(255,255,255,0.2); 
+      opacity: 0; pointer-events: none; transition: opacity 0.3s;
+      z-index: 30;
+    }
+    #blur-bg.show { opacity: 1; pointer-events: all; }
+
+    /* Dropdown Slide Animation */
+    #dropdown { transform-origin: top; transition: all 0.3s ease-out; }
+    #dropdown.show { opacity: 1; transform: scaleY(1); }
+    #dropdown.hide { opacity: 0; transform: scaleY(0); pointer-events: none; }
+
+    nav li, #mobile-menu li { cursor: pointer; }
+
+    [x-cloak] { display: none !important; }
+
+    /* Eleganter Fade-In Effekt */
+    .fade-section {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(8px);
+      transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .fade-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+    
+    [x-cloak] { display: none !important; }
+
+
+
+
+.animate-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.25rem);
+  will-change: transform, opacity;
+  animation: charFadeUp 0.52s cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+.char-space {
+  display: inline-block;
+  width: 0.5rem;
+  opacity: 0;
+}
+
+@keyframes charFadeUp {
+  from { opacity: 0; transform: translateY(0.3rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.word {
+  display: inline-block;
+  white-space: nowrap; /* Verhindert Zeilenumbruch innerhalb des Wortes */
+}
+
+
+
+
+/* Animierter Background wie im Futuristik-Beispiel */ #animated-bg { background: linear-gradient(270deg, #000428, #004e92, #000428); background-size: 400% 400%; animation: rotateBg 12s ease infinite; } @keyframes rotateBg { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+  </style>
+</head>
+<body class="bg-gray-100 relative font-sans text-gray-900"
+  x-data="{ showIframe: false }">
+
+<!-- Blur Background -->
+<div id="blur-bg"></div>
+
+
+
+<!-- Navbar -->
+<nav class="fixed top-0 inset-x-0 z-40 bg-white border-b border-gray-300">
+
+
+
+    <div class="w-full lg:max-w-6xl mx-auto flex justify-between items-center px-5 py-3">
+
+    <!-- Desktop Menu -->
+    <ul class="hidden lg:flex space-x-6 text-sm font-medium" id="nav-items">
+      <li class="relative menu-item" data-key=""><a href="index.html" class="hover:underline">Start</a></li>
+      <li class="relative menu-item" data-key="Leistungen"><a href="nheimleistungen.html" class="hover:underline">Leistungen</a></li>
+      <li class="relative menu-item" data-key="Preise"><a href="#" class="hover:underline">Preise</a></li>
+      <li class="relative menu-item" data-key="Lösungen"><a href="#" class="hover:underline">Lösungen</a></li>
+      <li class="relative menu-item" data-key="Übermich"><a href="#" class="hover:underline">Über mich</a></li>
+      <li class="relative menu-item" data-key="Kontakt"><a href="#" class="hover:underline">Kontakt</a></li>
+      
+    </ul>
+
+
+
+<!-- Logo + Mobile Menu Button -->
+<div class="flex items-center justify-between w-full lg:w-auto">
+  <!-- Schriftzug nur auf Mobil -->
+  <a href="index.html" class="font-bold text-lg lg:hidden text-gray-800">Tharawave</a>
+
+
+
+  <!-- Telefonnummer Button -->
+<a href="tel:+491625426438" class="ml-4 text-gray-800 font-semibold">
+  +49 162 54 26 438
+</a>
+  
+</div>
+
+
+  <!-- Dropdown Menu -->
+  <div id="dropdown" class="hidden lg:flex justify-center bg-white shadow-lg absolute w-full top-full left-0 z-40 scale-y-0 opacity-0">
+    <div class="max-w-6xl w-full flex gap-12 p-6" id="dropdown-content"></div>
+  </div>
+
+ 
+</nav>
+
+<main class="pt-20 max-w-6xl mx-auto px-5 mt-12">
+
+
 <section 
-  class="bg-gray-200 rounded-2xl max-w-[600px] w-full flex flex-col items-center justify-end relative overflow-hidden cursor-pointer px-0 py-0 mt-6
-  md:mx-auto md:flex md:justify-center"
+  class="relative w-full min-h-screen md:h-auto bg-cover bg-center bg-no-repeat flex flex-col justify-between 
+         rounded-2xl overflow-hidden"
+  style="background-image: url('392.jpg');"
+>
+     <!-- Dunkles Overlay -->
+  <div class="absolute inset-0 bg-black bg-opacity-70"></div> 
+
+
+
+
+  <header 
+  class="relative z-10 w-full flex flex-col items-center pt-12"
+  x-data="animatedH1()" 
+  x-init="init()"
+>
+  <h1 
+    id="animated-h1"
+    class="text-4xl sm:text-6xl font-bold mb-4 text-gray-100 p-4 sm:p-6 md:p-8"
+  >
+    <template x-for="(part, i) in parts" :key="i">
+      <span x-html="part"></span>
+    </template>
+  </h1>
+</header>
+
+
+
+
+
+
+
+
+
+  <!-- INHALTSBEREICH -->
+  <div class="w-full flex flex-col items-center">
+
+   
+
+
+    
+  <!-- STICKER: JETZT WIEDER ETWAS GRÖSSER -->
+<div id="sticker" 
+    class="opacity-0 scale-50 transition-all duration-300 ease-out
+            bg-purple-600 text-white 
+            w-40 h-40 sm:w-40 sm:h-40 md:w-44 md:h-44 lg:w-52 lg:h-52
+            rounded-full shadow-lg flex items-center justify-center
+            transform rotate-[-10deg] mb-16 mt-12 sm:-mt-8 z-10 md:mb-16 md:mt-0">
+  <span class="font-bold text-lg sm:text-xl md:text-xl lg:text-2xl text-center leading-tight">
+    Neukunden<br>Rabatt 20 %
+  </span>
+</div>
+
+
+
+    <!-- TEXTBLOCK: VOLLE BREITE BIS ZUR SECTION-AUSSENKANTE -->
+    <div class="text-base text-gray-200 w-full bg-black/90 backdrop-blur-sm rounded-t-2xl p-4 sm:p-6 md:p-8">
+      <p class="mb-4 mt-4">Webdesign Global</p>
+      <p class="mb-4">Ich entwickele Webseiten für Ihr Business</p>
+      <p class="mb-4">
+        Von der Idee über die Umsetzung bis hin zur Veröffentlichung – ich begleite Sie in jedem Schritt...
+      </p>
+    </div>
+
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Second Hero Section -->
+<section class="w-full mt-12">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-8 p-4 sm:p-6 md:p-8">
+
+
+
+
+    <!-- Text rechts -->
+    <div class="flex-1 text-gray-700">
+      <h2 class="text-xl md:text-3xl font-bold mb-4 text-gray-800">
+        Online sichtbar, digital erfolgreich
+      </h2>
+      <p class="mb-4 text-base leading-relaxed">
+        Eine gute Webseite ist mehr als nur Design – sie ist das digitale Schaufenster Ihres Unternehmens.
+        
+      </p>
+      <p class="mb-4 text-base leading-relaxed">
+        Ich setze auf klare Strukturen,
+        schnelle Ladezeiten und ein nutzerzentriertes Erlebnis.
+      </p>
+      <p class="mb-6 text-base leading-relaxed">
+        Durch responsive Umsetzung mit TailwindCSS und moderner
+        Frontend-Technologien wird Ihre Webseite auf allen Geräten
+        perfekt dargestellt.
+      </p>
+      
+    </div>
+
+  </div>
+</section>
+
+
+
+
+<section 
+  id="projekt1"
+  class="rounded-2xl max-w-[600px] w-full flex flex-col items-center justify-end relative overflow-hidden cursor-pointer px-0 py-0 mt-6
+         md:mx-auto md:flex md:justify-center"
   x-data="{ showIframe: false }"
 >
+  <!-- Animierter Hintergrund -->
+  <div class="absolute inset-0 z-0 rounded-2xl overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-cyan-900 to-cyan-700" id="animated-bg"></div>
+  </div>
+
   <!-- iPhone Wrapper -->
   <div 
     class="relative rounded-[45px] p-[4px] bg-gradient-to-br from-gray-400 via-gray-300 to-gray-500 shadow-lg inline-block translate-y-[15%]
@@ -30,6 +304,71 @@
     </div>
   </div>
 
+  <!-- Modal -->
+  <div 
+    x-show="showIframe" 
+    x-cloak
+    x-transition
+    class="fixed inset-0 z-50 flex flex-col bg-white"
+    x-init="$watch('showIframe', value => { document.body.classList.toggle('overflow-hidden', value) })"
+  >
+    <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
+      <h3 class="text-gray-900 text-sm font-medium">Projekt Vorschau</h3>
+      <button 
+        @click.stop="showIframe = false" 
+        class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded-md transition"
+      >
+        Schließen
+      </button>
+    </div>
+    <iframe src="10000.html" class="w-full flex-1 border-0"></iframe>
+  </div>
+</section>
+
+<!-- Projektbeschreibung 1 -->
+<div class="text-gray-800 mt-8 max-w-[600px] px-4 mx-auto">
+  <h2 class="text-xl font-bold mb-2">Berliner Kanzlei – Projekt 01</h2>
+  <p class="opacity-90 mb-1">· 07/2025 · Lieferzeit 7 Tage · € 799,00*</p>
+  <p class="opacity-90 mb-10 leading-relaxed">
+    Dieses Projekt ist auf die Markenidentität der Kanzlei abgestimmt und sorgt mit klaerer Struktur für Glaubwürdigkeit.
+  </p>
+</div>
+
+
+
+
+
+<!-- Projekt 1 (verkleinert) -->
+<section 
+  class="bg-gray-200 rounded-2xl max-w-[600px] w-full flex flex-col items-center justify-end relative overflow-hidden cursor-pointer px-0 py-0 mt-6
+  md:mx-auto md:flex md:justify-center"
+  x-data="{ showIframe: false }"
+>
+  <!-- iPhone Wrapper -->
+  <div 
+    class="relative rounded-[45px] p-[4px] bg-gradient-to-br from-gray-400 via-gray-300 to-gray-500 shadow-lg inline-block translate-y-[15%]
+           transform transition-transform duration-300 ease-out hover:scale-[1.03] z-20"
+    @click="showIframe = true"
+  >
+    <div 
+      class="w-[240px] h-[310px] md:w-[220px] md:h-[360px] sm:w-[210px] sm:h-[400px] xs:w-[190px] xs:h-[360px] xxs:w-[180px] xxs:h-[330px] 
+             rounded-[42px] bg-black border-[6px] border-gray-900 overflow-hidden relative flex flex-col justify-end"
+    >
+      <!-- Notch -->
+      <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-[65px] h-[20px] bg-gray-900 rounded-[10px] z-10"></div>
+
+      <!-- iPhone Screen -->
+      <div class="w-full h-full rounded-[38px] overflow-hidden flex items-center justify-center bg-black">
+        <img 
+          src="alexandraaa.jpg" 
+          alt="Projekt Vorschau" 
+          class="w-full h-full object-cover"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </div>
+
   <!-- Modal für Projekt 1 -->
   <div 
     x-show="showIframe" 
@@ -47,32 +386,538 @@
         Schließen
       </button>
     </div>
-    <iframe src="10000.html" class="w-full flex-1 border-0"></iframe>
+    <iframe src="https://alexandra-bice.vercel.app/" class="w-full flex-1 border-0"></iframe>
   </div>
+</section>
 
-
-    </section>
 
 <!-- Projektbeschreibung 1 -->
 <div class="text-gray-800 mt-8 max-w-[600px] px-4 mx-auto">
-  <h2 class="text-xl font-bold mb-2">Berliner Kanzlei – Projekt 01</h2>
-  <p class="opacity-90 mb-1">· 07/2025 · Lieferzeit 7 Tage · € 799,00*</p>
+  <h2 class="text-xl font-bold mb-2">Physioterapeutin – Projekt 02</h2>
+  <p class="opacity-90 mb-1">· 10/2025 · Lieferzeit 6 Tage · € 699,00*</p>
   <p class="opacity-90 mb-10 leading-relaxed">
-    Dieses Projekt ist auf die Markenidentität der Kanzlei abgestimmt und sorgt mit klaerer Struktur für Glaubwürdigkeit.
+    Minimalistische Landingpage für eine Physioterapeutin in Berlin Mitte mit Fokus auf UX und Vertrauen.
   </p>
 </div>
 
 
-/* Dunkler mystischer Blau-Türkis-Gradient mit sichtbarer Welle */
-#animated-bg {
-  background: linear-gradient(270deg, #001f3f, #003a66, #005580, #007399);
-  background-size: 200% 200%;
-  animation: rotateBg 12s ease-in-out infinite;
+
+<!-- Projekt 2 (verkleinert) -->
+<section 
+  class="bg-gray-200 rounded-2xl max-w-[600px] w-full flex flex-col items-center justify-end relative overflow-hidden cursor-pointer px-0 py-0 mt-10
+  md:mx-auto md:flex md:justify-center" 
+  @click="window.open('https://meee-five.vercel.app/', '_blank')"
+>
+  <!-- iPhone Wrapper -->
+  <div 
+    class="relative rounded-[45px] p-[4px] bg-gradient-to-br from-gray-400 via-gray-300 to-gray-500 shadow-lg inline-block translate-y-[15%]
+           transform transition-transform duration-300 ease-out hover:scale-[1.03] z-20"
+  >
+    <div 
+      class="w-[240px] h-[310px] md:w-[220px] md:h-[360px] sm:w-[210px] sm:h-[400px] xs:w-[190px] xs:h-[360px] xxs:w-[180px] xxs:h-[330px] 
+             rounded-[42px] bg-black border-[6px] border-gray-900 overflow-hidden relative flex flex-col justify-end"
+    >
+      <!-- Notch -->
+      <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-[65px] h-[20px] bg-gray-900 rounded-[10px] z-10"></div>
+
+      <!-- iPhone Screen -->
+      <div class="w-full h-full rounded-[38px] overflow-hidden flex items-center justify-center bg-black">
+        <img 
+          src="screenselbstprojekt.png" 
+          alt="Projekt Vorschau" 
+          class="w-full h-full object-cover"
+          loading="lazy"
+        >
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<!-- Projektbeschreibung 1 -->
+<div class="text-gray-800 mt-8 max-w-[600px] px-4 mx-auto">
+  <h2 class="text-xl font-bold mb-2">Animation – Projekt 03</h2>
+  <p class="opacity-90 mb-1">· 10/2025 · Lieferzeit 9 Tage · € 1199,00*</p>
+  <p class="opacity-90 mb-12 leading-relaxed">
+    Futuristisches Animations-Intro – klar, modern und international für einen Mindset-Blog in drei Sprachen.
+  </p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Bild links mit Overlay -->
+<div class="flex justify-center md:justify-center lg:justify-center mb-2">
+<div class="flex-1 relative max-w-full rounded-2xl overflow-hidden md:max-w-md lg:max-w-sm xl:max-w-xs">
+  <img src="Arbeitsplatz001.jpg" alt="Webdesign Beispiel"
+       class="w-full h-auto shadow-lg object-cover">
+  <div class="absolute inset-0 bg-black bg-opacity-40"></div>
+</div>
+</div>
+
+
+<section>
+  
+ 
+<div class="container mx-auto py-12 p-4 sm:p-6 md:p-8">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+
+<!-- Punkt 01 -->
+      <div class="text-center lg:text-left">
+        <div class="flex justify-center lg:justify-start items-baseline mb-4">
+          <span class="text-4xl lg:text-5xl font-bold text-gray-800 leading-none">01</span>
+        </div>
+        <h3 class="text-xl lg:text-2xl font-bold text-gray-800 mb-3 tracking-tight">
+          Strategie & Konzeption
+        </h3>
+        <p class="text-base text-gray-800 opacity-90 leading-relaxed">
+          Ihre Ziele sind mein Fokus, um eine Webstrategie zu entwickeln, die Ihr Geschäft voranbringt.
+        </p>
+      </div>
+
+      <!-- Punkt 02 -->
+      <div class="text-center lg:text-left">
+        <div class="flex justify-center lg:justify-start items-baseline mb-4">
+          <span class="text-4xl lg:text-5xl font-bold text-gray-800 leading-none">02</span>
+        </div>
+        <h3 class="text-xl lg:text-2xl font-bold text-gray-800 mb-3 tracking-tight">
+          Umsetzung & Technologie
+        </h3>
+        <p class="text-base text-gray-800 opacity-90 leading-relaxed">
+          Aus unserer Strategie entsteht eine robuste, hochperformante Website. Sauberer Code, responsive Design und Fokus auf Benutzerführung sind mein Standard.
+        </p>
+      </div>
+
+      <!-- Punkt 03 -->
+      <div class="text-center lg:text-left">
+        <div class="flex justify-center lg:justify-start items-baseline mb-3">
+          <span class="text-4xl lg:text-5xl font-bold text-gray-800 leading-none">03</span>
+        </div>
+        <h3 class="text-xl lg:text-2xl font-bold text-gray-800 mb-3 tracking-tight">
+          Partnerschaft & Support
+        </h3>
+        <p class="text-base text-gray-800 opacity-90 leading-relaxed">
+          Meine Arbeit ist erst fertig, wenn Sie zufrieden sind. Ich sorge für klare Kommunikation, termingetreue Lieferung und nehme mir Zeit für Ihre Einweisung.
+        </p>
+      </div>
+
+   
+</section>
+
+
+
+
+
+<div class="mt-24 text-center" x-data="{ open: false }">
+
+
+
+
+
+
+
+<!-- Button -->
+<button
+  id="ctaButton"
+  @click="open = true"
+  class="relative px-6 py-2.5 text-sm font-medium text-white bg-black rounded-full focus:outline-none transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] will-change-transform">
+  Kostenloses Erstgespräch
+</button>
+
+
+
+
+
+  
+  <!-- Modal -->
+  <div
+    x-show="open"
+    x-cloak
+    x-transition.opacity
+    class="fixed inset-0 flex items-center justify-center bg-black/60 z-50">
+    <div 
+      class="bg-gray-200 rounded-2xl p-8 max-w-md text-center relative"
+      @click.away="open = false">
+      
+      <h2 class="text-2xl font-bold mb-4 text-gray-600">Kontakt</h2>
+      <p class="text-gray-600 leading-relaxed mb-6">
+        Für ein <strong>kostenloses Erstgespräch</strong> & bei Anfragen senden Sie mir bitte eine E-Mail an:<br>
+        <a href="mailto:tonihoeftofficial@gmail.com" class="text-purple-600 font-medium hover:underline">tonihoeftofficial@gmail.com</a>
+      </p>
+      
+      <button
+        @click="open = false"
+        class="px-6 py-2 bg-purple-600 text-white rounded-lg">
+        Schließen
+      </button>
+    </div>
+  </div>
+</div>
+
+
+<div
+class="mt-12 mb-12 text-center">
+<p>*Alle Preise inkl. 19% MwSt.</p>
+  </div>
+
+</section>
+
+
+
+  </main>
+
+
+
+
+<!-- Footer -->
+<footer class="items-center py-16 text-center text-gray-900 bg-gray-200">
+  <p>© 2025 www.tharawave.digital</p>
+  <div class="space-x-4 mt-2">
+    <a href="impressum001.html">Impressum</a>
+    <a href="datenschutz001.html">Datenschutz</a>
+  </div>
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+const MENU_CONTENT = {
+
+  Leistungen: { 
+  firstUl: { 
+    title: { label: "Webdesign", url: "nheimleistungen.html" }, 
+    items: [
+      { label: "Wie ensteht Webdesign", url: "#" },
+      { label: "Top 10 in Webdesign", url: "#" },
+      { label: "Grafiken", url: "#" },
+      { label: "Farbwelt", url: "#" },
+      { label: "Typographie", url: "#" },
+      { label: "Performance", url: "#" }
+    ] 
+  },
+  secondUl: { 
+    title: { label: "UX UI Design", url: "#" }, 
+    items: [
+     
+    ] 
+  },
+  thirdUl: { 
+    title: { label: "Webentwicklung", url: "#" }, 
+    items: [
+      { label: "Figma", url: "#" },
+      { label: "Vs Code", url: "#" },
+      { label: "HTML", url: "#" },
+      { label: "TailwindCSS", url: "#" }
+    ] 
+  } 
+},
+
+  Preise: { firstUl: { title: "Preisentstehung", items: [] },
+         secondUl: { title: "Beispielpreise", items: [""] },
+         thirdUl: { title: "Fragen zu Preisen", items: ["Onepage","Multiwebpage","Multiwebpage & Marketing","Only Design"] } },
+  Lösungen: { firstUl: { title: "Anwendungsfälle", items: [] },
+          secondUl: { title: "Referenzen", items: [] },
+          thirdUl: { title: "Resonazen", items: [""] } },
+  Übermich: { firstUl: { title: "Wer ich bin", items: [] },
+            secondUl: { title: "Weg in die Selbstständigkeit", items: [] },
+            thirdUl: { title: "Warum Webdesign", items: [] } },
+  Kontakt: { firstUl: { title: "Website", items: [] },
+           secondUl: { title: "Mailsupport", items: [] },
+           thirdUl: { title: "Telefonsupport", items: [] } }
+
+};
+
+
+// per-key hover-ignore (persistiert über Seitenwechsel via sessionStorage)
+let ignoreMenuKey = null;
+const IGNORE_TIMEOUT = 900; // ms — Zeitspanne, nach der Hover wieder erlaubt ist (anpassen falls nötig)
+
+
+const menuItems = document.querySelectorAll('.menu-item');
+const dropdown = document.getElementById('dropdown');
+const dropdownContent = document.getElementById('dropdown-content');
+const blurBg = document.getElementById('blur-bg');
+
+// --- MOBILES MENÜ ELEMENTE ---
+const mobileToggle = document.getElementById('mobile-toggle'); // Hamburger Button
+const mobileMenu = document.getElementById('mobile-menu');     // Mobile Menu Container
+const mobileMenuItems = document.getElementById('mobile-menu-items'); // Mobile Menu Items List
+const mobileClose = document.getElementById('mobile-close');   // Close Button im Mobile Menu
+// --- ENDE MOBILES MENÜ ---
+
+
+function openDropdown(key) {
+  // Wenn genau dieser Menü-Key kurz zuvor geklickt wurde -> nicht öffnen
+  if (ignoreMenuKey && key === ignoreMenuKey) return;
+
+  const content = MENU_CONTENT[key];
+  if (!content) return;
+
+  dropdownContent.innerHTML = '';
+  ['firstUl','secondUl','thirdUl'].forEach(section => {
+    const col = document.createElement('div');
+    col.innerHTML = `
+      <h3 class="title-item font-semibold mb-2">
+  ${
+    typeof content[section].title === "string"
+      ? content[section].title
+      : `<a href="${content[section].title.url}" class="hover:underline">${content[section].title.label}</a>`
+  }
+      </h3>
+
+      <ul class="space-y-1 text-sm">
+        ${content[section].items
+          .map(i => {
+            if (typeof i === "string") return `<li>${i}</li>`;
+            return `<li><a href="${i.url}" class="cursor-pointer hover:underline">${i.label}</a></li>`;
+          })
+          .join('')}
+      </ul>
+    `;
+    dropdownContent.appendChild(col);
+  });
+
+  dropdown.classList.remove('hidden','hide');
+  dropdown.classList.add('show');
+  blurBg.classList.add('show');
+
+  const titles = dropdownContent.querySelectorAll('.title-item');
+  titles.forEach((el, i) => {
+    setTimeout(() => el.classList.add('show'), i*100);
+  });
 }
 
-@keyframes rotateBg {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+function closeDropdown() {
+  dropdown.classList.remove('show');
+  dropdown.classList.add('hide');
+  blurBg.classList.remove('show');
+  dropdownContent.querySelectorAll('.title-item').forEach(el => el.classList.remove('show'));
 }
 
+menuItems.forEach(item => {
+  item.addEventListener('mouseenter', () => openDropdown(item.dataset.key));
+});
+
+const navbarArea = document.querySelector('nav');
+navbarArea.addEventListener('mouseleave', closeDropdown);
+
+// --- MOBILES MENÜ TOGGLE ---
+mobileToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('hidden'); // Öffnen / Schließen
+});
+
+mobileClose.addEventListener('click', () => {
+  mobileMenu.classList.add('hidden'); // Schließen
+});
+// --- ENDE MOBILES MENÜ TOGGLE ---
+
+
+
+
+// Attach click handlers to all nav / mobile links — speichern des geklickten Haupt-Keys
+function attachMenuLinkHandlers() {
+  document.querySelectorAll('nav a, #mobile-menu a').forEach(link => {
+    // Verhindere doppeltes Anhängen
+    if (link.dataset._handlerAttached) return;
+    link.dataset._handlerAttached = '1';
+
+    link.addEventListener('click', (e) => {
+      // bestimme den dazugehörigen menu-key (falls vorhanden)
+      const menuItem = link.closest('.menu-item') || link.closest('li');
+      const key = menuItem && menuItem.dataset ? menuItem.dataset.key : null;
+
+      if (key) {
+        sessionStorage.setItem('justClickedMenuKey', key);
+        sessionStorage.setItem('justClickedMenuTime', Date.now().toString());
+      } else {
+        // fallback: text (sollte nicht nötig sein, aber sicher)
+        sessionStorage.setItem('justClickedMenuKey', link.textContent.trim());
+        sessionStorage.setItem('justClickedMenuTime', Date.now().toString());
+      }
+
+      // UX: Menüs schließen sofort (Navigation folgt normal)
+      closeDropdown();
+      mobileMenu.classList.add('hidden'); // MOBILE MENU SCHLIESSEN
+      // NICHT preventDefault — wir wollen die Navigation
+    });
+  });
+}
+
+// rufe jetzt gleich auf (so sind die Handler vor einem Klick gebunden)
+attachMenuLinkHandlers();
+
+
+// Beim Laden prüfen, ob vorher ein Menüpunkt geklickt wurde — temporäre Sperre setzen
+(function resumeIgnoreClickedMenu() {
+  const clickedKey = sessionStorage.getItem('justClickedMenuKey');
+  const clickedTime = Number(sessionStorage.getItem('justClickedMenuTime') || 0);
+
+  // nur wenn der Klick kürzlich war (sicherheitshalber < 5s) → sonst verwerfen
+  if (clickedKey && clickedTime && (Date.now() - clickedTime) < 5000) {
+    ignoreMenuKey = clickedKey;
+    closeDropdown(); // sicherstellen, dass Dropdown geschlossen bleibt
+
+    // nach kurzer Zeit wieder freigeben und sessionStorage aufräumen
+    setTimeout(() => {
+      ignoreMenuKey = null;
+      sessionStorage.removeItem('justClickedMenuKey');
+      sessionStorage.removeItem('justClickedMenuTime');
+    }, IGNORE_TIMEOUT);
+  } else {
+    // aufräumen, falls alte values vorhanden sind
+    sessionStorage.removeItem('justClickedMenuKey');
+    sessionStorage.removeItem('justClickedMenuTime');
+  }
+})();
+   
+</script>
+
+
+<script>
+document.addEventListener('alpine:init', () => {
+  Alpine.data('animatedH1', () => ({
+    parts: [],
+    init() {
+      const html = 'Willkommen bei <span class="text-purple-600">Tharawave</span> – entdecken Sie fortschrittliches & responsives Design';
+      const container = document.createElement('div');
+      container.innerHTML = html;
+
+      const chars = [];
+      let idx = 0;
+
+      function wrapWord(word, cls='') {
+        const letters = word.split('').map(ch => {
+          idx++;
+          return `<span class="animate-char${cls}" style="animation-delay:${idx*35}ms">${ch}</span>`;
+        }).join('');
+        return `<span class="word" style="white-space: nowrap">${letters}</span>`;
+      }
+
+      container.childNodes.forEach(node => {
+        if (node.nodeType === Node.TEXT_NODE) {
+          node.textContent.split(' ').forEach((word, i) => {
+            if(word) chars.push(wrapWord(word));
+            if (i < node.textContent.split(' ').length - 1) chars.push('<span class="animate-char char-space">&nbsp;</span>');
+          });
+        } else if (node.nodeType === Node.ELEMENT_NODE) {
+          node.textContent.split(' ').forEach((word, i) => {
+            if(word) chars.push(wrapWord(word, ` ${node.className}`));
+            if (i < node.textContent.split(' ').length - 1) chars.push('<span class="animate-char char-space">&nbsp;</span>');
+          });
+        }
+      });
+
+      this.parts = chars;
+    }
+  }));
+});
+</script>
+
+
+
+
+
+
+
+
+  <script>
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const sticker = document.getElementById("sticker");
+        sticker.classList.remove("opacity-0", "scale-50");
+        sticker.classList.add("opacity-100", "scale-100");
+      }, 2400); // erscheint nach 1,7 Sekunden
+    });
+  </script>
+   
+
+
+
+<script>
+  const btn = document.getElementById('ctaButton');
+
+  function pulse() {
+    // Sanft hoch + leicht größer
+    btn.style.transform = 'translateY(-4px) scale(1.05)';
+
+    // etwas länger „oben“ bleiben (1.2s), dann smooth zurück
+    setTimeout(() => {
+      btn.style.transform = 'translateY(0) scale(1)';
+    }, 1200);
+  }
+
+  // Erste Bewegung nach 1.2s, dann alle 7s
+  setTimeout(pulse, 1200);
+  setInterval(pulse, 7000);
+</script>
+
+</body>
+</html>
