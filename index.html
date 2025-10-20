@@ -16,7 +16,7 @@
   <meta property="og:description" content="Moderne, responsive Webseiten – von der Idee bis zur Veröffentlichung. Online sichtbar, digital erfolgreich mit Tharawave.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.tharawave.digital/"> <!-- deine echte URL -->
-  
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
   <style>
@@ -325,7 +325,6 @@
 <!-- Alpine.js muss eingebunden sein -->
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 
-<!-- PROJEKT 1 -->
 <section 
   id="projekt1"
   class="rounded-2xl max-w-[600px] w-full flex flex-col items-center justify-end relative overflow-hidden cursor-pointer px-0 py-0 mt-6
@@ -337,6 +336,11 @@
       { threshold: [0, 0.9, 1] }
     );
     observer.observe($el);
+
+    // Wenn man zurück geht, Iframe schließen
+    window.addEventListener('popstate', () => { 
+      if (showIframe) showIframe = false; 
+    });
   "
 >
   <!-- Animierter Hintergrund -->
@@ -348,7 +352,10 @@
   <div 
     class="relative rounded-[45px] p-[4px] bg-gradient-to-br from-gray-400 via-gray-300 to-gray-500 shadow-lg inline-block translate-y-[15%]
            transform transition-transform duration-300 ease-out hover:scale-[1.03] z-20"
-    @click="showIframe = true"
+    @click="
+      showIframe = true;
+      history.pushState({ iframe: true }, '', '#projekt1');
+    "
   >
     <div 
       class="relative w-[240px] h-[310px] md:w-[220px] md:h-[360px] sm:w-[210px] sm:h-[400px] xs:w-[190px] xs:h-[360px] xxs:w-[180px] xxs:h-[330px] 
@@ -393,7 +400,10 @@
     x-cloak
     x-transition
     class="fixed inset-0 z-50 flex flex-col bg-white"
-    x-init="$watch('showIframe', value => { document.body.classList.toggle('overflow-hidden', value) })"
+    x-init="$watch('showIframe', value => { 
+      document.body.classList.toggle('overflow-hidden', value);
+      if (!value) history.back(); // wenn man schließt, gehe im Verlauf zurück
+    })"
   >
     <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
       <h3 class="text-gray-900 text-sm font-medium">Projekt Vorschau</h3>
@@ -407,6 +417,7 @@
     <iframe src="10000.html" class="w-full flex-1 border-0"></iframe>
   </div>
 </section>
+
 
 <!-- Beschreibung 1 -->
 <div class="text-gray-800 mt-8 max-w-[600px] px-4 mx-auto">
