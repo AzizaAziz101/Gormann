@@ -459,7 +459,8 @@
            transform transition-transform duration-300 ease-out hover:scale-[1.03] z-20"
     @click="
       showIframe = true;
-      history.pushState({ iframe: true }, '', '#projekt2');
+      // Füge einen 'Fake'-Verlaufseintrag hinzu, ohne den Nutzer von der Seite zu bewegen
+      history.pushState({ modal: 'projekt2' }, '', '#projekt2');
     "
   >
     <div 
@@ -505,7 +506,10 @@
     class="fixed inset-0 z-50 flex flex-col bg-white"
     x-init="$watch('showIframe', value => { 
       document.body.classList.toggle('overflow-hidden', value);
-      if (!value) history.back(); // Verlaufseintrag zurücksetzen beim Schließen
+      if (!value) {
+        // URL zurücksetzen, aber ohne echten 'Back'-Sprung (verhindert Rückkehr zu Google)
+        history.replaceState({}, '', window.location.pathname);
+      }
     })"
   >
     <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
