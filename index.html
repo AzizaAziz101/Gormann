@@ -337,34 +337,33 @@
     );
     observer.observe($el);
 
-    // Wenn man zurück geht, Iframe schließen
+    // Popstate schließen Modal, aber nur wenn offen
     window.addEventListener('popstate', () => { 
       if (showIframe) showIframe = false; 
     });
   "
 >
-  <!-- Animierter Hintergrund -->
+  <!-- Hintergrund -->
   <div class="absolute inset-0 z-0 rounded-2xl overflow-hidden">
     <div class="absolute inset-0 bg-gradient-to-b from-cyan-900 to-cyan-700"></div>
   </div>
 
-  <!-- iPhone Wrapper -->
+  <!-- iPhone -->
   <div 
     class="relative rounded-[45px] p-[4px] bg-gradient-to-br from-gray-400 via-gray-300 to-gray-500 shadow-lg inline-block translate-y-[15%]
            transform transition-transform duration-300 ease-out hover:scale-[1.03] z-20"
     @click="
       showIframe = true;
-      history.pushState({ iframe: true }, '', '#projekt1');
+      // Füge Fake-History-Eintrag hinzu (aber ohne Redirect)
+      history.pushState({ modal: 'projekt1' }, '', '#projekt1');
     "
   >
     <div 
       class="relative w-[240px] h-[310px] md:w-[220px] md:h-[360px] sm:w-[210px] sm:h-[400px] xs:w-[190px] xs:h-[360px] xxs:w-[180px] xxs:h-[330px] 
              rounded-[42px] bg-black border-[6px] border-gray-900 overflow-hidden flex flex-col justify-end"
     >
-      <!-- Notch -->
       <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-[65px] h-[20px] bg-gray-900 rounded-[10px] z-10"></div>
 
-      <!-- Screen -->
       <div class="w-full h-full rounded-[38px] overflow-hidden flex items-center justify-center bg-black">
         <img 
           src="anwältinx.jpg" 
@@ -374,7 +373,6 @@
         >
       </div>
 
-      <!-- Animierter Sticker -->
       <div 
         class="absolute top-[62%] left-[30%] transform -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none"
         x-show="showSticker"
@@ -383,10 +381,8 @@
         x-transition:enter-end="scale-100"
       >
         <div 
-          class="bg-gray-800
-                 text-white text-center text-sm md:text-base font-semibold
-                 w-[110px] h-[110px] rounded-full shadow-md
-                 flex items-center justify-center tracking-wide"
+          class="bg-gray-800 text-white text-center text-sm md:text-base font-semibold
+                 w-[110px] h-[110px] rounded-full shadow-md flex items-center justify-center tracking-wide"
         >
           Projekt ansehen
         </div>
@@ -402,7 +398,10 @@
     class="fixed inset-0 z-50 flex flex-col bg-white"
     x-init="$watch('showIframe', value => { 
       document.body.classList.toggle('overflow-hidden', value);
-      if (!value) history.back(); // wenn man schließt, gehe im Verlauf zurück
+      if (!value) {
+        // URL zurücksetzen, aber NICHT im Verlauf zurückspringen
+        history.replaceState({}, '', window.location.pathname);
+      }
     })"
   >
     <div class="flex justify-between items-center px-4 py-2 bg-gray-50 border-b border-gray-200">
@@ -417,6 +416,7 @@
     <iframe src="10000.html" class="w-full flex-1 border-0"></iframe>
   </div>
 </section>
+
 
 
 <!-- Beschreibung 1 -->
@@ -604,33 +604,6 @@
     Futuristisches Animations-Intro – klar, modern und international für einen Mindset-Blog in drei Sprachen.
   </p>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
