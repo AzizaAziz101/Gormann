@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Tharawave | Webdeveloper</title>
+  <title>Tharawave | Webdesign Freelancer aus Berlin</title>
 
     <!-- Meta Description für Google -->
   <meta name="description" content="Ich entwickle moderne, responsive Webseiten für Ihr Business – von der Idee bis zur Veröffentlichung. Mit klaren Strukturen, schnellen Ladezeiten und einem nutzerzentrierten Design wird Ihr Unternehmen online sichtbar und digital erfolgreich.">
@@ -122,7 +122,8 @@
     <!-- Desktop Menu -->
     <ul class="hidden lg:flex space-x-6 text-sm font-medium" id="nav-items">
       <li class="relative menu-item" data-key=""><a href="index.html" class="hover:underline">Start</a></li>
-      <li class="relative menu-item" data-key="Leistungen"><a href="#" class="hover:underline">Leistungen</a></li>
+      <li class="relative menu-item" data-key="Leistungen"><a href="nheimleistungen.html" class="hover:underline">Leistungen</a></li>
+      <li class="relative menu-item" data-key="Preise"><a href="#" class="hover:underline">Preise</a></li>
       <li class="relative menu-item" data-key="Lösungen"><a href="#" class="hover:underline">Lösungen</a></li>
       <li class="relative menu-item" data-key="Übermich"><a href="#" class="hover:underline">Über mich</a></li>
       <li class="relative menu-item" data-key="Kontakt"><a href="#" class="hover:underline">Kontakt</a></li>
@@ -767,14 +768,37 @@ class="mt-12 mb-12 text-center">
 
 
 const MENU_CONTENT = {
-
-
-   Leistungen: { 
-    firstUl: { title: "Softwareentwicklung", items: [] },
-    secondUl: { title: "Webentwicklung", items: [] },
-    thirdUl: { title: "UI UX Design", items: [""] } 
+  Leistungen: { 
+    firstUl: { 
+      title: { label: "Webdesign", url: "#" }, 
+      items: [
+        { label: "Wie ensteht Webdesign", url: "#" },
+        { label: "Top 10 in Webdesign", url: "#" },
+        { label: "Grafiken", url: "#" },
+        { label: "Farbwelt", url: "#" },
+        { label: "Typographie", url: "#" },
+        { label: "Performance", url: "#" }
+      ] 
+    },
+    secondUl: { 
+      title: { label: "UX UI Design", url: "#" }, 
+      items: [] 
+    },
+    thirdUl: { 
+      title: { label: "Webentwicklung", url: "#" }, 
+      items: [
+        { label: "Vs Code", url: "#" },
+        { label: "HTML", url: "#" },
+        { label: "TailwindCSS", url: "#" }
+      ] 
+    } 
   },
 
+  Preise: { 
+    firstUl: { title: "Preisentstehung", items: [] },
+    secondUl: { title: "Beispielpreise", items: [""] },
+    thirdUl: { title: "Fragen zu Preisen", items: ["Onepage","Multiwebpage","Multiwebpage & Marketing","Only Design"] } 
+  },
 
   Lösungen: { 
     firstUl: { title: "Anwendungsfälle", items: [] },
@@ -784,14 +808,14 @@ const MENU_CONTENT = {
 
   Übermich: {
     firstUl: { title: "Wer ich bin", items: [] },
-    secondUl: { title: "Skills", items: [] },
-    thirdUl: { title: "Arbeitsweise", items: [""] }
+    secondUl: { title: "", items: [] },
+    thirdUl: { title: "Resonanzen", items: [""] }
   },
 
   Kontakt: {
     firstUl: { title: "Website", items: [] },
-    secondUl: { title: "Email", items: [] },
-    thirdUl: { title: "Tel", items: [""] }
+    secondUl: { title: "Referenzen", items: [] },
+    thirdUl: { title: "Resonanzen", items: [""] }
   }
 };
 
